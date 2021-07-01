@@ -74,3 +74,10 @@ D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.CoreCompi
 D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.CopyComplete
 D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.dll
 D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.pdb
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\Antlr3.Runtime.dll
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\Newtonsoft.Json.dll
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\System.Web.Optimization.dll
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\WebGrease.dll
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\Antlr3.Runtime.pdb
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\Newtonsoft.Json.xml
+D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\System.Web.Optimization.xml

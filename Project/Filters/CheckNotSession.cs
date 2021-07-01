@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Login.Filters {
+namespace Project.Filters {
     public class CheckNotSession : ActionFilterAttribute {
         public override void OnActionExecuting(ActionExecutingContext filterContext) {
             var currentSession = HttpContext.Current.Session;

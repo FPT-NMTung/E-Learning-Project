@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -50,6 +54,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -61,6 +68,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -68,6 +78,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -96,7 +109,113 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\css\my-login.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\img\2.jpg" />
+    <Content Include="Content\img\about.jpg" />
+    <Content Include="Content\img\apple-touch-icon.png" />
+    <Content Include="Content\img\clients\client-1.png" />
+    <Content Include="Content\img\clients\client-2.png" />
+    <Content Include="Content\img\clients\client-3.png" />
+    <Content Include="Content\img\clients\client-4.png" />
+    <Content Include="Content\img\clients\client-5.png" />
+    <Content Include="Content\img\clients\client-6.png" />
+    <Content Include="Content\img\clients\client-7.png" />
+    <Content Include="Content\img\clients\client-8.png" />
+    <Content Include="Content\img\cta-bg.jpg" />
+    <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\features-1.png" />
+    <Content Include="Content\img\features-2.png" />
+    <Content Include="Content\img\features-3.png" />
+    <Content Include="Content\img\features-4.png" />
+    <Content Include="Content\img\hero-bg.png" />
+    <Content Include="Content\img\hero-img.png" />
+    <Content Include="Content\img\home.jpg" />
+    <Content Include="Content\img\home1.jpg" />
+    <Content Include="Content\img\home10.jpg" />
+    <Content Include="Content\img\home2.png" />
+    <Content Include="Content\img\home3.jpg" />
+    <Content Include="Content\img\home4.jpg" />
+    <Content Include="Content\img\home5.jpg" />
+    <Content Include="Content\img\home6.jpg" />
+    <Content Include="Content\img\home7.jpg" />
+    <Content Include="Content\img\home8.jpg" />
+    <Content Include="Content\img\home9.jpg" />
+    <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\portfolio-details-1.jpg" />
+    <Content Include="Content\img\portfolio-details-2.jpg" />
+    <Content Include="Content\img\portfolio-details-3.jpg" />
+    <Content Include="Content\img\portfolio\bcctv.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-1.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-2.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-3.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-4.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-5.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-6.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-7.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-8.jpg" />
+    <Content Include="Content\img\portfolio\portfolio-9.jpg" />
+    <Content Include="Content\img\portfolio\ta4.jpg" />
+    <Content Include="Content\img\portfolio\toan1.jpg" />
+    <Content Include="Content\img\portfolio\toan2.jpg" />
+    <Content Include="Content\img\portfolio\toan3.jpg" />
+    <Content Include="Content\img\portfolio\tv3.jpg" />
+    <Content Include="Content\img\team-bg.jpg" />
+    <Content Include="Content\img\team\bac.jpg" />
+    <Content Include="Content\img\team\mon.jpg" />
+    <Content Include="Content\img\team\nguyen.jpg" />
+    <Content Include="Content\img\team\tung.jpg" />
+    <Content Include="Content\img\testimonials\giangvien1.png" />
+    <Content Include="Content\img\testimonials\giangvien2.png" />
+    <Content Include="Content\img\testimonials\giangvien3.jpg" />
+    <Content Include="Content\img\testimonials\giangvien4.png" />
+    <Content Include="Content\img\testimonials\testimonials-1.jpg" />
+    <Content Include="Content\img\testimonials\testimonials-2.jpg" />
+    <Content Include="Content\img\testimonials\testimonials-3.jpg" />
+    <Content Include="Content\img\testimonials\testimonials-4.jpg" />
+    <Content Include="Content\img\testimonials\testimonials-5.jpg" />
+    <Content Include="Content\script\main.js" />
+    <Content Include="Content\script\my-login.js" />
+    <Content Include="Content\vendor\aos\aos.css" />
+    <Content Include="Content\vendor\aos\aos.js" />
+    <Content Include="Content\vendor\bootstrap-icons\bootstrap-icons.css" />
+    <Content Include="Content\vendor\bootstrap-icons\index.html" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.esm.js" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\vendor\boxicons\css\animations.css" />
+    <Content Include="Content\vendor\boxicons\css\boxicons.css" />
+    <Content Include="Content\vendor\boxicons\css\boxicons.min.css" />
+    <Content Include="Content\vendor\boxicons\css\transformations.css" />
+    <Content Include="Content\vendor\boxicons\fonts\boxicons.svg" />
+    <Content Include="Content\vendor\glightbox\css\glightbox.css" />
+    <Content Include="Content\vendor\glightbox\css\glightbox.min.css" />
+    <Content Include="Content\vendor\glightbox\js\glightbox.js" />
+    <Content Include="Content\vendor\glightbox\js\glightbox.min.js" />
+    <Content Include="Content\vendor\isotope-layout\isotope.pkgd.js" />
+    <Content Include="Content\vendor\isotope-layout\isotope.pkgd.min.js" />
+    <Content Include="Content\vendor\php-email-form\validate.js" />
+    <Content Include="Content\vendor\swiper\swiper-bundle.min.css" />
+    <Content Include="Content\vendor\swiper\swiper-bundle.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -113,6 +232,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Filters\CheckNotSession.cs" />
     <Compile Include="Filters\CheckSession.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,8 +303,39 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\vendor\bootstrap-icons\bootstrap-icons.json" />
+    <Content Include="Content\vendor\bootstrap-icons\fonts\bootstrap-icons.woff" />
+    <Content Include="Content\vendor\bootstrap-icons\fonts\bootstrap-icons.woff2" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="Content\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\vendor\boxicons\fonts\boxicons.eot" />
+    <Content Include="Content\vendor\boxicons\fonts\boxicons.ttf" />
+    <Content Include="Content\vendor\boxicons\fonts\boxicons.woff" />
+    <Content Include="Content\vendor\boxicons\fonts\boxicons.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -194,9 +345,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Contents\css\" />
-    <Folder Include="Contents\image\" />
-    <Folder Include="Contents\script\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
