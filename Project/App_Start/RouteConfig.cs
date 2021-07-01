@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,10 +15,29 @@ namespace Project
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "logout" ,
+                url: "logout" ,
+                defaults: new { controller = "Login" , action = "Logout"}
+            );
+
+            routes.MapRoute(
+                name: "Login" ,
+                url: "login" ,
+                defaults: new { controller = "Login" , action = "Index"}
+            );
+
+            routes.MapRoute(
+                name: "Register" ,
+                url: "register" ,
+                defaults: new { controller = "Login" , action = "Register" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
+        
     }
 }
