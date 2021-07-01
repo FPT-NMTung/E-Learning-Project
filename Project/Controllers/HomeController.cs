@@ -11,7 +11,6 @@ namespace Project.Controllers
     {
         // GET: Home
         [HttpGet]
-        [CheckSession]
         public ActionResult Index() {
             return View();
         }
