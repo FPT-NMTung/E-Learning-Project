@@ -15,5 +15,10 @@ namespace Project.Controllers {
 
             return View(courses.ToList());
         }
+        [HttpGet]
+        public ActionResult Detail()
+        {
+            return View();
+        }
     }
 }
