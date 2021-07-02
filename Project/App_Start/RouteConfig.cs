@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -14,10 +15,10 @@ namespace Project
         {
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            
             routes.MapRoute(
                 name: "Detail Courses",
-                url: "course/detail",
+                url: "course/{id}",
                 defaults: new { controller = "Course", action = "Detail" }
             );
 

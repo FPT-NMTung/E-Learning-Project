@@ -88,13 +88,14 @@
         <div class="container main-grid">
             @model List<Project.Models.Course>
             @foreach ( var el in Model ) {
-                <div class="card-course">
-                    <img class="card-course-img"
-                         src="@el.Image" alt="">
-                    <h3 class="title-course">@el.Name</h3>
-                    <p class="text-des">@el.Description</p>
-                    <button class="btn btn-primary btn-register-course" disabled>Đã đăng ký</button>
-                </div>
+            <div class="card-course">
+                <img class="card-course-img"
+                     src="@el.Image" alt="">
+                <h3 class="title-course">@el.Name</h3>
+                <p class="text-des">@el.Description</p>
+
+                <a href="/course/@el.CourseID" class="btn btn-primary btn-register-course">Xem chi tiết</a>
+            </div>
             }
         </div>
     </section>
