@@ -15,6 +15,12 @@ namespace Project
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Courses" ,
+                url: "course" ,
+                defaults: new { controller = "Course" , action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "logout" ,
                 url: "logout" ,
                 defaults: new { controller = "Login" , action = "Logout"}
