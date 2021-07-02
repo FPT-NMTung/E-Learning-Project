@@ -13,6 +13,8 @@ namespace Project.Controllers {
         [ HttpGet ]
         [ CheckNotSession ]
         public ActionResult Index() {
+            ViewBag.isLogged = TempData["isLogged"];
+            TempData.Clear();
             return View();
         }
 
@@ -25,9 +27,9 @@ namespace Project.Controllers {
                 Session["email"] = result.ToList()[0].Email;
                 Session["user_id"] = result.ToList()[0].UserID;
                 Session["name"] = result.ToList()[0].Name;
-
                 return RedirectToAction( "Index", "Home" );
             } else {
+                TempData["isLogged"] = false;
                 return RedirectToAction( "Index", "Login" );
             }
         }
@@ -43,6 +45,8 @@ namespace Project.Controllers {
         [ HttpGet ]
         [ CheckNotSession ]
         public ActionResult Register() {
+            ViewBag.isCreated = TempData["isCreated"];
+            TempData.Clear();
             return View();
         }
 
@@ -54,8 +58,9 @@ namespace Project.Controllers {
                 where e.Email == email || e.Username == username || e.PhoneNumber == phone
                 select e;
 
-            if ( result .ToList().Count != 0) {
-                return RedirectToAction( "Register" , "Login" );
+            if ( result.ToList().Count != 0 ) {
+                TempData["isCreated"] = false;
+                return RedirectToAction( "Register", "Login" );
             }
 
             User newUser = new User() {
