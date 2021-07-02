@@ -12,7 +12,14 @@ namespace Project
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Detail Courses",
+                url: "course/detail",
+                defaults: new { controller = "Course", action = "Detail" }
+            );
 
             routes.MapRoute(
                 name: "Courses" ,
