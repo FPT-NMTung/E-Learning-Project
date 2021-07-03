@@ -236,6 +236,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Filters\CheckNotSession.cs" />
     <Compile Include="Filters\CheckSession.cs" />
     <Compile Include="Global.asax.cs">
@@ -341,6 +342,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Detail.cshtml" />
+    <Content Include="Views\Quiz\Quiz.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
