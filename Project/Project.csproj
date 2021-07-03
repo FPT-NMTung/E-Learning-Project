@@ -109,7 +109,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\editProfile.css" />
     <Content Include="Content\css\my-login.css" />
+    <Content Include="Content\css\profile.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\about.jpg" />
@@ -176,6 +178,7 @@
     <Content Include="Content\img\testimonials\testimonials-3.jpg" />
     <Content Include="Content\img\testimonials\testimonials-4.jpg" />
     <Content Include="Content\img\testimonials\testimonials-5.jpg" />
+    <Content Include="Content\img\userImage.jpg" />
     <Content Include="Content\script\main.js" />
     <Content Include="Content\script\my-login.js" />
     <Content Include="Content\vendor\aos\aos.css" />
@@ -236,6 +239,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Filters\CheckNotSession.cs" />
     <Compile Include="Filters\CheckSession.cs" />
@@ -343,6 +347,8 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Detail.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
