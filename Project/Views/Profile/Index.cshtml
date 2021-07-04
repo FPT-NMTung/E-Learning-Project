@@ -75,9 +75,9 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="~/Content/img/userImage.jpg" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    <h4>Full Name</h4>
-                                    <p class="text-secondary mb-1">Email</p>
-                                    <p class="text-muted font-size-sm">Address</p>
+                                    <h4>@ViewBag.name</h4>
+                                    <p class="text-secondary mb-1">@ViewBag.email</p>
+                                    <p class="text-muted font-size-sm">@ViewBag.address</p>
                                 </div>
                             </div>
                         </div>
@@ -86,12 +86,13 @@
                 <div class="col-md-8">
                     <div class="card mb-3">
                         <div class="card-body">
+                            <h5 class="d-flex align-items-center mb-3"><b>About</b></h5>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Name
+                                    @ViewBag.name
                                 </div>
                             </div>
                             <hr>
@@ -100,7 +101,7 @@
                                     <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    email@gmail.com
+                                    @ViewBag.email
                                 </div>
                             </div>
                             <hr>
@@ -109,7 +110,7 @@
                                     <h6 class="mb-0">Gender</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Male
+                                    @ViewBag.gender
                                 </div>
                             </div>
                             <hr>
@@ -118,7 +119,7 @@
                                     <h6 class="mb-0">Phone Number</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    0123456789
+                                    @ViewBag.phone
                                 </div>
                             </div>
                             <hr>
@@ -127,7 +128,7 @@
                                     <h6 class="mb-0">Address</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Address
+                                    @ViewBag.address
                                 </div>
                             </div>
                             <hr>
@@ -142,7 +143,7 @@
                         <div class="col-sm-12 mb-3">
                             <div class="card h-100">
                                 <div class="card-body" id="process">
-                                    <h6 class="d-flex align-items-center mb-3">In Leaning Course</h6>
+                                    <h5 class="d-flex align-items-center mb-3"><b>In Leaning Course</b></h5>
                                     <small>Course 1</small>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
