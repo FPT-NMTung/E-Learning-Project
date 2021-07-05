@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\my-login.css" />
+    <Content Include="Content\css\quiz.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\about.jpg" />
@@ -162,6 +163,9 @@
     <Content Include="Content\img\portfolio\toan2.jpg" />
     <Content Include="Content\img\portfolio\toan3.jpg" />
     <Content Include="Content\img\portfolio\tv3.jpg" />
+    <Content Include="Content\img\Quiz\background-chuyen-dong-don-gian-ma-dep_032846577.gif" />
+    <Content Include="Content\img\Quiz\chim.png" />
+    <Content Include="Content\img\Quiz\dongho.jpg" />
     <Content Include="Content\img\team-bg.jpg" />
     <Content Include="Content\img\team\bac.jpg" />
     <Content Include="Content\img\team\mon.jpg" />
