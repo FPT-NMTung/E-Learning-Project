@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>EditProfile</title>
     @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
     <!-- vendor -->
     <link href="~/Content/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -83,55 +83,62 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="card">
+
                         <div class="card-body">
-                            <h5 class="d-flex align-items-center mb-3">User Information</h5>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                            @using (Html.BeginForm("EditUserProfile", "Profile", FormMethod.Post))
+                            {
+                                <h5 class="d-flex align-items-center mb-3">User Information</h5>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="name" name="name" type="text" class="form-control" value="@ViewBag.name">
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="@ViewBag.name">
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="email" name="email" type="text" class="form-control" value="@ViewBag.email" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Gender</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="gender" name="gender" type="text" class="form-control" value="@ViewBag.gender">
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="@ViewBag.email" readonly>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone Number</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="phone" name="phone" type="text" class="form-control" value="@ViewBag.phone">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Gender</h6>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input id="address" name="address" type="text" class="form-control" value="@ViewBag.address">
+                                    </div>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="@ViewBag.gender">
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Lưu
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone Number</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="@ViewBag.phone">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="text" class="form-control" value="@ViewBag.address">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-3"></div>
-                                <div class="col-sm-9 text-secondary">
-                                    <input type="button" class="btn btn-primary px-4" value="Save Changes">
-                                </div>
-                            </div>
+                            }
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
