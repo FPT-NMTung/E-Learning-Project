@@ -33,6 +33,9 @@ namespace Project.Controllers
             ViewBag.gender = gender;
             ViewBag.phone = infor.ToList()[0].PhoneNumber;
             ViewBag.address = infor.ToList()[0].Address;
+            ViewBag.inforMessage = TempData["infor"];
+            TempData.Clear();
+
             return View();
         }
 
@@ -52,6 +55,8 @@ namespace Project.Controllers
             ViewBag.address = infor.ToList()[0].Address;
             ViewBag.genderMale = infor.ToList()[0].Gender == true ? "checked" : "";
             ViewBag.genderFemale = infor.ToList()[0].Gender == false ? "checked" : "";
+            ViewBag.passMessage = TempData["pass"];
+            TempData.Clear();
             return View();
         }
 
@@ -71,11 +76,13 @@ namespace Project.Controllers
                 update.Gender = gender == "male";
                 update.PhoneNumber = phone;
                 update.Address = address;
-                db.SaveChanges();
+                TempData["infor"] = true;
+                db.SaveChanges();               
                 return RedirectToAction("Index", "Profile");
             }
             catch (Exception)
             {
+                TempData["infor"] = false;
                 return RedirectToAction("EditProfile", "Profile");
             }
         }
@@ -92,18 +99,21 @@ namespace Project.Controllers
             try
             {
                 var update = db.Users.First(g => g.UserID == id);
-                if (newPass.Equals(rePass) && oldPass.Equals(update.Password)){           
+                if (newPass.Equals(rePass) && oldPass.Equals(update.Password) && !newPass.Equals(oldPass)){           
                     update.Password = newPass;
                     db.SaveChanges();
+                    TempData["pass"] = true;
                     return RedirectToAction("Index", "Profile");
                 }
                 else
                 {
+                    TempData["pass"] = false;
                     return RedirectToAction("EditProfile", "Profile");
                 }
             }
             catch (Exception)
             {
+                TempData["pass"] = false;
                 return RedirectToAction("EditProfile", "Profile");
             }
         }
