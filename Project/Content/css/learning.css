@@ -1,0 +1,77 @@
+﻿.main-display {
+    display: flex;
+    column-gap: 30px;
+}
+
+.learning-video > iframe {
+    background-color: bisque;
+    height: 560px;
+}
+
+.learning-video {
+    width: 75%;
+}
+
+.learning-list {
+    width: 25%;
+    height: 560px;
+    overflow-y: auto;
+}
+
+.learning-list > ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.card-lesson {
+    background-color: white;
+    transition: 0.4s;
+    padding: 10px;
+}
+
+.card-lesson > h4 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card-lesson > p {
+    margin: 0px;
+}
+
+.card-lesson:hover {
+    background-color: rgb(236, 236, 236);
+}
+
+.learning-list > ul > li > hr {
+    margin: 0px;
+}
+
+.card-time {
+    font-size: 12px;
+}
+
+.lesson-done {
+    background-color: rgb(232, 255, 235);
+}
+
+.lesson-current {
+    background-color: rgb(255, 255, 233);
+}
+
+.card-detail {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card-detail > h4 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-detail > h5 {
+    font-size: 12px;
+}
+
+.card-detail > h5 {
+    font-size: 12px;
+}
