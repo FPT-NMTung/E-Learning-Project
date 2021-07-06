@@ -82,8 +82,9 @@ namespace Project.Controllers
                 update.Gender = gender == "male";
                 update.PhoneNumber = phone.Trim();
                 update.Address = address.Trim();
-                TempData["infor"] = true;
                 db.SaveChanges();
+                TempData["infor"] = true;
+                Session["name"] = name.Trim();
                 return RedirectToAction("Index", "Profile");
             }
             catch (Exception)
