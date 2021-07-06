@@ -88,16 +88,16 @@
                             @if (ViewBag.inforMessage == true)
                             {
                                 <div class="alert alert-success" role="alert">
-                                    Thay đổi thông tin người dùng thành công!
+                                    @ViewBag.successInfor
                                 </div>
                             }
                             @if (ViewBag.passMessage == true)
                             {
                                 <div class="alert alert-success" role="alert">
-                                    Thay đổi mật khẩu thành công!
+                                    @ViewBag.successPass
                                 </div>
                             }
-                            <h5 class="d-flex align-items-center mb-3"><b>About</b></h5>
+                            <h5 class="d-flex align-items-center mb-3"><b>Thông tin người dùng</b></h5>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Họ và tên</h6>
@@ -148,33 +148,20 @@
                                     <a class="btn btn-info" href="/editProfile">Sửa</a>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
+
                     <div class="card mb-3">
                         <div class="col-sm-12 mb-3">
                             <div class="card h-100">
                                 <div class="card-body" id="process">
                                     <h5 class="d-flex align-items-center mb-3"><b>Khóa học</b></h5>
-                                    <small>Course 1</small>
+
+                                    <small>Khóa 1</small>
                                     <div class="progress mb-3" style="height: 5px">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <small>Course 2</small>
-                                    <div class="progress mb-3" style="height: 5px">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>Course 3</small>
-                                    <div class="progress mb-3" style="height: 5px">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>Course 4</small>
-                                    <div class="progress mb-3" style="height: 5px">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <small>Course 5</small>
-                                    <div class="progress mb-3" style="height: 5px">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

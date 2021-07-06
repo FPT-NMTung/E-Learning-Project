@@ -33,7 +33,10 @@ namespace Project.Controllers
             ViewBag.gender = gender;
             ViewBag.phone = infor.ToList()[0].PhoneNumber;
             ViewBag.address = infor.ToList()[0].Address;
+            ViewBag.successInfor = "Thay đổi thông tin người dùng thành công!";
+            ViewBag.successPass = "Thay đổi mật khẩu thành công!";
             ViewBag.inforMessage = TempData["infor"];
+            ViewBag.passMessage = TempData["pass"];
             TempData.Clear();
 
             return View();
@@ -55,6 +58,9 @@ namespace Project.Controllers
             ViewBag.address = infor.ToList()[0].Address;
             ViewBag.genderMale = infor.ToList()[0].Gender == true ? "checked" : "";
             ViewBag.genderFemale = infor.ToList()[0].Gender == false ? "checked" : "";
+            ViewBag.failInfor = "Thay đổi thông tin người dùng thất bại!";
+            ViewBag.failPass = "Thay đổi mật khẩu thất bại!";
+            ViewBag.inforMessage = TempData["infor"];
             ViewBag.passMessage = TempData["pass"];
             TempData.Clear();
             return View();
@@ -72,12 +78,12 @@ namespace Project.Controllers
             try
             {
                 var update = db.Users.First(g => g.UserID == id);
-                update.Name = name;
+                update.Name = name.Trim();
                 update.Gender = gender == "male";
-                update.PhoneNumber = phone;
-                update.Address = address;
+                update.PhoneNumber = phone.Trim();
+                update.Address = address.Trim();
                 TempData["infor"] = true;
-                db.SaveChanges();               
+                db.SaveChanges();
                 return RedirectToAction("Index", "Profile");
             }
             catch (Exception)
@@ -99,8 +105,9 @@ namespace Project.Controllers
             try
             {
                 var update = db.Users.First(g => g.UserID == id);
-                if (newPass.Equals(rePass) && oldPass.Equals(update.Password) && !newPass.Equals(oldPass)){           
-                    update.Password = newPass;
+                if (newPass.Equals(rePass) && oldPass.Equals(update.Password) && !newPass.Equals(oldPass))
+                {
+                    update.Password = newPass.Trim();
                     db.SaveChanges();
                     TempData["pass"] = true;
                     return RedirectToAction("Index", "Profile");

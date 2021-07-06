@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
@@ -88,15 +88,15 @@
                             @if (ViewBag.inforMessage == false)
                             {
                                 <div class="alert alert-danger" role="alert">
-                                    Thay đổi thông tin người dùng thất bại!
+                                    @ViewBag.failInfor
                                 </div>
                             }
                             @using (Html.BeginForm("EditUserProfile", "Profile", FormMethod.Post))
                             {
-                                <h5 class="d-flex align-items-center mb-3">User Information</h5>
+                                <h5 class="d-flex align-items-center mb-3"><b>Thay đổi thông tin người dùng</b></h5>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
+                                        <h6 class="mb-0">Họ và tên</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input id="name" name="name" type="text" class="form-control" value="@ViewBag.name" required>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Gender</h6>
+                                        <h6 class="mb-0">Giới tính</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         @*<input id="gender" name="gender" type="text" class="form-control" value="@ViewBag.gender">*@
@@ -125,15 +125,15 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Phone Number</h6>
+                                        <h6 class="mb-0">Số điện thoại</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input id="phone" name="phone" type="text" class="form-control" value="@ViewBag.phone" required>
+                                        <input id="phone" name="phone" type="text" class="form-control" value="@ViewBag.phone" maxlength="11" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Address</h6>
+                                        <h6 class="mb-0">Địa chỉ</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input id="address" name="address" type="text" class="form-control" value="@ViewBag.address" required>
@@ -158,18 +158,18 @@
                                     @if (ViewBag.passMessage == false)
                                     {
                                         <div class="alert alert-danger" role="alert">
-                                            Thay đổi mật khẩu thất bại!
+                                            @ViewBag.failPass
                                         </div>
                                     }
                                     @using (Html.BeginForm("ChangePassword", "Profile", FormMethod.Post))
                                     {
-                                        <h5 class="d-flex align-items-center mb-3">User Password</h5>
+                                        <h5 class="d-flex align-items-center mb-3"><b>Thay đổi mật khẩu</b></h5>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <h6 class="mb-0">Mật khẩu cũ</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input id="oldPass" name="oldPass" type="password" class="form-control" placeholder="Mật khẩu cũ" required>
+                                                <input id="oldPass" name="oldPass" type="password" class="form-control" placeholder="Mật khẩu cũ" maxlength="36" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -177,7 +177,7 @@
                                                 <h6 class="mb-0">Mật khẩu mới</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input id="newPass" name="newPass" type="password" class="form-control" placeholder="Mật khẩu mới" required>
+                                                <input id="newPass" name="newPass" type="password" class="form-control" placeholder="Mật khẩu mới" maxlength="36" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -185,7 +185,7 @@
                                                 <h6 class="mb-0">Nhập lại mật khẩu</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input id="rePass" name="rePass" type="password" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                                                <input id="rePass" name="rePass" type="password" class="form-control" placeholder="Nhập lại mật khẩu" maxlength="36" required>
                                             </div>
                                         </div>
                                         <div class="row">
