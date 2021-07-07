@@ -71,6 +71,12 @@ namespace Project
             );
 
             routes.MapRoute(
+                "Default" ,                                              // Route name
+                "{controller}/{action}/{id}" ,                           // URL with parameters
+                new { controller = "Home" , action = "Index" , id = "" }  // Parameter defaults
+            );
+
+            routes.MapRoute(
                 name: "404Page" ,
                 url: "{*url}" ,
                 defaults: new { controller = "Error" , action = "Index" }
