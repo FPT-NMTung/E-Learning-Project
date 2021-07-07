@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Web;
 using System.Web.Mvc;
+using Project.Models;
 
 namespace Project.Controllers {
     public class CourseController : Controller {
