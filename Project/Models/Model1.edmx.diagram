@@ -4,34 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7df080f65efc42e8ade0a9bc7f06fc42" Name="Diagram1">
-        <EntityTypeShape EntityType="ProjectModel.Admin" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.Course" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.Lession" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.Quiz" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.QuizQuestion" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.QuizQuestionAnswer" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.sysdiagram" Width="1.5" PointX="9.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.Test" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.TestQuestion" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.TestQuestionAnswer" Width="1.5" PointX="9.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.User" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.UserAndCourse" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectModel.UserAndTest" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="a7cf7c1946674f668591b7889822f8f7" Name="Diagram1">
+        <EntityTypeShape EntityType="ProjectModel.Admin" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Course" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Lession" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Quiz" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.QuizQuestion" Width="1.5" PointX="6" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.QuizQuestionAnswer" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.Test" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.TestQuestion" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.TestQuestionAnswer" Width="1.5" PointX="5.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.User" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.UserAndCourse" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.UserAndLession" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectModel.UserAndTest" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <AssociationConnector Association="ProjectModel.FK_Lession_Course" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_Quiz_Course" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndCourse_Course" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_Test_Lession" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectModel.FK_UserAndLession_Lession" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_QuizQuestion_Quiz" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_QuizQuestionAnswer_QuizQuestion" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_TestQuestion_Test1" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndTest_Test" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_TestQuestionAnswer_TestQuestion" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndCourse_User" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectModel.FK_UserAndLession_User" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndTest_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ProjectModel.UserAndLession" Width="1.5" PointX="5.25" PointY="1" />
-        <AssociationConnector Association="ProjectModel.FK_UserAndLession_Lession" />
-        <AssociationConnector Association="ProjectModel.FK_UserAndLession_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
