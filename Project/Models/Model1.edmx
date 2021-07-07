@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -122,6 +122,18 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndCourse' does not have 
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="int" Nullable="false" />
           <Property Name="Score" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dev_data_project.dbo.UserAndLession' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserAndLession">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="LessionID" />
+            <PropertyRef Name="Watched" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="LessionID" Type="int" Nullable="false" />
+          <Property Name="Watched" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -260,6 +272,34 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserAndLession_Lession">
+          <End Role="Lession" Type="Self.Lession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lession">
+              <PropertyRef Name="LessionID" />
+            </Principal>
+            <Dependent Role="UserAndLession">
+              <PropertyRef Name="LessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAndLession_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserAndLession">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserAndTest_Test">
           <End Role="Test" Type="Self.Test" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -307,6 +347,13 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
     [UserAndCourse].[Score] AS [Score]
     FROM [dbo].[UserAndCourse] AS [UserAndCourse]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="UserAndLession" EntityType="Self.UserAndLession" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserAndLession].[UserID] AS [UserID], 
+    [UserAndLession].[LessionID] AS [LessionID], 
+    [UserAndLession].[Watched] AS [Watched]
+    FROM [dbo].[UserAndLession] AS [UserAndLession]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="UserAndTest" EntityType="Self.UserAndTest" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [UserAndTest].[UserID] AS [UserID], 
@@ -350,6 +397,14 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
             <End Role="User" EntitySet="User" />
             <End Role="UserAndCourse" EntitySet="UserAndCourse" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserAndLession_Lession" Association="Self.FK_UserAndLession_Lession">
+            <End Role="Lession" EntitySet="Lession" />
+            <End Role="UserAndLession" EntitySet="UserAndLession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAndLession_User" Association="Self.FK_UserAndLession_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserAndLession" EntitySet="UserAndLession" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserAndTest_Test" Association="Self.FK_UserAndTest_Test">
             <End Role="Test" EntitySet="Test" />
             <End Role="UserAndTest" EntitySet="UserAndTest" />
@@ -359,8 +414,7 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
             <End Role="UserAndTest" EntitySet="UserAndTest" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -400,6 +454,7 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Course" Relationship="Self.FK_Lession_Course" FromRole="Lession" ToRole="Course" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_Test_Lession" FromRole="Lession" ToRole="Test" />
+          <NavigationProperty Name="UserAndLessions" Relationship="ProjectModel.FK_UserAndLession_Lession" FromRole="Lession" ToRole="UserAndLession" />
         </EntityType>
         <EntityType Name="Quiz">
           <Key>
@@ -488,6 +543,7 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="UserAndCourses" Relationship="Self.FK_UserAndCourse_User" FromRole="User" ToRole="UserAndCourse" />
           <NavigationProperty Name="UserAndTests" Relationship="Self.FK_UserAndTest_User" FromRole="User" ToRole="UserAndTest" />
+          <NavigationProperty Name="UserAndLessions" Relationship="ProjectModel.FK_UserAndLession_User" FromRole="User" ToRole="UserAndLession" />
         </EntityType>
         <EntityType Name="UserAndCourse">
           <Key>
@@ -723,7 +779,56 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
             <End Role="User" EntitySet="Users" />
             <End Role="UserAndTest" EntitySet="UserAndTests" />
           </AssociationSet>
+          <EntitySet Name="UserAndLessions" EntityType="ProjectModel.UserAndLession" />
+          <AssociationSet Name="FK_UserAndLession_Lession" Association="ProjectModel.FK_UserAndLession_Lession">
+            <End Role="Lession" EntitySet="Lessions" />
+            <End Role="UserAndLession" EntitySet="UserAndLessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAndLession_User" Association="ProjectModel.FK_UserAndLession_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserAndLession" EntitySet="UserAndLessions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="UserAndLession">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="LessionID" />
+            <PropertyRef Name="Watched" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="LessionID" Type="Int32" Nullable="false" />
+          <Property Name="Watched" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Lession" Relationship="ProjectModel.FK_UserAndLession_Lession" FromRole="UserAndLession" ToRole="Lession" />
+          <NavigationProperty Name="User" Relationship="ProjectModel.FK_UserAndLession_User" FromRole="UserAndLession" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserAndLession_Lession">
+          <End Type="ProjectModel.Lession" Role="Lession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectModel.UserAndLession" Role="UserAndLession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lession">
+              <PropertyRef Name="LessionID" />
+            </Principal>
+            <Dependent Role="UserAndLession">
+              <PropertyRef Name="LessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAndLession_User">
+          <End Type="ProjectModel.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ProjectModel.UserAndLession" Role="UserAndLession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserAndLession">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -863,6 +968,15 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="TestID" ColumnName="TestID" />
                 <ScalarProperty Name="Score" ColumnName="Score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAndLessions">
+            <EntityTypeMapping TypeName="ProjectModel.UserAndLession">
+              <MappingFragment StoreEntitySet="UserAndLession">
+                <ScalarProperty Name="Watched" ColumnName="Watched" />
+                <ScalarProperty Name="LessionID" ColumnName="LessionID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

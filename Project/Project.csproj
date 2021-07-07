@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\editProfile.css" />
+    <Content Include="Content\css\learning.css" />
     <Content Include="Content\css\my-login.css" />
     <Content Include="Content\css\profile.css" />
     <Content Include="Content\css\style.css" />
@@ -238,6 +239,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LearningController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
@@ -297,6 +299,9 @@
     <Compile Include="Models\UserAndCourse.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserAndLession.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserAndTest.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -349,6 +354,7 @@
     <Content Include="Views\Quiz\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\EditProfile.cshtml" />
+    <Content Include="Views\Learning\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

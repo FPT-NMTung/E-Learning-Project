@@ -29,6 +29,9 @@
         <AssociationConnector Association="ProjectModel.FK_TestQuestionAnswer_TestQuestion" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndCourse_User" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndTest_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectModel.UserAndLession" Width="1.5" PointX="5.25" PointY="1" />
+        <AssociationConnector Association="ProjectModel.FK_UserAndLession_Lession" />
+        <AssociationConnector Association="ProjectModel.FK_UserAndLession_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

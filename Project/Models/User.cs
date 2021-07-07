@@ -19,6 +19,7 @@ namespace Project.Models
         {
             this.UserAndCourses = new HashSet<UserAndCourse>();
             this.UserAndTests = new HashSet<UserAndTest>();
+            this.UserAndLessions = new HashSet<UserAndLession>();
         }
     
         public int UserID { get; set; }
@@ -34,5 +35,7 @@ namespace Project.Models
         public virtual ICollection<UserAndCourse> UserAndCourses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserAndTest> UserAndTests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserAndLession> UserAndLessions { get; set; }
     }
 }

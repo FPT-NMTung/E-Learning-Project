@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project
+namespace Project.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using Models;
     
     public partial class ProjectEntities : DbContext
     {
@@ -39,5 +38,6 @@ namespace Project
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserAndCourse> UserAndCourses { get; set; }
         public virtual DbSet<UserAndTest> UserAndTests { get; set; }
+        public virtual DbSet<UserAndLession> UserAndLessions { get; set; }
     }
 }
