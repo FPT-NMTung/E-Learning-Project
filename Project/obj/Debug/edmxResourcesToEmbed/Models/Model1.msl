@@ -137,5 +137,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserAndLessions">
+      <EntityTypeMapping TypeName="ProjectModel.UserAndLession">
+        <MappingFragment StoreEntitySet="UserAndLession">
+          <ScalarProperty Name="Watched" ColumnName="Watched" />
+          <ScalarProperty Name="LessionID" ColumnName="LessionID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

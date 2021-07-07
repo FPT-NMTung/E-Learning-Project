@@ -119,6 +119,18 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndCourse' does not have 
     <Property Name="Score" Type="float" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'dev_data_project.dbo.UserAndLession' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserAndLession">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="LessionID" />
+      <PropertyRef Name="Watched" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="LessionID" Type="int" Nullable="false" />
+    <Property Name="Watched" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="UserAndTest">
     <Key>
@@ -255,6 +267,34 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UserAndLession_Lession">
+    <End Role="Lession" Type="Self.Lession" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lession">
+        <PropertyRef Name="LessionID" />
+      </Principal>
+      <Dependent Role="UserAndLession">
+        <PropertyRef Name="LessionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndLession_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAndLession">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_UserAndTest_Test">
     <End Role="Test" Type="Self.Test" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -302,6 +342,13 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
     [UserAndCourse].[Score] AS [Score]
     FROM [dbo].[UserAndCourse] AS [UserAndCourse]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="UserAndLession" EntityType="Self.UserAndLession" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserAndLession].[UserID] AS [UserID], 
+    [UserAndLession].[LessionID] AS [LessionID], 
+    [UserAndLession].[Watched] AS [Watched]
+    FROM [dbo].[UserAndLession] AS [UserAndLession]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UserAndTest" EntityType="Self.UserAndTest" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [UserAndTest].[UserID] AS [UserID], 
@@ -344,6 +391,14 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
     <AssociationSet Name="FK_UserAndCourse_User" Association="Self.FK_UserAndCourse_User">
       <End Role="User" EntitySet="User" />
       <End Role="UserAndCourse" EntitySet="UserAndCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndLession_Lession" Association="Self.FK_UserAndLession_Lession">
+      <End Role="Lession" EntitySet="Lession" />
+      <End Role="UserAndLession" EntitySet="UserAndLession" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndLession_User" Association="Self.FK_UserAndLession_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserAndLession" EntitySet="UserAndLession" />
     </AssociationSet>
     <AssociationSet Name="FK_UserAndTest_Test" Association="Self.FK_UserAndTest_Test">
       <End Role="Test" EntitySet="Test" />

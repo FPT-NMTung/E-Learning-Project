@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\editProfile.css" />
+    <Content Include="Content\css\error.css" />
     <Content Include="Content\css\learning.css" />
     <Content Include="Content\css\my-login.css" />
     <Content Include="Content\css\profile.css" />
@@ -126,6 +127,7 @@
     <Content Include="Content\img\clients\client-7.png" />
     <Content Include="Content\img\clients\client-8.png" />
     <Content Include="Content\img\cta-bg.jpg" />
+    <Content Include="Content\img\emoji.png" />
     <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\features-1.png" />
     <Content Include="Content\img\features-2.png" />
@@ -238,6 +240,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LearningController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -355,6 +358,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Learning\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
