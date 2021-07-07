@@ -69,12 +69,6 @@ namespace Project
                 url: "",
                 defaults: new { controller = "Home", action = "Index"}
             );
-
-            routes.MapRoute(
-                name: "404Page" ,
-                url: "{*url}" ,
-                defaults: new { controller = "Error" , action = "Index" }
-            );
         }
         
     }

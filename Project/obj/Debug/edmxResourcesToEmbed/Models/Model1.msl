@@ -128,21 +128,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserAndLessions">
+      <EntityTypeMapping TypeName="ProjectModel.UserAndLession">
+        <MappingFragment StoreEntitySet="UserAndLession">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LessionID" ColumnName="LessionID" />
+          <ScalarProperty Name="Watched" ColumnName="Watched" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UserAndTests">
       <EntityTypeMapping TypeName="ProjectModel.UserAndTest">
         <MappingFragment StoreEntitySet="UserAndTest">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="TestID" ColumnName="TestID" />
           <ScalarProperty Name="Score" ColumnName="Score" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserAndLessions">
-      <EntityTypeMapping TypeName="ProjectModel.UserAndLession">
-        <MappingFragment StoreEntitySet="UserAndLession">
-          <ScalarProperty Name="Watched" ColumnName="Watched" />
-          <ScalarProperty Name="LessionID" ColumnName="LessionID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
