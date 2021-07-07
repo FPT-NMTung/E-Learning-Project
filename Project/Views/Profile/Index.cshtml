@@ -1,0 +1,216 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Profile</title>
+    @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
+
+    <!-- vendor -->
+    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <!-- Template Main CSS File -->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/profile.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+
+            <div class="logo me-auto">
+                <h1>
+                    <a href="#">E-Learning</a>
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li>
+                        <a class="nav-link scrollto active" href="/#hero">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto " href="/course">Các khóa học</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto " href="/#team">Về chúng tôi</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="/#contact">Thông tin liên hệ</a>
+                    </li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            <div class="button-login-register">
+                @if (Session["email"] == null)
+                {
+                    <a class="nav-link scrollto" href="/login">Đăng nhập</a>
+                    <a class="nav-link scrollto" href="/register">Đăng ký</a>
+                }
+                else
+                {
+                    <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</a>
+                    <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
+                }
+            </div>
+        </div>
+    </header>
+    <!-- End Header -->
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="~/Content/img/userImage.jpg" alt="Admin" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>@ViewBag.name</h4>
+                                    <p class="text-secondary mb-1">@ViewBag.email</p>
+                                    <p class="text-muted font-size-sm">@ViewBag.address</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            @if (ViewBag.inforMessage == true)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    @ViewBag.successInfor
+                                </div>
+                            }
+                            @if (ViewBag.passMessage == true)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    @ViewBag.successPass
+                                </div>
+                            }
+                            <h5 class="d-flex align-items-center mb-3"><b>Thông tin người dùng</b></h5>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Họ và tên</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.name
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.email
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Giới tính</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.gender
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Số điện thoại</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.phone
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Địa chỉ</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @ViewBag.address
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a class="btn btn-info" href="/editProfile">Sửa</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body" id="process">
+                                    <h5 class="d-flex align-items-center mb-3"><b>Khóa học</b></h5>
+
+                                    <small>Khóa 1</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--//-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-info">
+                            <h3>E-Learning</h3>
+                            <p>
+                                <strong>Đại học FPT</strong> <br>
+                                KM29 Đại lộ Thăng Long - Khu CNC Hòa Lạc - Thạch Hòa - Thạch Thất - Hà Nội<br><br>
+                                <strong>SĐT:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@example.com<br>
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright
+                <strong>
+                    <span>E-Learning - Team 3</span>
+                </strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/ -->
+
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+</body>
+</html>
