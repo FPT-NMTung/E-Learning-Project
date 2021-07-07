@@ -9,7 +9,7 @@ namespace Project.Controllers
     public class QuizController : Controller
     {
         // GET: Quiz
-        public ActionResult Index()
+        public ActionResult Index(string CourseID)
         {
             return View();
         }
