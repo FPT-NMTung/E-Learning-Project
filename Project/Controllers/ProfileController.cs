@@ -9,6 +9,12 @@ using System.Web.UI;
 
 namespace Project.Controllers
 {
+    public class TempUserAndCourse
+    {
+        public double Score { get; set; }
+        public Course course { get; set; }
+        public UserAndCourse userAndCourse { get; set; }
+    }
     public class ProfileController : Controller
     {
         private ProjectEntities db = new ProjectEntities();
@@ -39,7 +45,26 @@ namespace Project.Controllers
             ViewBag.passMessage = TempData["pass"];
             TempData.Clear();
 
-            return View();
+            var check = from e in db.UserAndCourses where e.UserID == id select e;
+            if (check.ToList().Count > 0)
+            {
+                List<Course> course = db.Courses.ToList();
+                List<UserAndCourse> userAndCourse = db.UserAndCourses.ToList();
+
+                var showScore = from c in course
+                                join uc in userAndCourse on c.CourseID equals uc.CourseID
+                                select new TempUserAndCourse
+                                {
+                                    course = c,
+                                    Score = (double)uc.Score,
+                                    userAndCourse = uc,
+                                };
+                return View(showScore.ToList());
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
