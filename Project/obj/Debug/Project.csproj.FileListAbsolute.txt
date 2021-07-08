@@ -69,7 +69,6 @@ D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\System.Web.Webpages.Razor.xml
 D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\System.Web.Helpers.xml
 D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\System.Web.Mvc.xml
 D:\Sum2021\PRN292\Project\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.AssemblyReference.cache
 D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.CoreCompileInputs.cache
 D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.CopyComplete
 D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.dll
@@ -247,3 +246,4 @@ D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.Cor
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.CopyComplete
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.dll
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.pdb
+D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.AssemblyReference.cache

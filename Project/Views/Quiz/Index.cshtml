@@ -49,41 +49,46 @@
         <a class="btn btn-primary quiz-button" href="#">back to learn</a>
         <p class="quiz-title">Course: Fundamentals of Network Communication</p>
     </div>
-    <div>
-        @model List<Project.Models.QuizQuestion>
-        @{
-            int count = 0;
-        }
-        @foreach ( var element in Model ) {
-            {
-                count = count + 1;
-            }
-
-
-            <div class="quiz">
-                <div class="quiz-question">
-                    <p class="quiz-ques-number">Question @count</p>
-                    <p class="quiz-ques-context">
-                        @element.Question
-                    </p>
-                </div>
-                <div class="quiz-answer">
-                    @foreach ( var ansElement in element.QuizQuestionAnswers ) {
-                        <label for="@element.QuesID-@ansElement.AnsID">
-                            <div class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
-                                <input type="radio" name="@element.QuesID" id="@element.QuesID-@ansElement.AnsID">
-                                @ansElement.Answer
-                            </div>
-                        </label>
-                    }
-
-                </div>
-            </div>
-        }
+    @using ( Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post) ) {
         <div>
-            <button class="btn btn-primary quiz-button" type="submit" style="margin: 10px auto 30px; display: block;">Submit</button>
+            <input type="hidden" name="listQuestion" value="@ViewBag.listQuestion"/>
+            @model List<Project.Models.QuizQuestion>
+            @{
+                int count = 0;
+            }
+            @foreach ( var element in Model ) {
+                {
+                    count = count + 1;
+                }
+
+
+                <div class="quiz">
+                    <div class="quiz-question">
+                        <p class="quiz-ques-number">Question @count</p>
+                        <p class="quiz-ques-context">
+                            @element.Question
+                        </p>
+                    </div>
+                    <div class="quiz-answer">
+                        @foreach ( var ansElement in element.QuizQuestionAnswers ) {
+                            string name = "ques" + element.QuesID;
+
+                            <label for="@element.QuesID-@ansElement.AnsID">
+                                <div class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
+                                    <input type="radio" value="@ansElement.AnsID" name="@name" id="@element.QuesID-@ansElement.AnsID">
+                                    @ansElement.Answer
+                                </div>
+                            </label>
+                        }
+
+                    </div>
+                </div>
+            }
+            <div>
+                <button class="btn btn-primary quiz-button" type="submit" style="margin: 10px auto 30px; display: block;">Submit</button>
+            </div>
         </div>
-    </div>
+    }
 </main>
 
 <!-- ======= Footer ======= -->
