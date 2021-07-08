@@ -86,15 +86,15 @@
 
     <section class="inner-page">
         <div class="container main-grid">
-            @model List<Project.Controllers.TempModel>
+            @model List<Project.Models.Course>
             @foreach ( var el in Model ) {
             <div class="card-course">
                 <img class="card-course-img"
-                     src="@el.Cou.Image" alt="">
-                <h3 class="title-course">@el.Cou.Name</h3>
-                <p class="text-des">@el.Notification</p>
+                     src="@el.Image" alt="">
+                <h3 class="title-course">@el.Name</h3>
+                <p class="text-des">@el.Description</p>
 
-                <a href="/course/@el.Cou.CourseID" class="btn btn-primary btn-register-course">Xem chi tiết</a>
+                <a href="/course/@el.CourseID" class="btn btn-primary btn-register-course">Xem chi tiết</a>
             </div>
             }
         </div>
