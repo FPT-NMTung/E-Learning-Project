@@ -23,11 +23,8 @@ namespace Project.Controllers
         [CheckSession]
         public ActionResult Index()
         {
-            int id = -1;
-            if (Session["user_id"] != null)
-            {
-                int.TryParse(Session["user_id"].ToString(), out id);
-            }
+            //get user infor
+            int id = Convert.ToInt32(Session["user_id"].ToString());
             var infor = from e in db.Users where e.UserID == id select e;
             ViewBag.name = infor.ToList()[0].Name;
             ViewBag.email = infor.ToList()[0].Email;
@@ -44,9 +41,9 @@ namespace Project.Controllers
             ViewBag.inforMessage = TempData["infor"];
             ViewBag.passMessage = TempData["pass"];
             TempData.Clear();
-
-            var check = from e in db.UserAndCourses where e.UserID == id select e;
-            if (check.ToList().Count > 0)
+            //get finished course infor by user
+            var checkExistedCourse = from e in db.UserAndCourses where e.UserID == id select e;
+            if (checkExistedCourse.ToList().Count > 0)
             {
                 List<Course> course = db.Courses.ToList();
                 List<UserAndCourse> userAndCourse = db.UserAndCourses.ToList();
@@ -71,11 +68,7 @@ namespace Project.Controllers
         [CheckSession]
         public ActionResult EditProfile()
         {
-            int id = -1;
-            if (Session["user_id"] != null)
-            {
-                int.TryParse(Session["user_id"].ToString(), out id);
-            }
+            int id = Convert.ToInt32(Session["user_id"].ToString());
             var infor = from e in db.Users where e.UserID == id select e;
             ViewBag.name = infor.ToList()[0].Name;
             ViewBag.email = infor.ToList()[0].Email;
@@ -95,11 +88,7 @@ namespace Project.Controllers
         [CheckSession]
         public ActionResult EditUserProfile(string name, string gender, string phone, string address)
         {
-            int id = -1;
-            if (Session["user_id"] != null)
-            {
-                int.TryParse(Session["user_id"].ToString(), out id);
-            }
+            int id = Convert.ToInt32(Session["user_id"].ToString());
             try
             {
                 var update = db.Users.First(g => g.UserID == id);
@@ -123,11 +112,7 @@ namespace Project.Controllers
         [CheckSession]
         public ActionResult ChangePassword(string oldPass, string newPass, string rePass)
         {
-            int id = -1;
-            if (Session["user_id"] != null)
-            {
-                int.TryParse(Session["user_id"].ToString(), out id);
-            }
+            int id = Convert.ToInt32(Session["user_id"].ToString());
             try
             {
                 var update = db.Users.First(g => g.UserID == id);
