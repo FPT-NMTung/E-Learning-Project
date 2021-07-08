@@ -7,10 +7,6 @@ using System.Web.Mvc;
 using Project.Models;
 
 namespace Project.Controllers {
-    public class TempModel {
-        public Course Cou { get; set; }
-        public string Notification { get; set; }
-    }
 
     public class CourseController : Controller {
         private ProjectEntities db = new ProjectEntities();
@@ -18,7 +14,7 @@ namespace Project.Controllers {
         // GET: Course
         [ HttpGet ]
         public ActionResult Index() {
-            var courses = from e in db.Courses select new TempModel { Cou = e, Notification = "siuaiudaudahw"};
+            var courses = from e in db.Courses select e;
 
             return View( courses.ToList() );
         }
