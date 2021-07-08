@@ -52,6 +52,7 @@
     @using ( Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post) ) {
         <div>
             <input type="hidden" name="listQuestion" value="@ViewBag.listQuestion"/>
+            <input type="hidden" name="quizId" value="@ViewBag.quizId"/>
             @model List<Project.Models.QuizQuestion>
             @{
                 int count = 0;
