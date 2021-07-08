@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -112,8 +112,6 @@
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dev_data_project.dbo.UserAndCourse' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserAndCourse">
           <Key>
             <PropertyRef Name="UserID" />
@@ -123,20 +121,15 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndCourse' does not have 
           <Property Name="CourseID" Type="int" Nullable="false" />
           <Property Name="Score" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dev_data_project.dbo.UserAndLession' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserAndLession">
           <Key>
             <PropertyRef Name="UserID" />
             <PropertyRef Name="LessionID" />
-            <PropertyRef Name="Watched" />
           </Key>
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="LessionID" Type="int" Nullable="false" />
           <Property Name="Watched" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserAndTest">
           <Key>
             <PropertyRef Name="UserID" />
@@ -340,27 +333,9 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
           <EntitySet Name="TestQuestion" EntityType="Self.TestQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestQuestionAnswer" EntityType="Self.TestQuestionAnswer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserAndCourse" EntityType="Self.UserAndCourse" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UserAndCourse].[UserID] AS [UserID], 
-    [UserAndCourse].[CourseID] AS [CourseID], 
-    [UserAndCourse].[Score] AS [Score]
-    FROM [dbo].[UserAndCourse] AS [UserAndCourse]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="UserAndLession" EntityType="Self.UserAndLession" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UserAndLession].[UserID] AS [UserID], 
-    [UserAndLession].[LessionID] AS [LessionID], 
-    [UserAndLession].[Watched] AS [Watched]
-    FROM [dbo].[UserAndLession] AS [UserAndLession]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="UserAndTest" EntityType="Self.UserAndTest" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UserAndTest].[UserID] AS [UserID], 
-    [UserAndTest].[TestID] AS [TestID], 
-    [UserAndTest].[Score] AS [Score]
-    FROM [dbo].[UserAndTest] AS [UserAndTest]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="UserAndCourse" EntityType="Self.UserAndCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAndLession" EntityType="Self.UserAndLession" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAndTest" EntityType="Self.UserAndTest" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Lession_Course" Association="Self.FK_Lession_Course">
             <End Role="Course" EntitySet="Course" />
             <End Role="Lession" EntitySet="Lession" />
@@ -414,8 +389,7 @@ warning 6002: The table/view 'dev_data_project.dbo.UserAndTest' does not have a 
             <End Role="UserAndTest" EntitySet="UserAndTest" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
