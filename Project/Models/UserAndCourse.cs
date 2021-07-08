@@ -14,6 +14,7 @@ namespace Project.Models
     
     public partial class UserAndCourse
     {
+        public int id { get; set; }
         public int UserID { get; set; }
         public int CourseID { get; set; }
         public Nullable<double> Score { get; set; }

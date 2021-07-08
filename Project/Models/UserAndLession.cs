@@ -14,9 +14,10 @@ namespace Project.Models
     
     public partial class UserAndLession
     {
+        public int id { get; set; }
         public int UserID { get; set; }
         public int LessionID { get; set; }
-        public bool Watched { get; set; }
+        public Nullable<bool> Watched { get; set; }
     
         public virtual Lession Lession { get; set; }
         public virtual User User { get; set; }

@@ -246,3 +246,4 @@ D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.Cor
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.CopyComplete
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.dll
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.pdb
+D:\Sum2021\PRN292\Project\Dev_Project\Project\obj\Debug\Project.csproj.AssemblyReference.cache
