@@ -76,35 +76,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tests">
-      <EntityTypeMapping TypeName="ProjectModel.Test">
-        <MappingFragment StoreEntitySet="Test">
-          <ScalarProperty Name="TestID" ColumnName="TestID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="LessionID" ColumnName="LessionID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TestQuestions">
-      <EntityTypeMapping TypeName="ProjectModel.TestQuestion">
-        <MappingFragment StoreEntitySet="TestQuestion">
-          <ScalarProperty Name="QuesID" ColumnName="QuesID" />
-          <ScalarProperty Name="Question" ColumnName="Question" />
-          <ScalarProperty Name="TestID" ColumnName="TestID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TestQuestionAnswers">
-      <EntityTypeMapping TypeName="ProjectModel.TestQuestionAnswer">
-        <MappingFragment StoreEntitySet="TestQuestionAnswer">
-          <ScalarProperty Name="AnsID" ColumnName="AnsID" />
-          <ScalarProperty Name="Answer" ColumnName="Answer" />
-          <ScalarProperty Name="QuesID" ColumnName="QuesID" />
-          <ScalarProperty Name="IsTrue" ColumnName="IsTrue" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="ProjectModel.User">
         <MappingFragment StoreEntitySet="User">
@@ -122,6 +93,7 @@
     <EntitySetMapping Name="UserAndCourses">
       <EntityTypeMapping TypeName="ProjectModel.UserAndCourse">
         <MappingFragment StoreEntitySet="UserAndCourse">
+          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="CourseID" ColumnName="CourseID" />
           <ScalarProperty Name="Score" ColumnName="Score" />
@@ -131,18 +103,10 @@
     <EntitySetMapping Name="UserAndLessions">
       <EntityTypeMapping TypeName="ProjectModel.UserAndLession">
         <MappingFragment StoreEntitySet="UserAndLession">
+          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="LessionID" ColumnName="LessionID" />
           <ScalarProperty Name="Watched" ColumnName="Watched" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserAndTests">
-      <EntityTypeMapping TypeName="ProjectModel.UserAndTest">
-        <MappingFragment StoreEntitySet="UserAndTest">
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="TestID" ColumnName="TestID" />
-          <ScalarProperty Name="Score" ColumnName="Score" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

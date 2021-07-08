@@ -32,12 +32,8 @@ namespace Project.Models
         public virtual DbSet<QuizQuestion> QuizQuestions { get; set; }
         public virtual DbSet<QuizQuestionAnswer> QuizQuestionAnswers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Test> Tests { get; set; }
-        public virtual DbSet<TestQuestion> TestQuestions { get; set; }
-        public virtual DbSet<TestQuestionAnswer> TestQuestionAnswers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserAndCourse> UserAndCourses { get; set; }
         public virtual DbSet<UserAndLession> UserAndLessions { get; set; }
-        public virtual DbSet<UserAndTest> UserAndTests { get; set; }
     }
 }
