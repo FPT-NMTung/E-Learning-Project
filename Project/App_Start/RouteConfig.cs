@@ -72,7 +72,7 @@ namespace Project
 
             routes.MapRoute(
                 name: "ForgotPassword",
-                url: "forgotPassword",
+                url: "forgot-password",
                 defaults: new { controller = "Login", action = "ForgotPassword" }
             );
 
