@@ -78,5 +78,14 @@ namespace Project.Controllers {
 
             return RedirectToAction( "Index", "Login" );
         }
+
+        [HttpGet]
+        [CheckNotSession]
+        public ActionResult ForgotPassword()
+        {
+            ViewBag.isCreated = TempData["isCreated"];
+            TempData.Clear();
+            return View();
+        }
     }
 }

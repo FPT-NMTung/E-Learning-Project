@@ -20,12 +20,14 @@
                 <div class="card fat">
                     <div class="card-body">
                         <h4 class="card-title">Đăng nhập</h4>
-                        @if ( ViewBag.isLogged == false ) {
+                        @if (ViewBag.isLogged == false)
+                        {
                             <div class="alert alert-danger" role="alert">
                                 Địa chỉ email hoặc mật khẩu không đúng. Đăng nhập thuất bại.
                             </div>
                         }
-                        @using ( Html.BeginForm( "Login" , "Login" , FormMethod.Post ) ) {
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
                             <div class="form-group">
                                 <label for="email">Địa chỉ email</label>
                                 <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -54,6 +56,9 @@
                             </div>
                             <div class="mt-4 text-center">
                                 Bạn chưa có tài khoản? <a href="/register">Tạo tài khoản</a>
+                            </div>
+                            <div class="mt-4 text-center">
+                                <a href="/forgotPassword">Quên mật khẩu?</a>
                             </div>
                         }
                     </div>
