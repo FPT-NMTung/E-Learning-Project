@@ -7,6 +7,7 @@ using Project.Filters;
 using Project.Models;
 using System.Net.Mail;
 using System.Net;
+using System.Text;
 
 namespace Project.Controllers
 {
@@ -97,7 +98,7 @@ namespace Project.Controllers
         [CheckNotSession]
         public ActionResult ForgotPassword()
         {
-            ViewBag.SuccessMessage = "Mật khẩu đã được gửi về Email của bạn!"; //message when send pass to email success
+            ViewBag.SuccessMessage = "Mật khẩu mới đã được gửi về Email của bạn!"; //message when send pass to email success
             ViewBag.FailMessage = "Email bạn vừa nhập chưa đúng hoặc không tồn tại trong hệ thống!"; //message when email is not exist in database
             ViewBag.Message = TempData["forgotPass"];
             TempData.Clear();
@@ -113,11 +114,26 @@ namespace Project.Controllers
             {
                 //case when email exist in database
                 string name = infor.ToList()[0].Name; //get name
-                string password = infor.ToList()[0].Password; //get password
+                string newPass = "";
+                //generate new password for user
+                try
+                {
+                    var getUser = db.Users.First(g => g.Email == email);
+                    newPass = generateRandomPassword(16); //generate new pass with 16 character
+                    getUser.Password = newPass.Trim(); //update pass in database
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    TempData["forgotPass"] = false;
+                    return RedirectToAction("ForgotPassword", "Login");
+                }
+
+                //sending email
                 using (MailMessage mm = new MailMessage("daylamaildungchoproject@gmail.com", email.Trim())) //MailMessage(mailFrom, mailTo);
                 {
                     mm.Subject = "Mật khẩu của bạn tại E-Learning"; //email's title
-                    mm.Body = string.Format("Hi {0}!<br /><br />Mật khẩu của bạn là: {1}<br /><br />Lần sau đừng quên mật khẩu nữa nhaaa^^", name, password); //email's body
+                    mm.Body = string.Format("Hi {0}!<br /><br />Mật khẩu của bạn là: {1}<br /><br />Lần sau đừng quên mật khẩu nữa nhaaa^^", name, newPass); //email's body
                     mm.IsBodyHtml = true;
                     //send email by using simple mail tranfer protocol
                     SmtpClient smtp = new SmtpClient();
@@ -125,8 +141,8 @@ namespace Project.Controllers
                     smtp.EnableSsl = true;
                     //provide credential password-based authentication schemes
                     NetworkCredential networkCred = new NetworkCredential();
-                    networkCred.UserName = "daylamaildungchoproject@gmail.com"; //tên dùng để đăng nhập gmail
-                    networkCred.Password = "hehe123456789"; //mật khẩu dùng để đăng nhập gmail
+                    networkCred.UserName = "daylamaildungchoproject@gmail.com"; //gmail's account
+                    networkCred.Password = "hehe123456789"; //gmail's password
                     smtp.UseDefaultCredentials = true;
                     smtp.Credentials = networkCred;
                     smtp.Port = 587;
@@ -141,6 +157,18 @@ namespace Project.Controllers
                 TempData["forgotPass"] = false;
                 return RedirectToAction("ForgotPassword", "Login");
             }
+        }
+
+        private string generateRandomPassword(int length)
+        {
+            const string VALID_PASS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890~!@#$%^&*";
+            StringBuilder res = new StringBuilder();
+            Random random = new Random();
+            while (0 < length--)
+            {
+                res.Append(VALID_PASS[random.Next(VALID_PASS.Length)]);
+            }
+            return res.ToString();
         }
     }
 }
