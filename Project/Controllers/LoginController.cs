@@ -116,7 +116,7 @@ namespace Project.Controllers
                 string password = infor.ToList()[0].Password; //get password
                 using (MailMessage mm = new MailMessage("daylamaildungchoproject@gmail.com", email.Trim())) //MailMessage(mailFrom, mailTo);
                 {
-                    mm.Subject = "Password Recovery"; //email's title
+                    mm.Subject = "Mật khẩu của bạn tại E-Learning"; //email's title
                     mm.Body = string.Format("Hi {0}!<br /><br />Mật khẩu của bạn là: {1}<br /><br />Lần sau đừng quên mật khẩu nữa nhaaa^^", name, password); //email's body
                     mm.IsBodyHtml = true;
                     //send email by using simple mail tranfer protocol
