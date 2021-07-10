@@ -81,6 +81,12 @@ namespace Project
                 url: "{*url}" ,
                 defaults: new { controller = "Error" , action = "Index" }
             );
+
+            routes.MapRoute(
+                name: "Learning1",
+                url: "learning",
+                defaults: new { controller = "Learning", action = "Index" }
+            );
         }
         
     }
