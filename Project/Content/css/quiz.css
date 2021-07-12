@@ -69,3 +69,10 @@ label {
     padding: 10px 20px;
     border-radius: 99999px;
 }
+
+.time-countdown {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(35, 56, 150);
+}

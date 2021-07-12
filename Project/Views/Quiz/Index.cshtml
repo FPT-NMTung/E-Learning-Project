@@ -45,20 +45,52 @@
 <body>
 
     <main class="container" id="font-poppins">
-        <asp:Timer ID="Timer1" runat="server" Interval="5000" ontick="Timer1_Tick">
-        </asp:Timer>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <span style="border:2px; color:tomato">Time Remaining:<asp:Label ID="Label1" runat="server"></asp:Label></span>
-            </ContentTemplate>
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
-                </asp:AsyncPostBackTrigger>
-            </Triggers>
-        </asp:UpdatePanel>
+        
+        @{ 
+           
+            var endTime = DateTime.UtcNow.AddSeconds(3600);
+            var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+        }
         <div class="header-quiz">
             <a class="btn btn-primary quiz-button" href="#">back to learn</a>
             <p class="quiz-title">Course: Fundamentals of Network Communication</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        Time Remaining :<span id="minRemaining"></span>:<span id="secRemaining"></span>
+                    </div>
+                </div>
+
+            </div>
+            @*<asp:Timer ID="Timer1" runat="server" Interval="5000" ontick="Timer1_Tick">
+            </asp:Timer>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <span class="time-countdown">Time Remaining:<asp:Label ID="Label1" name="Label1" type="text" runat="server"></asp:Label></span>
+                    <span class="time-countdown">@ViewBag.Label1</span>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
+                    </asp:AsyncPostBackTrigger>
+                </Triggers>
+            </asp:UpdatePanel>*@
+            @*<form id="form1" runat="server">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <h1>@ViewBag.Label2</h1>
+                            <asp:Label>@ViewBag.Label2</asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="TimeLeft:"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
+                </div>
+            </form>*@
         </div>
         @using (Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post))
         {
@@ -89,10 +121,10 @@
                                 string name = "ques" + element.QuesID;
 
                                 <label for="@element.QuesID-@ansElement.AnsID">
-                                    <div class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
+                                    <liv class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
                                         <input type="radio" value="@ansElement.AnsID" name="@name" id="@element.QuesID-@ansElement.AnsID">
                                         @ansElement.Answer
-                                    </div>
+                                    </liv>
                                 </label>
                             }
 
@@ -140,6 +172,23 @@
 <!-- Template Main JS File -->
 <script src="/Content/script/main.js"></script>
 <script src="/Content/script/quiz.js"></script>
+<script>
+    var remSeconds = @timeRemaining;
+    var secondsCounter = remSeconds % 60; 
+
+        function startTick() {
+            document.getElementById('secRemaining').innerText = secondsCounter;
+            document.getElementById('minRemaining').innerText = remSeconds/60;
+            var _tick = SetInterval(function () {
+                remSeconds = remSeconds - 1;
+                secondsCounter = secondsCounter - 1;
+                document.getElementById('secRemaining').innerText = secondsCounter;
+                document.getElementById('minRemaining').innerText = remSeconds / 60;
+            }, 1000);
+            
+        }
+        startTick();
+</script>
 
 </body>
 

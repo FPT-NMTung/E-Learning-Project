@@ -35,6 +35,8 @@ namespace Project.Controllers {
             ViewBag.quizId = QuizID;
 
             return View( tempData.ToList() );
+
+
         }
 
         [ HttpPost ]
@@ -116,6 +118,38 @@ namespace Project.Controllers {
             ViewBag.name = name;
 
             return View();
+        }
+        //public void Timer1_Tick(object sender, EventArgs e)
+        //{
+        //    TimeSpan ts5sec = new TimeSpan(0, 0, 5); // 5 seconds
+        //    TimeSpan ts = (TimeSpan)Session["CountdownTimer"]; // current remaining time from Session
+        //    TimeSpan current = ts - ts5sec; // Subtract 5 seconds
+        //    ViewBag.Label1 = current.ToString("%m") + " minutes and " + current.ToString("%s") + " seconds";
+        //    Session["CountdownTimer"] = current;  // put new remaining time in Session 
+           
+        //    //Label1.Text = DateTime.Now.Second.ToString();
+        //}
+        static int hh, mm, ss;
+
+        static double TimeAllSecondes = 5;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (TimeAllSecondes > 0)
+            {
+                TimeAllSecondes = TimeAllSecondes - 1;
+            }
+
+            TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
+            hh = time_Span.Hours;
+            mm = time_Span.Minutes;
+            ss = time_Span.Seconds;
+
+            ViewBag.Label2 = "  " + hh + ":" + mm + ":" + ss;
         }
     }
 }
