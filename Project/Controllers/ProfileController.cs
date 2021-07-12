@@ -35,6 +35,7 @@ namespace Project.Controllers
             ViewBag.gender = gender;
             ViewBag.phone = infor.ToList()[0].PhoneNumber;
             ViewBag.address = infor.ToList()[0].Address;
+            //message after action
             ViewBag.successInfor = "Thay đổi thông tin người dùng thành công!";
             ViewBag.successPass = "Thay đổi mật khẩu thành công!";
             ViewBag.inforMessage = TempData["infor"];
@@ -69,12 +70,14 @@ namespace Project.Controllers
         {
             int id = Convert.ToInt32(Session["user_id"].ToString());
             var infor = from e in db.Users where e.UserID == id select e;
+            //set data to field
             ViewBag.name = infor.ToList()[0].Name;
             ViewBag.email = infor.ToList()[0].Email;
             ViewBag.phone = infor.ToList()[0].PhoneNumber;
             ViewBag.address = infor.ToList()[0].Address;
             ViewBag.genderMale = infor.ToList()[0].Gender == true ? "checked" : "";
             ViewBag.genderFemale = infor.ToList()[0].Gender == false ? "checked" : "";
+            //message after action
             ViewBag.failInfor = "Thay đổi thông tin người dùng thất bại do số điện thoại đã được sử dụng hoặc các ô thông tin chỉ chứa dấu cách!";
             ViewBag.failPass = "Thay đổi mật khẩu thất bại!";
             ViewBag.inforMessage = TempData["infor"];
