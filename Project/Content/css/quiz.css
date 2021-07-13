@@ -71,8 +71,8 @@ label {
 }
 
 .time-countdown {
-    text-align: center;
-    font-size: 24px;
+    text-align: left;
+    font-size: 20px;
     font-weight: bold;
-    color: rgb(35, 56, 150);
+    color: firebrick;
 }

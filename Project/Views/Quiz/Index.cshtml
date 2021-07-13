@@ -48,7 +48,7 @@
         
         @{ 
            
-            var endTime = DateTime.UtcNow.AddSeconds(3600);
+            var endTime = DateTime.UtcNow.AddSeconds(599);
             var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
         }
         <div class="header-quiz">
@@ -56,8 +56,8 @@
             <p class="quiz-title">Course: Fundamentals of Network Communication</p>
             <div class="row">
                 <div class="col-md-12">
-                    <div>
-                        Time Remaining :<span id="minRemaining"></span>:<span id="secRemaining"></span>
+                    <div class="time-countdown"> 
+                        Time Remaining : <span id="minRemaining"></span>:<span id="secRemaining"></span><span> minutes</span>
                     </div>
                 </div>
 
@@ -176,14 +176,35 @@
     var remSeconds = @timeRemaining;
     var secondsCounter = remSeconds % 60; 
 
+    function formatNumber(number) {
+
+        if (number < 10) return '0' + number;
+        else return '' + number;
+
+        
+    }
         function startTick() {
-            document.getElementById('secRemaining').innerText = secondsCounter;
-            document.getElementById('minRemaining').innerText = remSeconds/60;
-            var _tick = SetInterval(function () {
-                remSeconds = remSeconds - 1;
-                secondsCounter = secondsCounter - 1;
-                document.getElementById('secRemaining').innerText = secondsCounter;
-                document.getElementById('minRemaining').innerText = remSeconds / 60;
+            document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+            document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+
+            var _tick = setInterval(function ()
+            {
+                if (remSeconds > 0) {
+
+
+                    remSeconds = remSeconds - 1;
+                    secondsCounter = secondsCounter - 1;
+                    document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                    document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+                    if (secondsCounter == 0)
+                        secondsCounter = 60;
+                }
+                else {
+                    alert('Your Exam time has expired');
+
+                    clearInterval(_tick);
+                    
+                }
             }, 1000);
             
         }

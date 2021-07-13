@@ -129,27 +129,27 @@ namespace Project.Controllers {
            
         //    //Label1.Text = DateTime.Now.Second.ToString();
         //}
-        static int hh, mm, ss;
+        //static int hh, mm, ss;
 
-        static double TimeAllSecondes = 5;
-        protected void Page_Load(object sender, EventArgs e)
-        {
+        //static double TimeAllSecondes = 5;
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        protected void Timer1_Tick(object sender, EventArgs e)
-        {
-            if (TimeAllSecondes > 0)
-            {
-                TimeAllSecondes = TimeAllSecondes - 1;
-            }
+        //protected void Timer1_Tick(object sender, EventArgs e)
+        //{
+        //    if (TimeAllSecondes > 0)
+        //    {
+        //        TimeAllSecondes = TimeAllSecondes - 1;
+        //    }
 
-            TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
-            hh = time_Span.Hours;
-            mm = time_Span.Minutes;
-            ss = time_Span.Seconds;
+        //    TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
+        //    hh = time_Span.Hours;
+        //    mm = time_Span.Minutes;
+        //    ss = time_Span.Seconds;
 
-            ViewBag.Label2 = "  " + hh + ":" + mm + ":" + ss;
-        }
+        //    ViewBag.Label2 = "  " + hh + ":" + mm + ":" + ss;
+        //}
     }
 }
