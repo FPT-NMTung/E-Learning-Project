@@ -111,6 +111,7 @@
   <ItemGroup>
     <Content Include="Content\css\editProfile.css" />
     <Content Include="Content\css\error.css" />
+    <Content Include="Content\css\forgot-password.css" />
     <Content Include="Content\css\learning.css" />
     <Content Include="Content\css\my-login.css" />
     <Content Include="Content\css\profile.css" />
@@ -355,6 +356,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Quiz\Index.cshtml" />
     <Content Include="Views\Quiz\Result.cshtml" />
+    <Content Include="Views\Login\ForgotPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

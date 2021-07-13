@@ -71,6 +71,12 @@ namespace Project
             );
 
             routes.MapRoute(
+                name: "ForgotPassword",
+                url: "forgot-password",
+                defaults: new { controller = "Login", action = "ForgotPassword" }
+            );
+
+            routes.MapRoute(
                 name: "Register" ,
                 url: "register" ,
                 defaults: new { controller = "Login" , action = "Register" }
