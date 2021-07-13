@@ -44,53 +44,100 @@
 
 <body>
 
-<main class="container" id="font-poppins">
-    <div class="header-quiz">
-        <a class="btn btn-primary quiz-button" href="#">back to learn</a>
-        <p class="quiz-title">Course: Fundamentals of Network Communication</p>
-    </div>
-    @using ( Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post) ) {
-        <div>
-            <input type="hidden" name="listQuestion" value="@ViewBag.listQuestion"/>
-            <input type="hidden" name="quizId" value="@ViewBag.quizId"/>
-            @model List<Project.Models.QuizQuestion>
-            @{
-                int count = 0;
-            }
-            @foreach ( var element in Model ) {
-                {
-                    count = count + 1;
-                }
-
-
-                <div class="quiz">
-                    <div class="quiz-question">
-                        <p class="quiz-ques-number">Question @count</p>
-                        <p class="quiz-ques-context">
-                            @element.Question
-                        </p>
-                    </div>
-                    <div class="quiz-answer">
-                        @foreach ( var ansElement in element.QuizQuestionAnswers ) {
-                            string name = "ques" + element.QuesID;
-
-                            <label for="@element.QuesID-@ansElement.AnsID">
-                                <div class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
-                                    <input type="radio" value="@ansElement.AnsID" name="@name" id="@element.QuesID-@ansElement.AnsID">
-                                    @ansElement.Answer
-                                </div>
-                            </label>
-                        }
-
+    <main class="container" id="font-poppins">
+        
+        @{ 
+           
+            var endTime = DateTime.UtcNow.AddSeconds(600);
+            var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+        }
+        <div class="header-quiz">
+            <a class="btn btn-primary quiz-button" href="#">back to learn</a>
+            <p class="quiz-title">Course: Fundamentals of Network Communication</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="time-countdown"> 
+                        Time Remaining : <span id="minRemaining"></span>:<span id="secRemaining"></span><span> minutes</span>
                     </div>
                 </div>
-            }
-            <div>
-                <button class="btn btn-primary quiz-button" type="submit" style="margin: 10px auto 30px; display: block;">Submit</button>
+
             </div>
+            @*<asp:Timer ID="Timer1" runat="server" Interval="5000" ontick="Timer1_Tick">
+            </asp:Timer>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <span class="time-countdown">Time Remaining:<asp:Label ID="Label1" name="Label1" type="text" runat="server"></asp:Label></span>
+                    <span class="time-countdown">@ViewBag.Label1</span>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
+                    </asp:AsyncPostBackTrigger>
+                </Triggers>
+            </asp:UpdatePanel>*@
+            @*<form id="form1" runat="server">
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                <div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <h1>@ViewBag.Label2</h1>
+                            <asp:Label>@ViewBag.Label2</asp:Label>
+                            <asp:Label ID="Label1" runat="server" Text="TimeLeft:"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="Timer1" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                    <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
+                </div>
+            </form>*@
         </div>
-    }
-</main>
+        @using (Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post, new { id = "submitform" }))
+        { 
+            
+            <div >
+                <input type="hidden" name="listQuestion" value="@ViewBag.listQuestion" />
+                <input type="hidden" name="quizId" value="@ViewBag.quizId" />
+                @model List<Project.Models.QuizQuestion>
+                @{
+                    int count = 0;
+                }
+                @foreach (var element in Model)
+                {
+                    {
+                        count = count + 1;
+                    }
+
+
+                    <div class="quiz">
+                        <div class="quiz-question">
+                            <p class="quiz-ques-number">Question @count</p>
+                            <p class="quiz-ques-context">
+                                @element.Question
+                            </p>
+                        </div>
+                        <div class="quiz-answer">
+                            @foreach (var ansElement in element.QuizQuestionAnswers)
+                            {
+                                string name = "ques" + element.QuesID;
+
+                                <label for="@element.QuesID-@ansElement.AnsID">
+                                    <liv class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
+                                        <input type="radio" value="@ansElement.AnsID" name="@name" id="@element.QuesID-@ansElement.AnsID">
+                                        @ansElement.Answer
+                                    </liv>
+                                </label>
+                            }
+
+                        </div>
+                    </div>
+                }
+                <div>
+                    <button class="btn btn-primary quiz-button" type="submit" style="margin: 10px auto 30px; display: block;">Submit</button>
+                </div>
+            </div>
+        }
+    </main>
 
 <!-- ======= Footer ======= -->
 <footer id="footer">
@@ -126,6 +173,56 @@
 <!-- Template Main JS File -->
 <script src="/Content/script/main.js"></script>
 <script src="/Content/script/quiz.js"></script>
+<script>
+    var remSeconds = @timeRemaining;
+
+    var secondsCounter = remSeconds % 60;
+    
+    function formatNumber(number) {
+
+        if (number < 10) return '0' + number;
+        else return '' + number;
+        
+
+    }
+        function startTick() {
+            document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+            document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+
+            var _tick = setInterval(function ()
+            {
+                if (secondsCounter == 0) {
+                    secondsCounter = 59;
+                    remSeconds = remSeconds - 1;
+                    document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                    document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+                } else if (remSeconds > 0) {
+
+
+                        remSeconds = remSeconds - 1;
+                        secondsCounter = secondsCounter - 1;
+
+                        document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                        document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+                        if (secondsCounter == 0)
+                            secondsCounter = 60;
+                    }
+                    else {
+                        /*alert('Your Exam time has expired');*/
+
+                        clearInterval(_tick);
+                        document.getElementById("submitform").submit();
+                        /*window.location = '/home';*/
+
+
+                    }
+                
+                
+            }, 1000);
+
+        }
+        startTick();
+</script>
 
 </body>
 

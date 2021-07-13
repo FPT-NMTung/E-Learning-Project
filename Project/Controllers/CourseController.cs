@@ -15,6 +15,7 @@ namespace Project.Controllers {
         [ HttpGet ]
         public ActionResult Index() {
             var courses = from e in db.Courses select e;
+            var detaillession = from l in db.Lessions select l;
 
             return View( courses.ToList() );
         }
@@ -22,7 +23,7 @@ namespace Project.Controllers {
         [ HttpGet ]
         public ActionResult Detail(string id) {
             var result = from e in db.Courses where e.CourseID.ToString() == id select e;
-
+            //var lession = from l in db.Lessions where l.LessionID.ToString() == id select l;
             if ( result.ToList().Count == 0 ) {
                 return RedirectToAction( "Index" , "Course" );
             }
@@ -31,6 +32,13 @@ namespace Project.Controllers {
             ViewBag.image = result.ToList()[0].Image;
             ViewBag.courseId = result.ToList()[0].CourseID;
             ViewBag.description = result.ToList()[0].Description;
+
+            //if (lession.ToList().Count == 0)
+            //{
+            //    return RedirectToAction("Index", "Course");
+            //}
+            //ViewBag.countvid = lession.ToList().Count[0].Countvid;
+
 
             return View();
         }
