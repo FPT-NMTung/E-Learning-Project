@@ -48,7 +48,7 @@
         
         @{ 
            
-            var endTime = DateTime.UtcNow.AddSeconds(599);
+            var endTime = DateTime.UtcNow.AddSeconds(60);
             var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
         }
         <div class="header-quiz">
@@ -92,9 +92,10 @@
                 </div>
             </form>*@
         </div>
-        @using (Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post))
-        {
-            <div>
+        @using (Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post, new { id = "submitform" }))
+        { 
+            
+            <div >
                 <input type="hidden" name="listQuestion" value="@ViewBag.listQuestion" />
                 <input type="hidden" name="quizId" value="@ViewBag.quizId" />
                 @model List<Project.Models.QuizQuestion>
@@ -174,14 +175,14 @@
 <script src="/Content/script/quiz.js"></script>
 <script>
     var remSeconds = @timeRemaining;
-    var secondsCounter = remSeconds % 60; 
+    var secondsCounter = remSeconds % 60;
 
     function formatNumber(number) {
 
         if (number < 10) return '0' + number;
         else return '' + number;
 
-        
+
     }
         function startTick() {
             document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
@@ -200,13 +201,16 @@
                         secondsCounter = 60;
                 }
                 else {
-                    alert('Your Exam time has expired');
-
+                    /*alert('Your Exam time has expired');*/
+                   
                     clearInterval(_tick);
-                    
+                    document.getElementById("submitform").submit();
+                    /*window.location = '/home';*/
+
+
                 }
             }, 1000);
-            
+
         }
         startTick();
 </script>
