@@ -48,7 +48,7 @@
         
         @{ 
            
-            var endTime = DateTime.UtcNow.AddSeconds(60);
+            var endTime = DateTime.UtcNow.AddSeconds(5);
             var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
         }
         <div class="header-quiz">
@@ -175,13 +175,14 @@
 <script src="/Content/script/quiz.js"></script>
 <script>
     var remSeconds = @timeRemaining;
-    var secondsCounter = remSeconds % 60;
 
+    var secondsCounter = remSeconds % 60;
+    
     function formatNumber(number) {
 
         if (number < 10) return '0' + number;
         else return '' + number;
-
+        
 
     }
         function startTick() {
@@ -190,25 +191,33 @@
 
             var _tick = setInterval(function ()
             {
-                if (remSeconds > 0) {
-
-
+                if (secondsCounter == 0) {
+                    secondsCounter = 59;
                     remSeconds = remSeconds - 1;
-                    secondsCounter = secondsCounter - 1;
                     document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
                     document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
-                    if (secondsCounter == 0)
-                        secondsCounter = 60;
-                }
-                else {
-                    /*alert('Your Exam time has expired');*/
-                   
-                    clearInterval(_tick);
-                    document.getElementById("submitform").submit();
-                    /*window.location = '/home';*/
+                } else if (remSeconds > 0) {
 
 
-                }
+                        remSeconds = remSeconds - 1;
+                        secondsCounter = secondsCounter - 1;
+
+                        document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                        document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+                        if (secondsCounter == 0)
+                            secondsCounter = 60;
+                    }
+                    else {
+                        /*alert('Your Exam time has expired');*/
+
+                        clearInterval(_tick);
+                        document.getElementById("submitform").submit();
+                        /*window.location = '/home';*/
+
+
+                    }
+                
+                
             }, 1000);
 
         }
