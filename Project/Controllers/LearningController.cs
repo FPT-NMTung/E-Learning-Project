@@ -33,15 +33,21 @@ namespace Project.Controllers
                                    userAndLession = ul,
                                    course = c
                                };
-
+            //load data to learning page
             var srcVideo = from l in learningInfo where l.lesson.LessionID == lessonId select l;
             ViewBag.srcVideo = srcVideo.ToList()[0].lesson.Video;
             ViewBag.description = learningInfo.ToList()[0].lesson.Description;
             ViewBag.title = learningInfo.ToList()[0].lesson.Name;
-            //var course = from c in db.Courses where c.CourseID == courseId select c;
-            //ViewBag.courseName = course.ToList()[0].Name;
             ViewBag.courseName = learningInfo.ToList()[0].course.Name;
+           
+            //set watched for lesson when user click to specify lesson
+            (from p in db.UserAndLessions
+             where p.LessionID == lessonId && p.UserID == userId
+             select p).ToList().ForEach(x => x.Watched = true);
+            db.SaveChanges();
+
             return View(learningInfo.ToList());
         }
+
     }
 }

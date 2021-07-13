@@ -107,42 +107,37 @@
                     </div>
                 </div>
                 <div class="learning-list">
-                    @using (Html.BeginForm("ChangeLesson", "Learning", FormMethod.Get))
-                    {
-                        <ul>
-                            @foreach (var item in Model)
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            if (item.userAndLession.Watched == true)
                             {
-                                if (item.userAndLession.Watched == true)
-                                {
-                                    <li>                                     
-                                        <div class="card-lesson lesson-done">
-                                                <h4><span><img src="https://img.icons8.com/color/20/000000/checked-2--v1.png" /></span>@item.lesson.Name</h4>
-                                                <p class="card-time">4:35</p>
-                                        </div>                                
-                                        <hr>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        <div class="card-lesson">
+                                <li>
+                                    <div class="card-lesson lesson-done">
+                                        <a style="color:black" href="/learning/@item.lesson.CourseID/@item.lesson.LessionID">
+                                            <h4><span><img src="https://img.icons8.com/color/20/000000/checked-2--v1.png" /></span>@item.lesson.Name</h4>
+                                            <p class="card-time">4:35</p>
+                                        </a>
+                                    </div>
+                                    <hr>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="card-lesson">
+                                        <a style="color:black" href="/learning/@item.lesson.CourseID/@item.lesson.LessionID">
                                             <h4>@item.lesson.Name</h4>
                                             <p class="card-time">10:43</p>
-                                        </div>
-                                        <hr>
-                                    </li>
-                                }
+                                        </a>
+                                    </div>
+                                    <hr>
+                                </li>
                             }
+                        }
 
-                            <li>
-                                <div class="card-lesson lesson-current">
-                                    <h4>Test Current</h4>
-                                    <p class="card-time">5:03</p>
-                                </div>
-                                <hr>
-                            </li>
-                        </ul>
-                    }
+                    </ul>
+
                 </div>
             </div>
 
