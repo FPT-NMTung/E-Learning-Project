@@ -3,6 +3,7 @@ using Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
@@ -78,7 +79,7 @@ namespace Project.Controllers
             ViewBag.genderMale = infor.ToList()[0].Gender == true ? "checked" : "";
             ViewBag.genderFemale = infor.ToList()[0].Gender == false ? "checked" : "";
             //message after action
-            ViewBag.failInfor = "Thay đổi thông tin người dùng thất bại do số điện thoại đã được sử dụng hoặc các ô thông tin chỉ chứa dấu cách!";
+            ViewBag.failInfor = "Thay đổi thông tin người dùng thất bại do số điện thoại đã được sử dụng hoặc các ô thông tin không hợp lệ!";
             ViewBag.failPass = "Thay đổi mật khẩu thất bại!";
             ViewBag.inforMessage = TempData["infor"];
             ViewBag.passMessage = TempData["pass"];
@@ -93,7 +94,7 @@ namespace Project.Controllers
             int id = Convert.ToInt32(Session["user_id"].ToString());
             var checkPhone = from e in db.Users
                              where e.UserID == id && e.PhoneNumber == phone
-                             select e;
+                             select e;           
 
             if (checkPhone.ToList().Count == 0)
             {
@@ -108,13 +109,13 @@ namespace Project.Controllers
                     return RedirectToAction("EditProfile", "Profile");
                 }
             }
-            //case when user only input space
-            else if (name.Trim().Equals("") || address.Trim().Equals("") || phone.Trim().Equals(""))
+            //case when user only input space and valid phone number
+            if (name.Trim().Equals("") || address.Trim().Equals("") || phone.Trim().Equals("") || !IsPhoneNumber(phone.Trim()))
             {
                 TempData["infor"] = false;
                 return RedirectToAction("EditProfile", "Profile");
             }
-
+            
             try
             {
                 //update user profile
@@ -133,6 +134,10 @@ namespace Project.Controllers
                 TempData["infor"] = false;
                 return RedirectToAction("EditProfile", "Profile");
             }
+        }
+        public static bool IsPhoneNumber(string number)
+        {
+            return Regex.IsMatch(number, @"(0[3|5|7|8|9])+([0-9]{8})\b");
         }
 
         [HttpPost]
