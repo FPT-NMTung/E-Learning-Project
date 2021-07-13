@@ -30,8 +30,8 @@ namespace Project
 
             routes.MapRoute(
                 name: "Learning" ,
-                url: "learning/{courseId}/{videoId}",
-                defaults: new { controller = "Profile" , action = "EditProfile" }
+                url: "learning/{courseId}/{lessonId}",
+                defaults: new { controller = "Learning" , action = "Index" }
             );
 
             routes.MapRoute(
