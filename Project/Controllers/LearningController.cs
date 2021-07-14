@@ -33,13 +33,22 @@ namespace Project.Controllers
                                    userAndLession = ul,
                                    course = c
                                };
-            //load data to learning page
-            var srcVideo = from l in learningInfo where l.lesson.LessionID == lessonId select l;
-            ViewBag.srcVideo = srcVideo.ToList()[0].lesson.Video;
+            
+            //get data in table lesson
+            var lessonInfor = from l in learningInfo where l.lesson.LessionID == lessonId select l;
+
+            //case when lesson not existed
+            if (lessonInfor.ToList().Count == 0)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            //case when have at least 1 lesson
+            ViewBag.srcVideo = lessonInfor.ToList()[0].lesson.Video;
             ViewBag.description = learningInfo.ToList()[0].lesson.Description;
             ViewBag.title = learningInfo.ToList()[0].lesson.Name;
             ViewBag.courseName = learningInfo.ToList()[0].course.Name;
-           
+
             //set watched for lesson when user click to specify lesson
             (from p in db.UserAndLessions
              where p.LessionID == lessonId && p.UserID == userId
