@@ -46,8 +46,7 @@
 
     <main class="container" id="font-poppins">
         
-        @{ 
-           
+        @{
             var endTime = DateTime.UtcNow.AddSeconds(600);
             var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
         }
