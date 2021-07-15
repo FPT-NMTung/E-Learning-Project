@@ -32,7 +32,7 @@ namespace Project.Controllers
             var checkUserLearnLesson = from e in db.UserAndLessions
                                        where e.UserID == userId && e.LessionID == lessonId
                                        select e;
-    
+
             //case if user have not learn this lesson before
             if (checkUserLearnLesson.ToList().Count == 0)
             {
@@ -103,6 +103,16 @@ namespace Project.Controllers
             //get course name
             var courseName = from c in db.Courses where c.CourseID == courseId select c;
             ViewBag.courseName = courseName.ToList()[0].Name;
+            ViewBag.courseID = courseId;
+            //if all lesson in 1 course of 1 user is true
+            //chuyen den trang quiz
+            if (unWatchedLesson.ToList().Count == 0)
+            {
+                ViewBag.doneCourse = true;
+            }
+            else { 
+                ViewBag.doneCourse = false; 
+            }
 
             return View(result);
         }

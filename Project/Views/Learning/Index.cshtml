@@ -138,6 +138,19 @@
                                 </li>
                             }
                         }
+                        <br/> <br />
+                        @if (ViewBag.doneCourse == true)
+                        {
+                            <li>
+                                <div class="btn-success" style="text-align:center">
+                                    <a type="btn" href="/exam/@ViewBag.CourseID">
+                                        <h4 style="color:white">Bạn đã sẵn sàng để làm Quiz?</h4>
+                                    </a>
+                                </div>
+                            </li>
+                        }
+
+
                     </ul>
 
                 </div>
