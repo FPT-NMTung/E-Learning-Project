@@ -104,6 +104,22 @@ namespace Project.Controllers
             var courseName = from c in db.Courses where c.CourseID == courseId select c;
             ViewBag.courseName = courseName.ToList()[0].Name;
 
+            UserAndCourse temp = new UserAndCourse();
+            temp.CourseID = courseId;
+            temp.UserID = userId;
+
+            var selectTest = from userCourse in db.UserAndCourses
+                where userCourse.CourseID == courseId && userCourse.UserID == userId
+                select userCourse;
+
+            if ( selectTest.ToList().Count == 0) {
+                try {
+                    db.UserAndCourses.Add( temp );
+                    db.SaveChanges();
+                } catch ( Exception e ) {
+                }
+            }
+
             return View(result);
         }
 
