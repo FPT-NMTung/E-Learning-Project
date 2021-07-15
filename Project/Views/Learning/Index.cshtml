@@ -38,7 +38,6 @@
 </head>
 
 <body>
-
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center">
@@ -69,11 +68,14 @@
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
             <div class="button-login-register">
-                @if ( Session["email"] == null ) {
+                @if (Session["email"] == null)
+                {
                     <a class="nav-link scrollto" href="/login">Đăng nhập</a>
                     <a class="nav-link scrollto" href="/register">Đăng ký</a>
-                } else {
-                    <p class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</p>
+                }
+                else
+                {
+                    <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</a>
                     <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
                 }
             </div>
@@ -86,76 +88,58 @@
         <!-- ======= Breadcrumbs ======= -->
         <section id="breadcrumbs" class="breadcrumbs">
             <div class="container">
-                <h2>Courses</h2>
+                <h2>@ViewBag.courseName</h2>
             </div>
         </section><!-- End Breadcrumbs -->
 
         <section class="inner-page">
             <div class="container main-display">
                 <div class="learning-video">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/-kFLvlIjSDg"
+                    <iframe width="100%" height="100%" src="@ViewBag.srcVideo"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
 
                     <div class="container card-detail">
-                        <h4>{Tilte lession}</h4>
+                        <h4>@ViewBag.title</h4>
                         <h5>Time: {Time}</h5>
-                        <p>{description}</p>
+                        <p>@ViewBag.description</p>
                     </div>
                 </div>
                 <div class="learning-list">
                     <ul>
-                        <li>
-                            <div class="card-lesson lesson-done">
-                                <h4><span><img src="https://img.icons8.com/color/20/000000/checked-2--v1.png" /></span>Lession 1</h4>
-                                <p class="card-time">4:35</p>
-                            </div>
-                            <hr>
-                        </li>
-                        <li>
-                            <div class="card-lesson lesson-current">
-                                <h4>Lession 2</h4>
-                                <p class="card-time">5:03</p>
-                            </div>
-                            <hr>
-                        </li>
-                        <li>
-                            <div class="card-lesson">
-                                <h4>Lession 3</h4>
-                                <p class="card-time">10:43</p>
-                            </div>
-                            <hr>
-                        </li>
-                        <li>
-                            <div class="card-lesson">
-                                <h4>Lession 4</h4>
-                                <p class="card-time">32:55</p>
-                            </div>
-                            <hr>
-                        </li>
-                        <li>
-                            <div class="card-lesson">
-                                <h4>Lession 4</h4>
-                                <p class="card-time">32:55</p>
-                            </div>
-                            <hr>
-                        </li>
-                        <li>
-                            <div class="card-lesson">
-                                <h4>Lession 4</h4>
-                                <p class="card-time">32:55</p>
-                            </div>
-                            <hr>
-                        </li>
-                        <li>
-                            <div class="card-lesson">
-                                <h4>Lession 4</h4>
-                                <p class="card-time">32:55</p>
-                            </div>
-                            <hr>
-                        </li>
+                        @model List<Project.Controllers.WatchLessonTable>
+
+                        @foreach (var item in Model)
+                        {
+                            //if else condition
+                            if (item.watched == true)
+                            {
+                                <li>
+                                    <div class="card-lesson lesson-done">
+                                        <a style="color:black" href="/learning/@item.courseID/@item.lessonID">
+                                            <h4><span><img src="https://img.icons8.com/color/20/000000/checked-2--v1.png" /></span>@item.name</h4>
+                                            <p class="card-time">4:35</p>
+                                        </a>
+                                    </div>
+                                    <hr>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="card-lesson">
+                                        <a style="color:black" href="/learning/@item.courseID/@item.lessonID">
+                                            <h4>@item.name</h4>
+                                            <p class="card-time">10:43</p>
+                                        </a>
+                                    </div>
+                                    <hr>
+                                </li>
+                            }
+                        }
                     </ul>
+
                 </div>
             </div>
 
