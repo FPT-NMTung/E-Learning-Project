@@ -75,7 +75,7 @@
                 }
                 else
                 {
-                    <p class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</p>
+                    <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</a>
                     <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
                 }
             </div>
@@ -108,15 +108,17 @@
                 </div>
                 <div class="learning-list">
                     <ul>
-                        @model List<Project.Models.Lession>
+                        @model List<Project.Controllers.WatchLessonTable>
+
                         @foreach (var item in Model)
                         {
-                            if (item.UserAndLessions.ToList() != null)
+                            //if else condition
+                            if (item.watched == true)
                             {
                                 <li>
                                     <div class="card-lesson lesson-done">
-                                        <a style="color:black" href="/learning/@item.CourseID/@item.LessionID">
-                                            <h4><span><img src="https://img.icons8.com/color/20/000000/checked-2--v1.png" /></span>@item.Name</h4>
+                                        <a style="color:black" href="/learning/@item.courseID/@item.lessonID">
+                                            <h4><span><img src="https://img.icons8.com/color/20/000000/checked-2--v1.png" /></span>@item.name</h4>
                                             <p class="card-time">4:35</p>
                                         </a>
                                     </div>
@@ -127,8 +129,8 @@
                             {
                                 <li>
                                     <div class="card-lesson">
-                                        <a style="color:black" href="/learning/@item.CourseID/@item.LessionID">
-                                            <h4>@item.Name</h4>
+                                        <a style="color:black" href="/learning/@item.courseID/@item.lessonID">
+                                            <h4>@item.name</h4>
                                             <p class="card-time">10:43</p>
                                         </a>
                                     </div>
@@ -136,7 +138,6 @@
                                 </li>
                             }
                         }
-
                     </ul>
 
                 </div>
