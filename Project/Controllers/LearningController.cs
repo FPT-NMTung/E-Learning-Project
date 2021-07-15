@@ -23,19 +23,31 @@ namespace Project.Controllers
         public ActionResult Index(int courseId, int lessonId)
         {
             int userId = Convert.ToInt32(Session["user_id"].ToString());
+
+            var checkUserLearnLesson = from e in db.UserAndLessions 
+                                       where e.UserID == userId && e.LessionID == lessonId
+                                       select e;
+            //case if user have not learn this lesson before
+            if(checkUserLearnLesson.ToList().Count == 0)
+            {
+                //user learn this lesson
+                UserAndLession newUserAndLesson = new UserAndLession()
+                {
+                    UserID = userId,
+                    LessionID = lessonId,
+                    Watched = true
+                };
+                db.UserAndLessions.Add(newUserAndLesson);
+                db.SaveChanges();
+            }
+
+            //select all lesson in course
             var learningInfo = from l in db.Lessions
-                               join c in db.Courses on l.CourseID equals c.CourseID
-                               join ul in db.UserAndLessions on l.LessionID equals ul.LessionID
-                               where l.CourseID == courseId && ul.UserID == userId
-                               select new TempLession
-                               {
-                                   lesson = l,
-                                   userAndLession = ul,
-                                   course = c
-                               };
-            
+                               where l.CourseID == courseId
+                               select l;
+
             //get data in table lesson
-            var lessonInfor = from l in learningInfo where l.lesson.LessionID == lessonId select l;
+            var lessonInfor = from l in learningInfo where l.LessionID == lessonId select l;
 
             //case when lesson not existed
             if (lessonInfor.ToList().Count == 0)
@@ -44,17 +56,13 @@ namespace Project.Controllers
             }
 
             //case when have at least 1 lesson
-            ViewBag.srcVideo = lessonInfor.ToList()[0].lesson.Video;
-            ViewBag.description = learningInfo.ToList()[0].lesson.Description;
-            ViewBag.title = learningInfo.ToList()[0].lesson.Name;
-            ViewBag.courseName = learningInfo.ToList()[0].course.Name;
+            ViewBag.srcVideo = lessonInfor.ToList()[0].Video;
+            ViewBag.description = lessonInfor.ToList()[0].Description;
+            ViewBag.title = lessonInfor.ToList()[0].Name;
 
-            //set watched for lesson when user click to specify lesson
-            (from p in db.UserAndLessions
-             where p.LessionID == lessonId && p.UserID == userId
-             select p).ToList().ForEach(x => x.Watched = true);
-            db.SaveChanges();
-
+            var courseName = from c in db.Courses where c.CourseID == courseId select c;
+            ViewBag.courseName = courseName.ToList()[0].Name;
+            
             return View(learningInfo.ToList());
         }
 
