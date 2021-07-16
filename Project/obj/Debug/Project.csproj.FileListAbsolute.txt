@@ -330,3 +330,169 @@ D:\Sum2021\PRN292\SourceTree\Project\obj\Debug\Project.csproj.CoreCompileInputs.
 D:\Sum2021\PRN292\SourceTree\Project\obj\Debug\Project.csproj.CopyComplete
 D:\Sum2021\PRN292\SourceTree\Project\obj\Debug\Project.dll
 D:\Sum2021\PRN292\SourceTree\Project\obj\Debug\Project.pdb
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Project.dll.config
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Project.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Project.pdb
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\csc.exe
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\csc.exe.config
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\csc.rsp
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\csi.exe
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\csi.exe.config
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\csi.rsp
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.AppContext.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Console.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.IO.Compression.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Net.Http.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Net.Sockets.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.ValueTuple.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Xml.XPath.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\vbc.exe
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\vbc.exe.config
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\vbc.rsp
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Antlr3.Runtime.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\EntityFramework.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\EntityFramework.SqlServer.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Newtonsoft.Json.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Helpers.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Mvc.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Optimization.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Razor.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Webpages.Deployment.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Webpages.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Webpages.Razor.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\WebGrease.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Antlr3.Runtime.pdb
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\EntityFramework.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\EntityFramework.SqlServer.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Newtonsoft.Json.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Optimization.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Razor.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Webpages.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Webpages.Deployment.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Webpages.Razor.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Helpers.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\System.Web.Mvc.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\obj\Debug\Project.csproj.AssemblyReference.cache
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\obj\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\obj\Debug\Project.csproj.CopyComplete
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\obj\Debug\Project.dll
+C:\Users\nmtun\OneDrive\Máy tính\Dev_Project\Project\obj\Debug\Project.pdb
+D:\Sum2021\Dev_Project\Project\bin\Project.dll.config
+D:\Sum2021\Dev_Project\Project\bin\Project.dll
+D:\Sum2021\Dev_Project\Project\bin\Project.pdb
+D:\Sum2021\Dev_Project\Project\bin\roslyn\csc.exe
+D:\Sum2021\Dev_Project\Project\bin\roslyn\csc.exe.config
+D:\Sum2021\Dev_Project\Project\bin\roslyn\csc.rsp
+D:\Sum2021\Dev_Project\Project\bin\roslyn\csi.exe
+D:\Sum2021\Dev_Project\Project\bin\roslyn\csi.exe.config
+D:\Sum2021\Dev_Project\Project\bin\roslyn\csi.rsp
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Sum2021\Dev_Project\Project\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.AppContext.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Collections.Immutable.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Console.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Globalization.Calendars.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.IO.Compression.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.IO.FileSystem.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Net.Http.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Net.Sockets.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Reflection.Metadata.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.ValueTuple.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Xml.XPath.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Sum2021\Dev_Project\Project\bin\roslyn\vbc.exe
+D:\Sum2021\Dev_Project\Project\bin\roslyn\vbc.exe.config
+D:\Sum2021\Dev_Project\Project\bin\roslyn\vbc.rsp
+D:\Sum2021\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe
+D:\Sum2021\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe.config
+D:\Sum2021\Dev_Project\Project\bin\Antlr3.Runtime.dll
+D:\Sum2021\Dev_Project\Project\bin\EntityFramework.dll
+D:\Sum2021\Dev_Project\Project\bin\EntityFramework.SqlServer.dll
+D:\Sum2021\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Sum2021\Dev_Project\Project\bin\Microsoft.Web.Infrastructure.dll
+D:\Sum2021\Dev_Project\Project\bin\Newtonsoft.Json.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Helpers.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Mvc.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Optimization.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Razor.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Webpages.Deployment.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Webpages.dll
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Webpages.Razor.dll
+D:\Sum2021\Dev_Project\Project\bin\WebGrease.dll
+D:\Sum2021\Dev_Project\Project\bin\Antlr3.Runtime.pdb
+D:\Sum2021\Dev_Project\Project\bin\EntityFramework.xml
+D:\Sum2021\Dev_Project\Project\bin\EntityFramework.SqlServer.xml
+D:\Sum2021\Dev_Project\Project\bin\Newtonsoft.Json.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Optimization.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Razor.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Webpages.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Webpages.Deployment.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Webpages.Razor.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Helpers.xml
+D:\Sum2021\Dev_Project\Project\bin\System.Web.Mvc.xml
+D:\Sum2021\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Sum2021\Dev_Project\Project\obj\Debug\Project.csproj.AssemblyReference.cache
+D:\Sum2021\Dev_Project\Project\obj\Debug\Project.csproj.CoreCompileInputs.cache
+D:\Sum2021\Dev_Project\Project\obj\Debug\Project.csproj.CopyComplete
+D:\Sum2021\Dev_Project\Project\obj\Debug\Project.dll
+D:\Sum2021\Dev_Project\Project\obj\Debug\Project.pdb

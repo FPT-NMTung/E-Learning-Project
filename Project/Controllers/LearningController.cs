@@ -114,6 +114,22 @@ namespace Project.Controllers
                 ViewBag.doneCourse = false; 
             }
 
+            UserAndCourse temp = new UserAndCourse();
+            temp.CourseID = courseId;
+            temp.UserID = userId;
+
+            var selectTest = from userCourse in db.UserAndCourses
+                where userCourse.CourseID == courseId && userCourse.UserID == userId
+                select userCourse;
+
+            if ( selectTest.ToList().Count == 0) {
+                try {
+                    db.UserAndCourses.Add( temp );
+                    db.SaveChanges();
+                } catch ( Exception e ) {
+                }
+            }
+
             return View(result);
         }
 
