@@ -18,7 +18,7 @@ namespace Project
 
             routes.MapRoute(
                 name: "Result" ,
-                url: "exam/result/{courseId}" ,
+                url: "exam/result" ,
                 defaults: new { controller = "Quiz" , action = "Result" }
             );
 
