@@ -18,13 +18,13 @@ namespace Project
 
             routes.MapRoute(
                 name: "Result" ,
-                url: "exam/result/{courseId}" ,
+                url: "exam/result" ,
                 defaults: new { controller = "Quiz" , action = "Result" }
             );
 
             routes.MapRoute(
                 name: "Quiz" ,
-                url: "exam/{QuizID}" ,
+                url: "exam/{courseId}" ,
                 defaults: new { controller = "Quiz" , action = "Index" }
             );
 

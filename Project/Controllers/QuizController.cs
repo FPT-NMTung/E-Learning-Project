@@ -14,7 +14,29 @@ namespace Project.Controllers {
         // GET: Quiz
         [ HttpGet ]
         [ CheckSession ]
-        public ActionResult Index(string QuizID) {
+        public ActionResult Index(string courseId) {
+            int userID = Convert.ToInt32( Session["user_id"].ToString() );
+
+            var numberLessonLearned = (from lesson in db.Lessions
+                join userAndLession in db.UserAndLessions on lesson.LessionID equals userAndLession.LessionID
+                where lesson.CourseID.ToString() == courseId && userAndLession.UserID == userID
+                select lesson).ToList().Count;
+
+            var totalLesson = (from lesson in db.Lessions where lesson.CourseID.ToString() == courseId select lesson)
+                .ToList().Count;
+
+            if ( numberLessonLearned != totalLesson ) {
+                return RedirectToAction( "Index", "Course" );
+            }
+
+            var QuizIDList = (from quiz in db.Quizs where quiz.CourseID.ToString() == courseId select quiz).ToList();
+
+            if ( QuizIDList.Count == 0 ) {
+                return RedirectToAction( "Index", "Error" );
+            }
+
+            var QuizID = QuizIDList[0].QuizID;
+
             int temp = 0;
 
             try {
@@ -35,8 +57,6 @@ namespace Project.Controllers {
             ViewBag.quizId = QuizID;
 
             return View( tempData.ToList() );
-
-
         }
 
         [ HttpPost ]
@@ -68,45 +88,38 @@ namespace Project.Controllers {
 
             int userId = Convert.ToInt32( Session["user_id"].ToString() );
 
-            var check = from e in db.UserAndCourses
+            var check = (from e in db.UserAndCourses
                 where e.CourseID == courseId && e.UserID == userId
-                select e.Score;
+                select e.Score).ToList();
 
-            if ( check.ToList().Count == 0 ) {
-                var tempObj = new UserAndCourse() {
-                    CourseID = courseId,
-                    UserID = Convert.ToInt32( Session["user_id"] ),
-                    Score = score
-                };
+            if ( check[0] == null || check[0] < score ) {
+                var update = db.UserAndCourses.First( el => (el.CourseID == courseId && el.UserID == userId) );
+                update.Score = score;
 
-                db.UserAndCourses.Add( tempObj );
                 db.SaveChanges();
-            } else {
-                if ( check.ToList()[0] < score ) {
-                    var update = db.UserAndCourses.First( el => (el.CourseID == courseId && el.UserID == userId) );
-                    update.Score = score;
-
-                    db.SaveChanges();
-                }
             }
 
-            return Redirect( $"/exam/result/{courseId}" );
+            TempData["score"] = score;
+            return RedirectToAction( "Result" );
         }
 
         [ HttpGet ]
         [ CheckSession ]
-        public ActionResult Result(string courseId) {
+        public ActionResult Result() {
+            int score = 0;
+            var temp = TempData["score"];
+
+            if ( temp != null ) {
+                score = Convert.ToInt32( TempData["score"].ToString() );
+            } else {
+                return RedirectToAction( "Index", "Error" );
+            }
+
             string red = "#c2382f";
             string yellow = "#e0cf31";
             string green = "#34e031";
 
-            int userId = Convert.ToInt32( Session["user_id"].ToString() );
-            int course = Convert.ToInt32( courseId );
-
-            var score = (from a in db.UserAndCourses where a.CourseID == course && a.UserID == userId select a.Score).ToList()[0];
-            var name = (from b in db.Courses where b.CourseID == course select b.Name).ToList()[0];
-
-            if (score < 50) {
+            if ( score < 50 ) {
                 ViewBag.color = red;
             } else if ( score < 80 ) {
                 ViewBag.color = yellow;
@@ -115,41 +128,8 @@ namespace Project.Controllers {
             }
 
             ViewBag.score = score;
-            ViewBag.name = name;
 
             return View();
         }
-        //public void Timer1_Tick(object sender, EventArgs e)
-        //{
-        //    TimeSpan ts5sec = new TimeSpan(0, 0, 5); // 5 seconds
-        //    TimeSpan ts = (TimeSpan)Session["CountdownTimer"]; // current remaining time from Session
-        //    TimeSpan current = ts - ts5sec; // Subtract 5 seconds
-        //    ViewBag.Label1 = current.ToString("%m") + " minutes and " + current.ToString("%s") + " seconds";
-        //    Session["CountdownTimer"] = current;  // put new remaining time in Session 
-           
-        //    //Label1.Text = DateTime.Now.Second.ToString();
-        //}
-        //static int hh, mm, ss;
-
-        //static double TimeAllSecondes = 5;
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void Timer1_Tick(object sender, EventArgs e)
-        //{
-        //    if (TimeAllSecondes > 0)
-        //    {
-        //        TimeAllSecondes = TimeAllSecondes - 1;
-        //    }
-
-        //    TimeSpan time_Span = TimeSpan.FromSeconds(TimeAllSecondes);
-        //    hh = time_Span.Hours;
-        //    mm = time_Span.Minutes;
-        //    ss = time_Span.Seconds;
-
-        //    ViewBag.Label2 = "  " + hh + ":" + mm + ":" + ss;
-        //}
     }
 }

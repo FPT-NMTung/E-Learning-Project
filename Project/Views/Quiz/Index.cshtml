@@ -45,13 +45,11 @@
 <body>
 
     <main class="container" id="font-poppins">
-        
         @{
             var endTime = DateTime.UtcNow.AddSeconds(600);
             var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
         }
         <div class="header-quiz">
-            <a class="btn btn-primary quiz-button" href="#">back to learn</a>
             <p class="quiz-title">Course: Fundamentals of Network Communication</p>
             <div class="row">
                 <div class="col-md-12">
@@ -61,35 +59,6 @@
                 </div>
 
             </div>
-            @*<asp:Timer ID="Timer1" runat="server" Interval="5000" ontick="Timer1_Tick">
-            </asp:Timer>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <span class="time-countdown">Time Remaining:<asp:Label ID="Label1" name="Label1" type="text" runat="server"></asp:Label></span>
-                    <span class="time-countdown">@ViewBag.Label1</span>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick">
-                    </asp:AsyncPostBackTrigger>
-                </Triggers>
-            </asp:UpdatePanel>*@
-            @*<form id="form1" runat="server">
-                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-                <div>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                            <h1>@ViewBag.Label2</h1>
-                            <asp:Label>@ViewBag.Label2</asp:Label>
-                            <asp:Label ID="Label1" runat="server" Text="TimeLeft:"></asp:Label>
-                            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                        </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="Timer1" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                    <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
-                </div>
-            </form>*@
         </div>
         @using (Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post, new { id = "submitform" }))
         { 

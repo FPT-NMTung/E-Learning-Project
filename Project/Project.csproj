@@ -170,6 +170,7 @@
     <Content Include="Content\img\portfolio\toan3.jpg" />
     <Content Include="Content\img\portfolio\tv3.jpg" />
     <Content Include="Content\img\team-bg.jpg" />
+    <Content Include="Content\img\team\avatar-2020.png" />
     <Content Include="Content\img\team\bac.jpg" />
     <Content Include="Content\img\team\mon.jpg" />
     <Content Include="Content\img\team\nguyen.jpg" />
@@ -265,6 +266,9 @@
     <Compile Include="Models\Course.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Lession.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -290,9 +294,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuizQuestionAnswer.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
