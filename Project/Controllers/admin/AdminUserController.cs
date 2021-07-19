@@ -11,26 +11,39 @@ namespace Project.Controllers {
         private ProjectEntities db = new ProjectEntities();
 
         // GET: AdminUser
-        [HttpGet]
-        [CheckSessionAdmin]
+        [ HttpGet ]
+        [ CheckSessionAdmin ]
         public ActionResult Index() {
             var result = (from user in db.Users select user).ToList();
-            
+
             return View( result );
         }
 
-        [HttpPost]
-        [CheckSessionAdmin]
+        [ HttpPost ]
+        [ CheckSessionAdmin ]
         public ActionResult Search(string s) {
-            var result = ( from user in db.Users where user.Name.Contains( s ) select user ).ToList();
+            var result = (from user in db.Users where user.Name.Contains( s ) select user).ToList();
 
             return View( result );
         }
 
+        [ HttpGet ]
+        [ CheckSessionAdmin ]
+        public ActionResult Detail(string userid) {
+            var result = (from user in db.Users where user.UserID.ToString() == userid select user).ToList();
+
+            if ( result.Count == 0 ) {
+                return RedirectToAction( "Index" );
+            }
+
+            return View( result[0] );
+        }
+
         [HttpPost]
         [CheckSessionAdmin]
-        public ActionResult Detail(string userid ) {
-            return View();
+        public string Update(User user) {
+
+            return $"{user.UserID} | {user.Name} | {user.Email} | {user.Gender} | {user.Address} | {user.PhoneNumber} | {user.Password}";
         }
     }
 }
