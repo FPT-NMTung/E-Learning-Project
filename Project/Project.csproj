@@ -109,6 +109,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\admin\course.css" />
+    <Content Include="Content\css\admin\courseDetail.css" />
+    <Content Include="Content\css\admin\dashboard.css" />
+    <Content Include="Content\css\admin\index.css" />
+    <Content Include="Content\css\admin\lesson-detail.css" />
+    <Content Include="Content\css\admin\lesson.css" />
+    <Content Include="Content\css\admin\login.css" />
+    <Content Include="Content\css\admin\quiz.css" />
+    <Content Include="Content\css\admin\user-detail.css" />
+    <Content Include="Content\css\admin\user.css" />
     <Content Include="Content\css\editProfile.css" />
     <Content Include="Content\css\error.css" />
     <Content Include="Content\css\forgot-password.css" />
@@ -119,7 +129,9 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\about.jpg" />
+    <Content Include="Content\img\android-chrome-192x192.png" />
     <Content Include="Content\img\apple-touch-icon.png" />
+    <Content Include="Content\img\background.jpg" />
     <Content Include="Content\img\clients\client-1.png" />
     <Content Include="Content\img\clients\client-2.png" />
     <Content Include="Content\img\clients\client-3.png" />
@@ -189,6 +201,8 @@
     <Content Include="Content\plugins\jquery-2.2.4.min.js" />
     <Content Include="Content\plugins\jquery.appear.min.js" />
     <Content Include="Content\plugins\jquery.easypiechart.min.js" />
+    <Content Include="Content\script\courseDetail.js" />
+    <Content Include="Content\script\fetchData.js" />
     <Content Include="Content\script\main.js" />
     <Content Include="Content\script\my-login.js" />
     <Content Include="Content\script\quiz.js" />
@@ -247,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -256,7 +271,9 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Filters\CheckNotSession.cs" />
+    <Compile Include="Filters\CheckNotSessionAdmin.cs" />
     <Compile Include="Filters\CheckSession.cs" />
+    <Compile Include="Filters\CheckSessionAdmin.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -359,6 +376,7 @@
     <Content Include="Views\Quiz\Result.cshtml" />
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
+    <Content Include="Views\AdminLogin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

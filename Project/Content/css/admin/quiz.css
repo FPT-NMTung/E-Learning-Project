@@ -1,0 +1,165 @@
+table {
+    border-spacing: 0px 14px;
+}
+
+.user {
+    display        : flex;
+    justify-content: center;
+}
+
+.thead {
+    font-size  : 18px;
+    font-weight: bold;
+}
+
+.thead>h3 {
+    float        : left;
+    margin-bottom: 0px;
+}
+
+.thead-user {
+    width: 100px;
+}
+
+.thead-email {
+    width: 250px;
+}
+
+.thead-location {
+    width: 140px;
+}
+
+.thead-course {
+    width: 500px;
+}
+
+.description-lesson>p {
+    width     : 900px;
+    text-align: justify;
+    padding   : 0px 20px 0px 0px;
+
+    overflow          : hidden;
+    text-overflow     : ellipsis;
+    display           : -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.thead-action {
+    width: 100px;
+}
+
+.user-name {
+    display    : flex;
+    align-items: center;
+}
+
+.user-name-name>h4 {
+    margin: 14px 0px 10px 0px;
+}
+
+.user-name-name>p {
+    margin: 10px 0px 14px 0px;
+    color : rgb(167, 167, 167);
+}
+
+.row-user {
+    background-color: white;
+    box-shadow      : 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+}
+
+.user-name>div>img {
+    margin: 0px 20px;
+}
+
+.button-select {
+    border-radius   : 6px;
+    padding         : 5px 18px;
+    background-color: #00ab55;
+
+    color: white;
+}
+
+.row-user>td>h3 {
+    padding-left: 10px;
+}
+
+.add-course {
+    position: fixed;
+    right   : 10px;
+    bottom  : 10px;
+}
+
+.quiz {
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    row-gap       : 20px;
+}
+
+.quiz>div {
+    padding         : 20px;
+    border-radius   : 10px;
+    width           : 900px;
+    background-color: white;
+    box-shadow      : 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+}
+
+#question {
+    width  : 100%;
+    outline: white;
+
+    font-size: 16px;
+
+    border-style : solid;
+    border-width : 1px;
+    border-radius: 10px;
+    border-color : #b9b9b9;
+}
+
+.main-answer {
+    display       : flex;
+    flex-direction: column;
+    row-gap       : 10px;
+}
+
+.flex-answer {
+    display       : flex;
+    flex-direction: row;
+    width         : 100%;
+}
+
+.flex-answer-radio {
+    background-color: #e4e4e4;
+    padding         : 14px;
+
+    border-top-left-radius   : 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.flex-answer-content {
+    width : 100%;
+    height: 100%;
+}
+
+.flex-answer-content>input {
+    width  : 100%;
+    height : 45px;
+    outline: white;
+
+    font-size: 16px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e4e4e4;
+}
+
+#button-save {
+    padding         : 10px 20px;
+    border-radius   : 5px;
+    border-width    : 0px;
+    background-color: #1db468;
+    color           : white;
+    outline         : none;
+    font-weight     : bold;
+}
