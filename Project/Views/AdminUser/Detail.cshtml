@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/css/admin/index.css">
+    <link rel="stylesheet" href="/Content/css/admin/user-detail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Edit user | Admin | E-Learning</title>
+</head>
+
+<body>
+    <div id="body">
+        <div class="left-bar">
+            <div>
+                <div class="bar-logo">
+                    <img src="./img/android-chrome-192x192.png" alt="logo" height="40px">
+                </div>
+                <div class="bar-info">
+                    <div class="bar-info-img">
+                        <img src="https://img.icons8.com/office/40/000000/user-male-circle.png" />
+                    </div>
+                    <div class="bar-info-name">
+                        Mạnh Tùng
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/user.html" class="active-link-nav">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    User
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course.html">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Course
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Logout
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-bar">
+            <div class="heder-body">
+                <div class="header-content">
+                    Edit user
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="user-detail">
+                    <div>
+                        <div class="name">
+                            <h4>User: nmtung@gmail.com</h4>
+                        </div>
+                        <div>
+                            <form action="" method="POST">
+                                <div class="form-main">
+                                    <div>
+                                        <label class="margin-right-lable" for="id">ID user: </label>
+                                        <input class="input-margin" type="text" value="4" id="id" disabled>
+                                    </div>
+                                    <div>
+                                        <label class="margin-right-lable" for="name">Name: </label>
+                                        <input class="input-margin" type="text" name="name" id="name" value="Nguyễn Mạnh Tùng">
+                                    </div>
+                                    <div>
+                                        <label class="margin-right-lable" for="email">Email: </label>
+                                        <input class="input-margin" type="text" name="email" id="email" value="nmtung@gmail.com">
+                                    </div>
+                                    <div>
+                                        <label class="margin-right-lable" for="phone">Phone: </label>
+                                        <input class="input-margin" type="text" name="phone" id="phone" value="0853576259">
+                                    </div>
+                                    <div>
+                                        <label class="margin-right-lable" for="address">Address: </label>
+                                        <input class="input-margin" type="text" name="address" id="address" value="Thanh Hoá">
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="gender" id="male" value="male" checked>
+                                        <label for="male">Male</label>
+                                        <input type="radio" name="gender" id="female" value="female">
+                                        <label for="female">Female</label>
+                                    </div>
+                                    <button type="submit">Submit</button>
+                                    <a class="delete-button" href="#">Delete</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
