@@ -17,6 +17,17 @@ namespace Project
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             // route for admin
+            routes.MapRoute(
+                name: "Admin search user" ,
+                url: "admin/user/search" ,
+                defaults: new { controller = "AdminUser" , action = "Search" } 
+            );
+            
+            routes.MapRoute(
+                name: "Admin user" ,
+                url: "admin/user" ,
+                defaults: new { controller = "AdminUser" , action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Admin login" ,
@@ -24,8 +35,13 @@ namespace Project
                 defaults: new { controller = "AdminLogin" , action = "Index" }
             );
 
-            // route for user and non-user
+            routes.MapRoute(
+                name: "Admin logout" ,
+                url: "admin/logout" ,
+                defaults: new { controller = "AdminLogin" , action = "Logout" }
+            );
 
+            // route for user and non-user
             routes.MapRoute(
                 name: "Result" ,
                 url: "exam/result" ,
