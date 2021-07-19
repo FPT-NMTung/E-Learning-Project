@@ -94,13 +94,13 @@
                             @if (ViewBag.message == true)
                             {
                                 <div class="alert alert-success" role="alert">
-                                    Cập nhật thông tin khóa học thành công!
+                                    Update course successful!
                                 </div>
                             }
                             else if (ViewBag.message == false)
                             {
                                 <div class="alert alert-danger" role="alert">
-                                    Cập nhật thông tin khóa học thất bại!
+                                    Update course fail!
                                 </div>
                             }
                             @using (Html.BeginForm("UpdateCourse", "AdminCourse", FormMethod.Post))
@@ -129,8 +129,8 @@
                                 <input type="button" value="Check image" onclick="checkImage()">
                                 <br>
                                 <br>
-                                <button type="submit">Lưu</button>
-                                <button id="deleteButton" class="btn btn-danger">Xóa</button>
+                                <button type="submit">Save</button>
+                                <button id="deleteButton" class="btn btn-danger">Delete</button>
                             }
                         </div>
                         <div class="course-el">
@@ -154,10 +154,10 @@
                 },
                 function (data, status) {
                     if (status === "success") {
-                        alert("Xóa khóa học thành công!")
+                        alert("Delete course successful!")
                         location.replace("/admin/course")
                     } else {
-                        alert("Xóa khóa học không thành công!")
+                        alert("Delete course fail!")
                     }
 
                 });
