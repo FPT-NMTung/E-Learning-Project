@@ -18,14 +18,20 @@ namespace Project
 
             // route for admin
             routes.MapRoute(
+                name: "Admin search detail" ,
+                url: "admin/user/{userid}" ,
+                defaults: new { controller = "AdminUser" , action = "Detail" }
+            );
+
+            routes.MapRoute(
                 name: "Admin search user" ,
-                url: "admin/user/search" ,
+                url: "admin/users/search" ,
                 defaults: new { controller = "AdminUser" , action = "Search" } 
             );
             
             routes.MapRoute(
                 name: "Admin user" ,
-                url: "admin/user" ,
+                url: "admin/users" ,
                 defaults: new { controller = "AdminUser" , action = "Index" }
             );
 

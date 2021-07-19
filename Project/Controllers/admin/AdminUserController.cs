@@ -26,5 +26,11 @@ namespace Project.Controllers {
 
             return View( result );
         }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        public ActionResult Detail(string userid ) {
+            return View();
+        }
     }
 }

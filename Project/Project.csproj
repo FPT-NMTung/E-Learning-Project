@@ -380,6 +380,7 @@
     <Content Include="Views\AdminLogin\Index.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminUser\Search.cshtml" />
+    <Content Include="Views\AdminUser\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
