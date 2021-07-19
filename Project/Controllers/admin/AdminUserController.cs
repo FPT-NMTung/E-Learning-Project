@@ -74,23 +74,32 @@ namespace Project.Controllers {
                 return RedirectToAction( "Index" );
             }
 
-            var check = (from user in db.Users
-                where user.PhoneNumber == updatePhone || user.Email == updateEmail
-                select user).ToList();
+            bool passEmail = false;
+            bool passPhone = false;
 
-            if ( check.Count != 0 ) {
-                TempData["isUpdate"] = false;
+            var check1 = (from user in db.Users where user.Email == updateEmail select user).ToList();
+            if ( check1.Count != 0 && check1[0].UserID.ToString() == userid ) {
+                passEmail = true;
+            }
+
+            var check2 = (from user in db.Users where user.PhoneNumber == updatePhone select user).ToList();
+            if ( check2.Count != 0 && check2[0].UserID.ToString() == userid ) {
+                passPhone = true;
+            }
+
+            if ( passPhone && passEmail ) {
+                result.Name = updateName;
+                result.Email = updateEmail;
+                result.PhoneNumber = updatePhone;
+                result.Address = updateAddress;
+                result.Gender = updateGender;
+                db.SaveChanges();
+
+                TempData["isUpdate"] = true;
                 return RedirectToAction( "Detail", id );
             }
 
-            result.Name = updateName;
-            result.Email = updateEmail;
-            result.PhoneNumber = updatePhone;
-            result.Address = updateAddress;
-            result.Gender = updateGender;
-            db.SaveChanges();
-
-            TempData["isUpdate"] = true;
+            TempData["isUpdate"] = false;
             return RedirectToAction( "Detail", id );
         }
 
