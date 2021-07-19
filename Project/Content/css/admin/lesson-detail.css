@@ -1,0 +1,104 @@
+.detail-course {
+    display       : flex;
+    flex-direction: row;
+    column-gap    : 20px;
+}
+
+.course-img {
+    width: 50%;
+
+    padding         : 20px;
+    background-color: white;
+    box-shadow      : 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+    border-radius   : 10px;
+}
+
+input[type=text] {
+    padding      : 10px;
+    margin-right : 10px;
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+    border-color : rgb(211, 211, 211);
+    outline      : none;
+    width        : 500px;
+}
+
+input[type=button] {
+    padding      : 10px;
+    margin-right : 10px;
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+    border-color : rgb(211, 211, 211);
+    outline      : none;
+}
+
+button {
+    padding      : 10px;
+    margin-right : 10px;
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+
+    background-color: rgb(21, 173, 90);
+    border-color    : rgb(21, 173, 90);
+
+    outline    : none;
+    color      : white;
+    font-weight: bold;
+    cursor     : pointer;
+}
+
+.top>div>textarea {
+    padding      : 10px;
+    border-radius: 20px;
+    border-width : 1px;
+    border-style : solid;
+    border-color : rgb(211, 211, 211);
+    outline      : none;
+    width: 90%;
+}
+
+.course-info {
+    height: fit-content;
+    width : 50%;
+
+    display       : flex;
+    flex-direction: column;
+    row-gap       : 20px;
+}
+
+#button-delete {
+
+    background-color: rgb(197, 49, 49);
+    border-color    : rgb(233, 67, 67);
+}
+
+#button-lesson {
+    background-color: rgb(39, 122, 190);
+    border-color    : rgb(39, 122, 190);
+}
+
+#button-quiz {
+    background-color: rgb(175, 122, 22);
+    border-color    : rgb(175, 122, 22);
+}
+
+.course-el {
+    padding         : 20px;
+    background-color: white;
+    box-shadow      : 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+    border-radius   : 10px;
+}
+
+.button-e {
+    padding      : 10px;
+    margin-right : 10px;
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+
+    outline: none;
+    color  : white;
+}

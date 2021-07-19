@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/css/admin/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="main">
+    <div class="left-bar">
+        <div class="logo">
+            <img src="/Content/img/android-chrome-192x192.png" alt="" height="75">
+        </div>
+        <div class="login-input">
+            <h2>Login</h2>
+            @using ( Html.BeginForm( "Login" , "AdminLogin" , FormMethod.Post ) ) {
+                <div class="input-area">
+                    <input type="email" name="email" id="email" placeholder="Enter your mail" required>
+                </div>
+                <div class="input-area">
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required>
+                </div>
+                if ( ViewBag.isLogged == false ) {
+                    <p style="color: red; font-size: 12px; text-align: center;">Please provide a valid email address and password</p>
+                }
+                <br>
+                <br>
+                <button class="button-login" type="submit">Login</button>
+            }
+        </div>
+        <div>
+            <p class="footer">Design by NMTung 💚</p>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
