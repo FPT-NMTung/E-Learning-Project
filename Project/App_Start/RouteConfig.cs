@@ -41,6 +41,12 @@ namespace Project
                 defaults: new { controller = "AdminLogin" , action = "Logout" }
             );
 
+            routes.MapRoute(
+                name: "Admin" ,
+                url: "admin" ,
+                defaults: new { controller = "AdminLogin" , action = "Home" }
+            );
+
             // route for user and non-user
             routes.MapRoute(
                 name: "Result" ,

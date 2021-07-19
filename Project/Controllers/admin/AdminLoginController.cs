@@ -10,6 +10,12 @@ namespace Project.Controllers {
     public class AdminLoginController : Controller {
         private ProjectEntities db = new ProjectEntities();
 
+        [ HttpGet ]
+        [ CheckSessionAdmin ]
+        public ActionResult Home() {
+            return RedirectToAction( "Index", "AdminUser" );
+        }
+
         // GET: AdminLogin
         [ HttpGet ]
         [ CheckNotSessionAdmin ]
