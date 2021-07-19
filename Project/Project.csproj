@@ -379,6 +379,7 @@
     <Content Include="Views\Lesson\Index.cshtml" />
     <Content Include="Views\AdminLogin\Index.cshtml" />
     <Content Include="Views\AdminCourse\Index.cshtml" />
+    <Content Include="Views\AdminCourse\CourseDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

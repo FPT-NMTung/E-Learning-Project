@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/Content/css/admin/index.css">
-    <link rel="stylesheet" href="~/Content/css/admin/course.css">
+    <link rel="stylesheet" href="~/Content/css/admin/courseDetail.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-    <title>List Course | Admin | E-Learning</title>
+    <title>Edit course | Admin | E-Learning</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/course" class="active-link-nav">
+                            <a href="/course.html" class="active-link-nav">
                                 <div class="nav-bar-img">
                                     <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
                                 </div>
@@ -57,7 +58,7 @@
                 <div class="nav-bar">
                     <ul>
                         <li>
-                            <a href="/admin/login">
+                            <a href="#">
                                 <div class="nav-bar-img">
                                     <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
                                 </div>
@@ -73,47 +74,57 @@
         <div class="right-bar">
             <div class="heder-body">
                 <div class="header-content">
-                    <div>Course</div>
-                </div>
-                <div class="overlay"></div>
-                <div class="header-search">
-                    <form action="/" method="post">
-                        <input type="search" name="searchContent" id="search" placeholder="Search course ..." />
-                    </form>
+                    <div>Edit course</div>
                 </div>
             </div>
             <div class="main-body">
-                <div class="add-course">
-                    <a href="courseAdd.html">
-                        <img src="https://img.icons8.com/ios-filled/50/75c44c/add--v1.png" />
-                    </a>
-                </div>
-                <div class="main-grid">
-                    @*@model List<Project.Controllers.ListCourse>*@
-                    @foreach (var item in Model)
-                    {
-                        <div class="elem">
-                            <a href="/admin/course/@item.course.CourseID">
-                                <div>
-                                    <img src="@item.course.Image"
-                                         alt="" width="100%">
+                <div class="detail-course">
+                    <div class="course-img">
+                        <img id="image-overlay"
+                             src="https://1.bp.blogspot.com/-1F0txd6CTXk/XyjEn1_2atI/AAAAAAAAiX0/2X1yKYprbxEAPvrNA4VoX_nuv8nawCSuQCNcBGAsYHQ/s564/a5a84b393a0778e047f87c79478481e7.jpg"
+                             alt="image course" width="100%">
+                    </div>
+                    <div class="course-info">
+                        <div class="course-el">
+                            <form action="" method="get">
+                                <div class="top">
+                                    <div>
+                                        <label for="id">ID: </label>
+                                        <input type="text" id="id" value="{id}" disabled>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <label for="name">Name: </label>
+                                        <input type="text" name="name" id="name" value="{name}">
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <label for="desc">Description: </label><br>
+                                        <textarea name="desc" id="desc" cols="100%" rows="10"></textarea>
+                                    </div>
+                                    <br>
                                 </div>
-                                <div>
-                                    <h3>@item.course.Name</h3> 
-                                </div>
-                                <div>
-                                    <p class="param">
-                                        @item.course.Description
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    }
 
+                                <label for="image">Image: </label>
+                                <input type="text" name="image" id="image"
+                                       value="https://www.classcentral.com/report/wp-content/uploads/2021/03/free-certificates.png">
+                                <input type="button" value="Check image" onclick="checkImage()">
+                                <br>
+                                <br>
+                                <button type="submit">Submit</button>
+                                <a class="button-e" id="button-delete" href="#">Delete</a>
+                            </form>
+                        </div>
+                        <div class="course-el">
+                            <a class="button-e" id="button-lesson" href="lesson.html">Lesson</a>
+                            <a class="button-e" id="button-quiz" href="quiz.html">Quiz</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script src="./js/courseDetail.js"></script>
 
 </html>

@@ -20,7 +20,13 @@ namespace Project
                 name: "AdminCourse",
                 url: "admin/course",
                 defaults: new { controller = "AdminCourse", action = "Index" }
-);
+            );
+
+            routes.MapRoute(
+                name: "AdminCourseDetail",
+                url: "admin/course/{courseID}",
+                defaults: new { controller = "AdminCourse", action = "CourseDetail" }
+            );
             // route for admin
 
             routes.MapRoute(

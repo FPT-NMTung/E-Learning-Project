@@ -17,7 +17,7 @@ namespace Project.Controllers
         private ProjectEntities db = new ProjectEntities();
         // GET: AdminCourse
         [HttpGet]
-        //[CheckSessionAdmin]
+        [CheckSessionAdmin]
         public ActionResult Index()
         {
             var listCourse = from c in db.Courses
@@ -27,6 +27,12 @@ namespace Project.Controllers
                              };
 
             return View(listCourse);
+        }
+
+        public ActionResult CourseDetail(int courseID)
+        {
+            var selectedCourse = from c in db.Courses where c.CourseID == courseID select c;
+            return View();
         }
     }
 }
