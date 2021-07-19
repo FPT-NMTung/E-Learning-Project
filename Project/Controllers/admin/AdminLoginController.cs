@@ -10,6 +10,12 @@ namespace Project.Controllers {
     public class AdminLoginController : Controller {
         private ProjectEntities db = new ProjectEntities();
 
+        [ HttpGet ]
+        [ CheckSessionAdmin ]
+        public ActionResult Home() {
+            return RedirectToAction( "Index", "AdminUser" );
+        }
+
         // GET: AdminLogin
         [ HttpGet ]
         [ CheckNotSessionAdmin ]
@@ -27,7 +33,9 @@ namespace Project.Controllers {
 
             if ( temp.Count != 0 ) {
                 Session["admin_id"] = temp[0].AdminID;
-                return RedirectToAction( "Index", "Home" );
+                Session["name"] = temp[0].Name;
+
+                return RedirectToAction( "Index", "AdminUser" );
             }
 
             TempData["isLogged"] = false;
