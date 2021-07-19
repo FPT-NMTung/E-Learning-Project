@@ -58,7 +58,7 @@
                 <div class="nav-bar">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="/admin/login">
                                 <div class="nav-bar-img">
                                     <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
                                 </div>
@@ -81,7 +81,7 @@
                 <div class="detail-course">
                     <div class="course-img">
                         <img id="image-overlay"
-                             src="https://1.bp.blogspot.com/-1F0txd6CTXk/XyjEn1_2atI/AAAAAAAAiX0/2X1yKYprbxEAPvrNA4VoX_nuv8nawCSuQCNcBGAsYHQ/s564/a5a84b393a0778e047f87c79478481e7.jpg"
+                             src="@ViewBag.image"
                              alt="image course" width="100%">
                     </div>
                     <div class="course-info">
@@ -90,17 +90,17 @@
                                 <div class="top">
                                     <div>
                                         <label for="id">ID: </label>
-                                        <input type="text" id="id" value="{id}" disabled>
+                                        <input type="text" id="id" value="@ViewBag.courseID" disabled>
                                     </div>
                                     <br>
                                     <div>
                                         <label for="name">Name: </label>
-                                        <input type="text" name="name" id="name" value="{name}">
+                                        <input type="text" name="name" id="name" value="@ViewBag.courseName">
                                     </div>
                                     <br>
                                     <div>
                                         <label for="desc">Description: </label><br>
-                                        <textarea name="desc" id="desc" cols="100%" rows="10"></textarea>
+                                        <textarea name="desc" id="desc" cols="100%" rows="10">@ViewBag.description</textarea>
                                     </div>
                                     <br>
                                 </div>

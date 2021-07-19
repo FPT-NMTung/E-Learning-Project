@@ -32,6 +32,14 @@ namespace Project.Controllers
         public ActionResult CourseDetail(int courseID)
         {
             var selectedCourse = from c in db.Courses where c.CourseID == courseID select c;
+            if(selectedCourse.Count() == 0)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+            ViewBag.courseID = selectedCourse.ToList()[0].CourseID;
+            ViewBag.courseName = selectedCourse.ToList()[0].Name;
+            ViewBag.description = selectedCourse.ToList()[0].Description;
+            ViewBag.image = selectedCourse.ToList()[0].Image;
             return View();
         }
     }
