@@ -88,6 +88,12 @@ namespace Project.Controllers {
             }
 
             ViewBag.lessonId = temp[0].LessionID;
+
+            //get data for course detail page
+            var numberOfLesson = (from e in db.Lessions where e.CourseID.ToString() == id select e).Count();
+            ViewBag.numberOfLesson = numberOfLesson;
+            var numberOFQuiz = (from e in db.Quizs where e.CourseID.ToString() == id select e).Count();
+            ViewBag.numberOFQuiz = numberOFQuiz;
             return View();
         }
     }
