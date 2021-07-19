@@ -10,7 +10,7 @@ namespace Project.Filters {
             var currentSession = HttpContext.Current.Session;
 
             if ( currentSession [ "admin_id" ] != null ) {
-                filterContext.Result = new RedirectResult( "/admin/user" );
+                filterContext.Result = new RedirectResult( "/admin/users" );
             }
         }
     }

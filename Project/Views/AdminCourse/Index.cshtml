@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/css/admin/index.css">
+    <link rel="stylesheet" href="~/Content/css/admin/course.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>List Course | Admin | E-Learning</title>
+</head>
+
+<body>
+    <div id="body">
+        <div class="left-bar">
+            <div>
+                <div class="bar-logo">
+                    <img src="~/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
+                </div>
+                <div class="bar-info">
+                    <div class="bar-info-img">
+                        <img src="https://img.icons8.com/office/40/000000/user-male-circle.png" />
+                    </div>
+                    <div class="bar-info-name">
+                        Mạnh Tùng
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/user.html">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    User
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/course" class="active-link-nav">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Course
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/admin/login">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Logout
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-bar">
+            <div class="heder-body">
+                <div class="header-content">
+                    <div>Course</div>
+                </div>
+                <div class="overlay"></div>
+                <div class="header-search">
+                    <form action="/" method="post">
+                        <input type="search" name="searchContent" id="search" placeholder="Search course ..." />
+                    </form>
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="add-course">
+                    <a href="courseAdd.html">
+                        <img src="https://img.icons8.com/ios-filled/50/75c44c/add--v1.png" />
+                    </a>
+                </div>
+                <div class="main-grid">
+                    @*@model List<Project.Controllers.ListCourse>*@
+                    @foreach (var item in Model)
+                    {
+                        <div class="elem">
+                            <a href="courseDetail.html">
+                                <div>
+                                    <img src="@item.course.Image"
+                                         alt="" width="100%">
+                                </div>
+                                <div>
+                                    <h3>@item.course.Name</h3>
+                                </div>
+                                <div>
+                                    <p class="param">
+                                        @item.course.Description
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -16,6 +16,11 @@ namespace Project
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute(
+                name: "AdminCourse",
+                url: "admin/course",
+                defaults: new { controller = "AdminCourse", action = "Index" }
+);
             // route for admin
 
             routes.MapRoute(
