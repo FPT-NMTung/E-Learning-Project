@@ -36,14 +36,70 @@ namespace Project.Controllers {
                 return RedirectToAction( "Index" );
             }
 
+            ViewBag.isUpdate = TempData["isUpdate"];
             return View( result[0] );
         }
 
-        [HttpPost]
-        [CheckSessionAdmin]
-        public string Update(User user) {
+        [ HttpPost ]
+        [ CheckSessionAdmin ]
+        public ActionResult Update(string userid, string name, string email, string phone, string address,
+            string gender) {
+            string updateName = "";
+            string updateEmail = "";
+            string updatePhone = "";
+            string updateAddress = "";
+            bool updateGender = true;
 
-            return $"{user.UserID} | {user.Name} | {user.Email} | {user.Gender} | {user.Address} | {user.PhoneNumber} | {user.Password}";
+            //validate input
+            try {
+                updateName = name.Trim();
+                updateEmail = email.Trim();
+                long temp = Convert.ToInt64( phone );
+                updatePhone = phone.Trim();
+                updateAddress = address.Trim();
+                updateGender = (gender == "male");
+            } catch ( Exception e ) {
+                return RedirectToAction( "Index" );
+            }
+
+            if ( name.Trim() == "" || email.Trim() == "" || phone.Trim() == "" ||
+                 address.Trim() == "" || gender.Trim() == "" ) {
+                return RedirectToAction( "Index" );
+            }
+
+            int id = Convert.ToInt32( userid );
+            var result = db.Users.First( user => (user.UserID == id) );
+
+            if ( result == null ) {
+                return RedirectToAction( "Index" );
+            }
+
+            var check = (from user in db.Users
+                where user.PhoneNumber == updatePhone || user.Email == updateEmail
+                select user).ToList();
+
+            if ( check.Count != 0 ) {
+                TempData["isUpdate"] = false;
+                return RedirectToAction( "Detail", id );
+            }
+
+            result.Name = updateName;
+            result.Email = updateEmail;
+            result.PhoneNumber = updatePhone;
+            result.Address = updateAddress;
+            result.Gender = updateGender;
+            db.SaveChanges();
+
+            TempData["isUpdate"] = true;
+            return RedirectToAction( "Detail", id );
+        }
+
+        public ActionResult Delete(string userid) {
+            var result = (from user in db.Users where user.UserID.ToString() == userid select user).ToList();
+            db.Users.RemoveRange( result );
+            db.SaveChanges();
+
+            return RedirectToAction( "Index" );
         }
     }
 }

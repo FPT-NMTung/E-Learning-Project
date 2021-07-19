@@ -19,6 +19,12 @@ namespace Project
             // route for admin
             routes.MapRoute(
                 name: "Admin search update" ,
+                url: "admin/user/{userid}/delete" ,
+                defaults: new { controller = "AdminUser" , action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search delete" ,
                 url: "admin/user/{userid}/update" ,
                 defaults: new { controller = "AdminUser" , action = "Update" }
             );
