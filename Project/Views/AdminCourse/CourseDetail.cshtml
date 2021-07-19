@@ -3,13 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/Content/css/admin/index.css">
     <link rel="stylesheet" href="~/Content/css/admin/courseDetail.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
     <title>Edit course | Admin | E-Learning</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -26,7 +31,7 @@
                         <img src="https://img.icons8.com/office/40/000000/user-male-circle.png" />
                     </div>
                     <div class="bar-info-name">
-                        Mạnh Tùng
+                        @ViewBag.adminName
                     </div>
                 </div>
             </div>
@@ -34,7 +39,7 @@
                 <div class="nav-bar">
                     <ul>
                         <li>
-                            <a href="/user.html">
+                            <a href="/admin/user">
                                 <div class="nav-bar-img">
                                     <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png" />
                                 </div>
@@ -44,7 +49,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/course.html" class="active-link-nav">
+                            <a href="/admin/course" class="active-link-nav">
                                 <div class="nav-bar-img">
                                     <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
                                 </div>
@@ -86,11 +91,24 @@
                     </div>
                     <div class="course-info">
                         <div class="course-el">
-                            <form action="" method="get">
+                            @if (ViewBag.message == true)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    Cập nhật thông tin khóa học thành công!
+                                </div>
+                            }
+                            else if (ViewBag.message == false)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    Cập nhật thông tin khóa học thất bại!
+                                </div>
+                            }
+                            @using (Html.BeginForm("UpdateCourse", "AdminCourse", FormMethod.Post))
+                            {
                                 <div class="top">
                                     <div>
                                         <label for="id">ID: </label>
-                                        <input type="text" id="id" value="@ViewBag.courseID" disabled>
+                                        <input type="text" id="id" name="id" value="@ViewBag.courseID" readonly>
                                     </div>
                                     <br>
                                     <div>
@@ -100,20 +118,20 @@
                                     <br>
                                     <div>
                                         <label for="desc">Description: </label><br>
-                                        <textarea name="desc" id="desc" cols="100%" rows="10">@ViewBag.description</textarea>
+                                        <textarea name="description" id="description" cols="100%" rows="10">@ViewBag.description</textarea>
                                     </div>
                                     <br>
                                 </div>
 
                                 <label for="image">Image: </label>
                                 <input type="text" name="image" id="image"
-                                       value="https://www.classcentral.com/report/wp-content/uploads/2021/03/free-certificates.png">
+                                       value="@ViewBag.image">
                                 <input type="button" value="Check image" onclick="checkImage()">
                                 <br>
                                 <br>
-                                <button type="submit">Submit</button>
-                                <a class="button-e" id="button-delete" href="#">Delete</a>
-                            </form>
+                                <button type="submit">Lưu</button>
+                                <button id="deleteButton" class="btn btn-danger">Xóa</button>
+                            }
                         </div>
                         <div class="course-el">
                             <a class="button-e" id="button-lesson" href="lesson.html">Lesson</a>
@@ -125,6 +143,25 @@
         </div>
     </div>
 </body>
-<script src="./js/courseDetail.js"></script>
+<script src="~/Content/script/courseDetail.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#deleteButton").click(function () {
+            $.post("/AdminCourse/DeleteCourse",
+                {
+                    id: "@ViewBag.courseID"
+                },
+                function (data, status) {
+                    if (status === "success") {
+                        alert("Xóa khóa học thành công!")
+                        location.replace("/admin/course")
+                    } else {
+                        alert("Xóa khóa học không thành công!")
+                    }
 
+                });
+        });
+    });
+</script>
 </html>
