@@ -17,6 +17,7 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckNotSession]
+        [CheckNotSessionAdmin]
         public ActionResult Index()
         {
             ViewBag.isLogged = TempData["isLogged"];
@@ -26,6 +27,7 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckNotSession]
+        [CheckNotSessionAdmin]
         public ActionResult Login(string email, string password)
         {
             var result = from e in db.Users where e.Email == email && e.Password == password select e;
@@ -46,6 +48,7 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckSession]
+        [CheckNotSessionAdmin]
         public ActionResult Logout()
         {
             Session.Clear();
@@ -55,6 +58,7 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckNotSession]
+        [CheckNotSessionAdmin]
         public ActionResult Register()
         {
             ViewBag.isCreated = TempData["isCreated"];
@@ -64,6 +68,7 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckNotSession]
+        [CheckNotSessionAdmin]
         public ActionResult RegisterAccount(string name, string email, string phone, string password, string address,
             string gender, string username)
         {
@@ -96,6 +101,7 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckNotSession]
+        [CheckNotSessionAdmin]
         public ActionResult ForgotPassword()
         {
             ViewBag.SuccessMessage = "Mật khẩu mới đã được gửi về Email của bạn!"; //message when send pass to email success
@@ -107,6 +113,7 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckNotSession]
+        [CheckNotSessionAdmin]
         public ActionResult SendPasswordToMail(string email)
         {
             var infor = from e in db.Users where e.Email == email select e;
