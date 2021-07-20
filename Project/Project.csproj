@@ -380,6 +380,7 @@
     <Content Include="Views\AdminLogin\Index.cshtml" />
     <Content Include="Views\AdminCourse\Index.cshtml" />
     <Content Include="Views\AdminCourse\CourseDetail.cshtml" />
+    <Content Include="Views\AdminCourse\CourseAdd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

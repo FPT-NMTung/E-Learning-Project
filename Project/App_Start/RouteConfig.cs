@@ -15,17 +15,23 @@ namespace Project
         {
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+           
             routes.MapRoute(
-                name: "AdminCourse",
-                url: "admin/course",
-                defaults: new { controller = "AdminCourse", action = "Index" }
+                name: "AdminAddCourse",
+                url: "admin/course/add",
+                defaults: new { controller = "AdminCourse", action = "CourseAdd" }
             );
 
             routes.MapRoute(
                 name: "AdminCourseDetail",
                 url: "admin/course/{courseID}",
                 defaults: new { controller = "AdminCourse", action = "CourseDetail" }
+            );
+
+            routes.MapRoute(
+                name: "AdminCourse",
+                url: "admin/course",
+                defaults: new { controller = "AdminCourse", action = "Index" }
             );
             // route for admin
 

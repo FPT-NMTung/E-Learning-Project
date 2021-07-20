@@ -3,18 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/Content/css/admin/index.css">
-    <link rel="stylesheet" href="~/Content/css/admin/courseDetail.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link href="~/Content/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/admin/index.css">
+    <link rel="stylesheet" href="~/Content/css/admin/courseDetail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <title>Edit course | Admin | E-Learning</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -93,49 +94,51 @@
                         <div class="course-el">
                             @if (ViewBag.message == true)
                             {
-                                <div class="alert alert-success" role="alert">
-                                    Update course successful!
+                                <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-success alert-dismissible fade show" role="alert">
+                                    Your changes have been saved!!!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             }
                             else if (ViewBag.message == false)
                             {
-                                <div class="alert alert-danger" role="alert">
-                                    Update course fail!
+                                <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    Update course fail because the course's name has been existed or input information invalid!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             }
                             @using (Html.BeginForm("UpdateCourse", "AdminCourse", FormMethod.Post))
                             {
                                 <div class="top">
                                     <div>
-                                        <label for="id">ID: </label>
+                                        <label for="id">Course's ID: </label>
                                         <input type="text" id="id" name="id" value="@ViewBag.courseID" disabled>
                                     </div>
                                     <br>
                                     <div>
-                                        <label for="name">Name: </label>
-                                        <input type="text" name="name" id="name" value="@ViewBag.courseName">
+                                        <label for="name">Course's Name: </label>
+                                        <input type="text" name="name" id="name" value="@ViewBag.courseName" placeholder="Enter course's name" required>
                                     </div>
                                     <br>
                                     <div>
                                         <label for="desc">Description: </label><br>
-                                        <textarea style="width:100%" name="description" id="description" cols="100%" rows="10">@ViewBag.description</textarea>
+                                        <textarea style="width:100%" name="description" id="description" cols="100%" rows="10" placeholder="Enter course's description" required>@ViewBag.description</textarea>
                                     </div>
                                     <br>
                                 </div>
 
                                 <label for="image">Image: </label>
                                 <input type="text" name="image" id="image"
-                                       value="@ViewBag.image">
+                                       value="@ViewBag.image" placeholder="Copy link image here to check" required>
                                 <input type="button" value="Check image" onclick="checkImage()">
                                 <br>
                                 <br>
-                                <button type="submit">Save</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                                 <button id="deleteButton" class="btn btn-danger">Delete</button>
                             }
                         </div>
                         <div class="course-el">
-                            <a class="button-e" id="button-lesson" href="lesson.html">Lesson</a>
-                            <a class="button-e" id="button-quiz" href="quiz.html">Quiz</a>
+                            <a class="button-e" id="button-lesson" href="/admin/lesson">Lesson</a>
+                            <a class="button-e" id="button-quiz" href="/admin/quiz">Quiz</a>
                         </div>
                     </div>
                 </div>
