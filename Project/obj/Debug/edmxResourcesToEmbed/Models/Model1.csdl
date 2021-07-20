@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Lessions" Relationship="Self.FK_Lession_Course" FromRole="Course" ToRole="Lession" />
+    <NavigationProperty Name="Quizs" Relationship="Self.FK_Quiz_Course" FromRole="Course" ToRole="Quiz" />
+    <NavigationProperty Name="UserAndCourses" Relationship="Self.FK_UserAndCourse_Course" FromRole="Course" ToRole="UserAndCourse" />
+  </EntityType>
+  <EntityType Name="Lession">
+    <Key>
+      <PropertyRef Name="LessionID" />
+    </Key>
+    <Property Name="LessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Video" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Lession_Course" FromRole="Lession" ToRole="Course" />
+    <NavigationProperty Name="UserAndLessions" Relationship="Self.FK_UserAndLession_Lession" FromRole="Lession" ToRole="UserAndLession" />
+  </EntityType>
+  <EntityType Name="Quiz">
+    <Key>
+      <PropertyRef Name="QuizID" />
+    </Key>
+    <Property Name="QuizID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Quiz_Course" FromRole="Quiz" ToRole="Course" />
+    <NavigationProperty Name="QuizQuestions" Relationship="Self.FK_QuizQuestion_Quiz" FromRole="Quiz" ToRole="QuizQuestion" />
+  </EntityType>
+  <EntityType Name="QuizQuestion">
+    <Key>
+      <PropertyRef Name="QuesID" />
+    </Key>
+    <Property Name="QuesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuizID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Quiz" Relationship="Self.FK_QuizQuestion_Quiz" FromRole="QuizQuestion" ToRole="Quiz" />
+    <NavigationProperty Name="QuizQuestionAnswers" Relationship="Self.FK_QuizQuestionAnswer_QuizQuestion" FromRole="QuizQuestion" ToRole="QuizQuestionAnswer" />
+  </EntityType>
+  <EntityType Name="QuizQuestionAnswer">
+    <Key>
+      <PropertyRef Name="AnsID" />
+    </Key>
+    <Property Name="AnsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuesID" Type="Int32" Nullable="false" />
+    <Property Name="IsTrue" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="QuizQuestion" Relationship="Self.FK_QuizQuestionAnswer_QuizQuestion" FromRole="QuizQuestionAnswer" ToRole="QuizQuestion" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserAndCourses" Relationship="Self.FK_UserAndCourse_User" FromRole="User" ToRole="UserAndCourse" />
+    <NavigationProperty Name="UserAndLessions" Relationship="Self.FK_UserAndLession_User" FromRole="User" ToRole="UserAndLession" />
+  </EntityType>
+  <EntityType Name="UserAndCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="CourseID" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Double" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_UserAndCourse_Course" FromRole="UserAndCourse" ToRole="Course" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserAndCourse_User" FromRole="UserAndCourse" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserAndLession">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LessionID" Type="Int32" Nullable="false" />
+    <Property Name="Watched" Type="Boolean" />
+    <NavigationProperty Name="Lession" Relationship="Self.FK_UserAndLession_Lession" FromRole="UserAndLession" ToRole="Lession" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserAndLession_User" FromRole="UserAndLession" ToRole="User" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_Lession_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Lession" Type="Self.Lession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Lession">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quiz_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndCourse_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndCourse" Type="Self.UserAndCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="UserAndCourse">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndLession_Lession">
+    <End Role="Lession" Type="Self.Lession" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lession">
+        <PropertyRef Name="LessionID" />
+      </Principal>
+      <Dependent Role="UserAndLession">
+        <PropertyRef Name="LessionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestion_Quiz">
+    <End Role="Quiz" Type="Self.Quiz" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quiz">
+        <PropertyRef Name="QuizID" />
+      </Principal>
+      <Dependent Role="QuizQuestion">
+        <PropertyRef Name="QuizID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestionAnswer_QuizQuestion">
+    <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuizQuestionAnswer" Type="Self.QuizQuestionAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizQuestion">
+        <PropertyRef Name="QuesID" />
+      </Principal>
+      <Dependent Role="QuizQuestionAnswer">
+        <PropertyRef Name="QuesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndCourse_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndCourse" Type="Self.UserAndCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAndCourse">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndLession_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAndLession">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Lessions" EntityType="Self.Lession" />
+    <EntitySet Name="Quizs" EntityType="Self.Quiz" />
+    <EntitySet Name="QuizQuestions" EntityType="Self.QuizQuestion" />
+    <EntitySet Name="QuizQuestionAnswers" EntityType="Self.QuizQuestionAnswer" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserAndCourses" EntityType="Self.UserAndCourse" />
+    <EntitySet Name="UserAndLessions" EntityType="Self.UserAndLession" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <AssociationSet Name="FK_Lession_Course" Association="Self.FK_Lession_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Lession" EntitySet="Lessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quiz_Course" Association="Self.FK_Quiz_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Quiz" EntitySet="Quizs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndCourse_Course" Association="Self.FK_UserAndCourse_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="UserAndCourse" EntitySet="UserAndCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndLession_Lession" Association="Self.FK_UserAndLession_Lession">
+      <End Role="Lession" EntitySet="Lessions" />
+      <End Role="UserAndLession" EntitySet="UserAndLessions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestion_Quiz" Association="Self.FK_QuizQuestion_Quiz">
+      <End Role="Quiz" EntitySet="Quizs" />
+      <End Role="QuizQuestion" EntitySet="QuizQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestionAnswer_QuizQuestion" Association="Self.FK_QuizQuestionAnswer_QuizQuestion">
+      <End Role="QuizQuestion" EntitySet="QuizQuestions" />
+      <End Role="QuizQuestionAnswer" EntitySet="QuizQuestionAnswers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndCourse_User" Association="Self.FK_UserAndCourse_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserAndCourse" EntitySet="UserAndCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndLession_User" Association="Self.FK_UserAndLession_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserAndLession" EntitySet="UserAndLessions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

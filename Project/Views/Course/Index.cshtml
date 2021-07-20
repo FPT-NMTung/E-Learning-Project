@@ -88,35 +88,40 @@
         </section><!-- End Breadcrumbs -->
         @model Project.Controllers.CourseList
         @{
+            //thêm 1 vòng if account log in ở ngoài
             var tem1p = Model.courseJoin;
             var video = Model.IdVideoList;
             if (tem1p != null)
             {
-                <section class="inner-page">
-                    <div class="container">
-                        <h4>Course Enrolled</h4>
-                        <div class="main-grid">
-                            @for (int i = 0; i < tem1p.Count; i++)
-                            {
-                                <div class="card-course">
-                                    <img class="card-course-img"
-                                         src="@tem1p[i].Image" alt="">
-                                    <h3 class="title-course">@tem1p[i].Name</h3>
-                                    <p class="text-des">@tem1p[i].Description</p>
-                                    <a href="/learning/@tem1p[i].CourseID/@video[i]" class="btn btn-success btn-register-course">Vào học ngay</a>
-                                </div>
-                            }
+                if (tem1p.ToList().Count() != 0)
+                {
+                    <section class="inner-page">
+                        <div class="container">
+                            <h4>Course Enrolled</h4>
+                            <div class="main-grid">
+                                @for (int i = 0; i < tem1p.Count; i++)
+                                {
+                                    <div class="card-course">
+                                        <img class="card-course-img"
+                                             src="@tem1p[i].Image" alt="">
+                                        <h3 class="title-course">@tem1p[i].Name</h3>
+                                        <p class="text-des">@tem1p[i].Description</p>
+                                        <a href="/learning/@tem1p[i].CourseID/@video[i]" class="btn btn-success btn-register-course">Vào học ngay</a>
+                                    </div>
+                                }
+                            </div>
+                            <hr>
                         </div>
-                        <hr>
-                    </div>
-                </section>
+                    </section>
+                }
+
             }
         }
 
 
         <section class="inner-page">
             <div class="container">
-                
+
                 <div class="main-grid">
                     @{
                         var temp = Model.course;
