@@ -18,6 +18,12 @@ namespace Project
 
             // route for admin
             routes.MapRoute(
+                name: "Admin lesson" ,
+                url: "admin/lesson/{courseid}" ,
+                defaults: new { controller = "AdminLesson" , action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Admin search update" ,
                 url: "admin/user/{userid}/delete" ,
                 defaults: new { controller = "AdminUser" , action = "Delete" }

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/css/admin/index.css">
+    <link rel="stylesheet" href="/Content/css/admin/lesson.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>List lesson | Admin | E-Learning</title>
+</head>
+
+<body>
+<div id="body">
+    <div class="left-bar">
+        <div>
+            <div class="bar-logo">
+                <img src="/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
+            </div>
+            <div class="bar-info">
+                <div class="bar-info-img">
+                    <img src="https://img.icons8.com/office/40/000000/user-male-circle.png"/>
+                </div>
+                <div class="bar-info-name">
+                    @Session["name"]
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="/admin/user">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                User
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/course" class="active-link-nav">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/ios-filled/26/686868/courses.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                Course
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="/admin/logout">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                Logout
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-bar">
+        <div class="heder-body">
+            <div class="header-content">
+                Lesson
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="user">
+                @if ( ViewBag.isEmpty != null ) {
+                    <p>No result</p>
+                } else {
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="thead thead-user">
+                                <h3>
+                                    ID
+                                </h3>
+                            </th>
+                            <th class="thead thead-email">
+                                <h3>
+                                    Name
+                                </h3>
+                            </th>
+                            <th class="thead thead-location">
+                                <h3>
+                                    Video ID
+                                </h3>
+                            </th>
+                            <th class="thead thead-course">
+                                <h3>
+                                    Description
+                                </h3>
+                            </th>
+                            <th class="thead thead-action">
+                                <h3>
+                                    Actions
+                                </h3>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @model List<Project.Models.Lession>
+                        @foreach ( var lesson in Model ) {
+                            <tr class="row-user">
+                                <td>
+                                    <h3>@lesson.LessionID</h3>
+                                </td>
+                                <td>@lesson.Name</td>
+                                <td>@lesson.Video</td>
+                                <td class="description-lesson">
+                                    <p>
+                                        @lesson.Description
+                                    </p>
+                                </td>
+                                <td>
+                                    <a class="button-select" href="/admin/lesson/@ViewBag.courseID/@lesson.LessionID">Select</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
