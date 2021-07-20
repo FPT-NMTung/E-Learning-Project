@@ -1,7 +1,10 @@
-const clickCheck = () => {
+const clickCheck = async () => {
     const idVideo = $('#id').val()
+    let result = false;
 
-    fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=' + idVideo + '&key=AIzaSyBQ0NJnKeEJHXvSs3vvk5jAd_Qx675PCog')
+    await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=' +
+            idVideo +
+            '&key=AIzaSyBQ0NJnKeEJHXvSs3vvk5jAd_Qx675PCog')
         .then(response => response.json())
         .then(data => {
             try {
@@ -14,10 +17,20 @@ const clickCheck = () => {
                 $("#name").attr("readonly", "readonly");
                 $("#description").attr("readonly", "readonly");
                 $("#time").attr("readonly", "readonly");
+                result = true;
             } catch (e) {
                 alert('ID not valid')
+                $('#image-overlay').attr("src", "")
+                $('#name').val("")
+                $('#description').val("")
+                $('#time').val("")
+                result = false;
             }
         });
+    if (result) {
+        alert("Fetch data from youtube success !!!");
+    }
+    return result;
 }
 
 function convert_time(duration) {
@@ -53,9 +66,5 @@ function convert_time(duration) {
 }
 
 const clickSubmit = () => {
-    clickCheck()
-    setTimeout(() => {
-        $('#myFrom').submit()
-    }, 1000)
-
+    $('#myFrom').submit();
 }

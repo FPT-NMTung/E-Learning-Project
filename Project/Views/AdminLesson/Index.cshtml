@@ -77,6 +77,11 @@
             </div>
         </div>
         <div class="main-body">
+            <div class="add-quiz">
+                <a href="/admin/lesson/@ViewBag.courseID/add">
+                    <img src="https://img.icons8.com/ios-filled/50/75c44c/add--v1.png"/>
+                </a>
+            </div>
             <div class="user">
                 @if ( ViewBag.isEmpty != null ) {
                     <p>No result</p>
@@ -126,7 +131,7 @@
                                     </p>
                                 </td>
                                 <td>
-                                    <a class="button-select" href="/admin/lesson/@ViewBag.courseID/@lesson.LessionID">Select</a>
+                                    <a class="button-select" href="/admin/lesson/@ViewBag.courseID/@lesson.LessionID/edit">Select</a>
                                 </td>
                             </tr>
                         }

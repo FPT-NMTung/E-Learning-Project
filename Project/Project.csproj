@@ -383,6 +383,8 @@
     <Content Include="Views\AdminUser\Search.cshtml" />
     <Content Include="Views\AdminUser\Detail.cshtml" />
     <Content Include="Views\AdminLesson\Index.cshtml" />
+    <Content Include="Views\AdminLesson\Add.cshtml" />
+    <Content Include="Views\AdminLesson\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
