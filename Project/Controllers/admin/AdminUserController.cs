@@ -74,32 +74,40 @@ namespace Project.Controllers {
                 return RedirectToAction( "Index" );
             }
 
-            bool passEmail = false;
-            bool passPhone = false;
+            result.Name = updateName;
+            result.Address = updateAddress;
+            result.Gender = updateGender;
 
-            var check1 = (from user in db.Users where user.Email == updateEmail select user).ToList();
-            if ( check1.Count != 0 && check1[0].UserID.ToString() == userid ) {
-                passEmail = true;
+            if ( result.Email != updateEmail ) {
+                var checkMail = (from user in db.Users where user.Email == updateEmail && user.UserID != id select user)
+                    .ToList();
+
+                if ( checkMail.Count != 0 ) {
+
+                    TempData [ "isUpdate" ] = false;
+                    return RedirectToAction( "Detail" , id );
+                }
             }
 
-            var check2 = (from user in db.Users where user.PhoneNumber == updatePhone select user).ToList();
-            if ( check2.Count != 0 && check2[0].UserID.ToString() == userid ) {
-                passPhone = true;
+            if ( result.PhoneNumber != updatePhone ) {
+                var checkPhone = (from user in db.Users
+                        where user.PhoneNumber == updatePhone && user.UserID != id
+                        select user)
+                    .ToList();
+
+                if ( checkPhone.Count != 0 ) {
+
+                    TempData [ "isUpdate" ] = false;
+                    return RedirectToAction( "Detail" , id );
+                }
             }
 
-            if ( passPhone && passEmail ) {
-                result.Name = updateName;
-                result.Email = updateEmail;
-                result.PhoneNumber = updatePhone;
-                result.Address = updateAddress;
-                result.Gender = updateGender;
-                db.SaveChanges();
 
-                TempData["isUpdate"] = true;
-                return RedirectToAction( "Detail", id );
-            }
+            result.Email = updateEmail;
+            result.PhoneNumber = updatePhone;
+            db.SaveChanges();
 
-            TempData["isUpdate"] = false;
+            TempData["isUpdate"] = true;
             return RedirectToAction( "Detail", id );
         }
 
