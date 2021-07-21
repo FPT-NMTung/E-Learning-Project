@@ -1,5 +1,5 @@
 const clickCheck = async () => {
-    const idVideo = $('#id').val()
+    const idVideo = $('#id').val().trim()
     let result = false;
 
     await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=' +
@@ -9,7 +9,8 @@ const clickCheck = async () => {
         .then(data => {
             try {
                 console.log(convert_time(data.items[0].contentDetails.duration))
-                $('#image-overlay').attr("src", data.items[0].snippet.thumbnails.maxres.url)
+                $('#id').val(idVideo)
+                $('#image-overlay').attr("src", data.items[0].snippet.thumbnails.standard.url)
                 $('#name').val(data.items[0].snippet.localized.title)
                 $('#description').val(data.items[0].snippet.localized.description)
                 $('#time').val(convert_time(data.items[0].contentDetails.duration))
@@ -66,5 +67,8 @@ function convert_time(duration) {
 }
 
 const clickSubmit = () => {
-    $('#myFrom').submit();
+    setTimeout(() => {
+            $('#myFrom').submit();
+        },
+        1000)
 }

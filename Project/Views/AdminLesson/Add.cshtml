@@ -17,110 +17,110 @@
 </head>
 
 <body>
-    <div id="body">
-        <div class="left-bar">
-            <div>
-                <div class="bar-logo">
-                    <img src="/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
-                </div>
-                <div class="bar-info">
-                    <div class="bar-info-img">
-                        <img src="https://img.icons8.com/office/40/000000/user-male-circle.png" />
-                    </div>
-                    <div class="bar-info-name">
-                        @Session [ "name" ]
-                    </div>
-                </div>
+<div id="body">
+    <div class="left-bar">
+        <div>
+            <div class="bar-logo">
+                <img src="/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
             </div>
-            <div class="nav">
-                <div class="nav-bar">
-                    <ul>
-                        <li>
-                            <a href="/admin/user">
-                                <div class="nav-bar-img">
-                                    <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png" />
-                                </div>
-                                <div class="nav-bar-name">
-                                    User
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/course" class="active-link-nav">
-                                <div class="nav-bar-img">
-                                    <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
-                                </div>
-                                <div class="nav-bar-name">
-                                    Course
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+            <div class="bar-info">
+                <div class="bar-info-img">
+                    <img src="https://img.icons8.com/office/40/000000/user-male-circle.png"/>
                 </div>
-                <div class="nav-bar">
-                    <ul>
-                        <li>
-                            <a href="/admin/logout">
-                                <div class="nav-bar-img">
-                                    <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
-                                </div>
-                                <div class="nav-bar-name">
-                                    Logout
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="bar-info-name">
+                    @Session["name"]
                 </div>
             </div>
         </div>
-        <div class="right-bar">
-            <div class="heder-body">
-                <div class="header-content">
-                    <div>Add lesson</div>
-                </div>
+        <div class="nav">
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="/admin/user">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                User
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/course" class="active-link-nav">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/ios-filled/26/686868/courses.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                Course
+                            </div>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="main-body">
-                @if ( ViewBag.isUpdate != null ) {
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        Add lesson failed
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                }
-                <div class="detail-course">
-                    <div class="course-img">
-                        <img id="image-overlay" src="" alt="image video" width="100%">
-                    </div>
-                    <div class="course-info">
-                        <div class="course-el">
-                            <form action="/admin/lesson/@ViewBag.courseID/add" method="POST" id="myFrom">
-                                <div class="top">
-                                    <div>
-                                        <label for="id">ID: </label><br>
-                                        <input required type="text" id="id" name="id" value="">
-                                    </div>
-                                    <div>
-                                        <label for="id">Name: </label><br>
-                                        <input required name="name" type="text" id="name">
-                                    </div>
-                                    <div>
-                                        <label for="id">Description: </label><br>
-                                        <textarea required name="description" id="description" cols="30" rows="10" id="description"></textarea>
-                                    </div>
-                                    <div>
-                                        <label for="id">Time: </label><br>
-                                        <input required name="time" type="text" id="time">
-                                    </div>
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="/admin/logout">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                Logout
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-bar">
+        <div class="heder-body">
+            <div class="header-content">
+                <div>Add lesson</div>
+            </div>
+        </div>
+        <div class="main-body">
+            @if ( ViewBag.isUpdate != null ) {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Add lesson failed
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            <div class="detail-course">
+                <div class="course-img">
+                    <img id="image-overlay" src="" alt="image video" width="100%">
+                </div>
+                <div class="course-info">
+                    <div class="course-el">
+                        <form action="/admin/lesson/@ViewBag.courseID/add" method="POST" id="myFrom">
+                            <div class="top">
+                                <div>
+                                    <label for="id">ID: </label><br>
+                                    <input required type="text" id="id" name="id" value="">
                                 </div>
-                                <br>
-                                <input type="button" value="Submit" onclick="clickSubmit()">
-                                <input type="button" value="Check" onclick="clickCheck()">
-                            </form>
-                        </div>
+                                <div>
+                                    <label for="id">Name: </label><br>
+                                    <input required name="name" type="text" id="name">
+                                </div>
+                                <div>
+                                    <label for="id">Description: </label><br>
+                                    <textarea required name="description" id="description" cols="30" rows="10" id="description"></textarea>
+                                </div>
+                                <div>
+                                    <label for="id">Time: </label><br>
+                                    <input required name="time" type="text" id="time">
+                                </div>
+                            </div>
+                            <br>
+                            <input type="button" value="Submit" onclick="clickSubmit()">
+                            <input type="button" value="Check" onclick="clickCheck()">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="/Content/script/fetchData.js"></script>
+</div>
+<script src="/Content/script/fetchData.js"></script>
 </body>
 </html>

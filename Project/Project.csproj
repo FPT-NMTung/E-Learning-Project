@@ -261,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\admin\AdminCourseController.cs" />
     <Compile Include="Controllers\admin\AdminLessonController.cs" />
     <Compile Include="Controllers\admin\AdminLoginController.cs" />
     <Compile Include="Controllers\admin\AdminUserController.cs" />
@@ -385,6 +386,9 @@
     <Content Include="Views\AdminLesson\Index.cshtml" />
     <Content Include="Views\AdminLesson\Add.cshtml" />
     <Content Include="Views\AdminLesson\Edit.cshtml" />
+    <Content Include="Views\AdminCourse\CourseAdd.cshtml" />
+    <Content Include="Views\AdminCourse\CourseDetail.cshtml" />
+    <Content Include="Views\AdminCourse\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

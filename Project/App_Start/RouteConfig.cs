@@ -15,7 +15,8 @@ namespace Project
         {
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-           
+
+            // route for admin
             routes.MapRoute(
                 name: "AdminAddCourse",
                 url: "admin/course/add",
@@ -33,7 +34,19 @@ namespace Project
                 url: "admin/course",
                 defaults: new { controller = "AdminCourse", action = "Index" }
             );
-            // route for admin
+
+            routes.MapRoute(
+                name: "Admin lesson update" ,
+                url: "admin/lesson/{courseid}/{lessonid}/delete" ,
+                defaults: new { controller = "AdminLesson" , action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson delete" ,
+                url: "admin/lesson/{courseid}/{lessonid}/update" ,
+                defaults: new { controller = "AdminLesson" , action = "Update" }
+            );
+
             routes.MapRoute(
                 name: "Admin lesson edit" ,
                 url: "admin/lesson/{courseid}/{lessonid}/edit" ,

@@ -104,16 +104,62 @@ namespace Project.Controllers.admin {
                 return RedirectToAction( "Index", "Error" );
             }
 
+            ViewBag.courseID = courseid;
+            ViewBag.lessonID = lessonid;
+
+            ViewBag.isExist = TempData["isExist"];
+            ViewBag.isSave = TempData["isSave"];
+
             return View( result[0] );
+        }
+
+        [ HttpPost ]
+        [ CheckSessionAdmin ]
+        public ActionResult Update(string courseid, string lessonid, string id, string name, string description,
+            string time) {
+            if ( id == null || name == null || description == null || time == null ) {
+                return RedirectToAction( "Index", "Error" );
+            }
+
+            if ( id.Trim() == "" || name.Trim() == "" || description.Trim() == "" || time.Trim() == "" ) {
+                return RedirectToAction( "Index", "Error" );
+            }
+
+            var temp = db.Lessions.First( (e) => (e.LessionID.ToString() == lessonid.Trim()) );
+
+            if ( temp.Video != id.Trim() ) {
+                var check = (from a in db.Lessions where a.Video == id.Trim() select a).ToList();
+                if ( check.Count != 0 ) {
+                    TempData["isExist"] = true;
+                    return Redirect( $"/admin/lesson/{courseid.Trim()}/{lessonid.Trim()}/edit" );
+                }
+            }
+
+            var result = db.Lessions.First( (e) => (e.LessionID.ToString() == lessonid.Trim()) );
+
+            result.Video = id.Trim();
+            result.Name = name.Trim();
+            result.Description = description.Trim();
+            result.Time = time.Trim();
+
+            db.SaveChanges();
+
+            TempData["isSave"] = true;
+            return Redirect( $"/admin/lesson/{courseid.Trim()}/{lessonid.Trim()}/edit" );
         }
 
         [ HttpGet ]
         [ CheckSessionAdmin ]
-        public ActionResult Update(string courseid, string lessonid, string id, string name, string description,
-            string time) {
+        public ActionResult Delete(string courseid, string lessonid) {
+            var result = db.Lessions.First( (e) => (e.LessionID.ToString() == lessonid.Trim()) );
 
+            if ( result != null ) {
+                db.Lessions.Remove( result );
+                db.SaveChanges();
+                return Redirect( $"/admin/lesson/{courseid.Trim()}" );
+            }
 
-            return null;
+            return Redirect( $"/admin/lesson/{courseid.Trim()}/{lessonid.Trim()}/edit" );
         }
     }
 }
