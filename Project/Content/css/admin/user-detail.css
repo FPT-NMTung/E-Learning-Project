@@ -1,0 +1,68 @@
+.form-main {
+    display              : grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap              : 20px;
+    width                : 700px;
+}
+
+.form-main>div>input {
+    padding      : 10px;
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+    border-color : rgb(211, 211, 211);
+    outline      : none;
+}
+
+.user-detail {
+    display       : flex;
+    align-items   : center;
+    flex-direction: column;
+}
+
+.alert {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+.element {
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+    border-radius: 20px;
+}
+
+.form-main>button {
+    width           : max-content;
+    padding         : 10px 16px;
+    background-color: #00ab55;
+    outline         : none;
+
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+    border-color : rgb(211, 211, 211);
+
+    color      : white;
+    font-weight: bold;
+}
+
+.delete-button {
+    width           : max-content;
+    padding         : 10px 16px;
+    background-color: #ab0000;
+    outline         : none;
+
+    border-radius: 10em;
+    border-width : 1px;
+    border-style : solid;
+    border-color : rgb(211, 211, 211);
+
+    color      : white;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    color: white;
+}

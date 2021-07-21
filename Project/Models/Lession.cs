@@ -25,6 +25,7 @@ namespace Project.Models
         public string Video { get; set; }
         public string Description { get; set; }
         public int CourseID { get; set; }
+        public string Time { get; set; }
     
         public virtual Course Course { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

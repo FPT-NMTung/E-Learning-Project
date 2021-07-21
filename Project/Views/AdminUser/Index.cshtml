@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Content/css/admin/index.css">
+    <link rel="stylesheet" href="/Content/css/admin/user.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>List user | Admin | E-Learning</title>
+</head>
+
+<body>
+<div id="body">
+    <div class="left-bar">
+        <div>
+            <div class="bar-logo">
+                <img src="/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
+            </div>
+            <div class="bar-info">
+                <div class="bar-info-img">
+                    <img src="https://img.icons8.com/office/40/000000/user-male-circle.png"/>
+                </div>
+                <div class="bar-info-name">
+                    @Session["name"]
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="/admin/user" class="active-link-nav">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                User
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/course">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/ios-filled/26/686868/courses.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                Course
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-bar">
+                <ul>
+                    <li>
+                        <a href="/admin/logout">
+                            <div class="nav-bar-img">
+                                <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png"/>
+                            </div>
+                            <div class="nav-bar-name">
+                                Logout
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-bar">
+        <div class="heder-body">
+            <div class="header-content">
+                User
+            </div>
+            <div class="header-search">
+                <form action="/admin/user/search" method="POST">
+                    <input type="search" name="s" id="search" placeholder="Search user ..."/>
+                </form>
+            </div>
+        </div>
+        <div class="main-body">
+            <div class="user">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="thead thead-user">
+                            <h3>
+                                User
+                            </h3>
+                        </th>
+                        <th class="thead thead-email">
+                            <h3>
+                                email
+                            </h3>
+                        </th>
+                        <th class="thead thead-phone">
+                            <h3>
+                                Phone
+                            </h3>
+                        </th>
+                        <th class="thead thead-location">
+                            <h3>
+                                Location
+                            </h3>
+                        </th>
+                        <th class="thead thead-action">
+                            <h3>
+                                Actions
+                            </h3>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @model List<Project.Models.User>
+                    @foreach ( var element in Model ) {
+                        var username = "@" + element.Username;
+
+                        <tr class="row-user">
+                            <td>
+                                <div class="user-name">
+                                    <div>
+                                        <img src="https://img.icons8.com/office/40/000000/user-male-circle.png"/>
+                                    </div>
+                                    <div class="user-name-name">
+                                        <h4>@element.Name</h4>
+                                        <p>@username</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@element.Email</td>
+                            <td>@element.PhoneNumber</td>
+                            <td>@element.Address</td>
+                            <td>
+                                <a class="button-select" href="/admin/user/@element.UserID">Select</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

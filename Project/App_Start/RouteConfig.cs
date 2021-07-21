@@ -16,6 +16,56 @@ namespace Project
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // route for admin
+            routes.MapRoute(
+                name: "Admin search update" ,
+                url: "admin/user/{userid}/delete" ,
+                defaults: new { controller = "AdminUser" , action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search delete" ,
+                url: "admin/user/{userid}/update" ,
+                defaults: new { controller = "AdminUser" , action = "Update" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search user" ,
+                url: "admin/user/search" ,
+                defaults: new { controller = "AdminUser" , action = "Search" } 
+            );
+
+            routes.MapRoute(
+                name: "Admin search detail" ,
+                url: "admin/user/{userid}" ,
+                defaults: new { controller = "AdminUser" , action = "Detail" }
+            );
+            
+            routes.MapRoute(
+                name: "Admin user" ,
+                url: "admin/user" ,
+                defaults: new { controller = "AdminUser" , action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Admin login" ,
+                url: "admin/login" ,
+                defaults: new { controller = "AdminLogin" , action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Admin logout" ,
+                url: "admin/logout" ,
+                defaults: new { controller = "AdminLogin" , action = "Logout" }
+            );
+
+            routes.MapRoute(
+                name: "Admin" ,
+                url: "admin" ,
+                defaults: new { controller = "AdminLogin" , action = "Home" }
+            );
+
+            // route for user and non-user
             routes.MapRoute(
                 name: "Result" ,
                 url: "exam/result" ,
