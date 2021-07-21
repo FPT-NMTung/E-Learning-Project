@@ -87,39 +87,39 @@
                     <div class="quiz">
                         <div>
                             <h2>Quesion:</h2>
-                            <textarea name="question" id="question" rows="4"></textarea>
+                            <textarea name="question" id="question" rows="4">@ViewBag.question</textarea>
                         </div>
                         <div class="main-answer">
                             <div class="flex-answer">
                                 <label class="flex-answer-radio" for="ans1">
-                                    <input type="radio" name="trueAns" id="ans1" value="ans1" checked>
+                                    <input type="radio" name="trueAns" id="ans1" value="ans1" @ViewBag.checkAnswer1>
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer1" id="answer1" placeholder="Answer 1">
+                                    <input type="text" name="answer1" id="answer1" placeholder="Answer 1" value="@ViewBag.answer1" required>
                                 </div>
                             </div>
                             <div class="flex-answer">
                                 <label class="flex-answer-radio" for="ans2">
-                                    <input type="radio" name="trueAns" id="ans2" value="ans2">
+                                    <input type="radio" name="trueAns" id="ans2" value="ans2" @ViewBag.checkAnswer2>
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer2" id="answer2" placeholder="Answer 2">
+                                    <input type="text" name="answer2" id="answer2" placeholder="Answer 2" value="@ViewBag.answer2" required>
                                 </div>
                             </div>
                             <div class="flex-answer">
                                 <label class="flex-answer-radio" for="ans3">
-                                    <input type="radio" name="trueAns" id="ans3" value="ans3">
+                                    <input type="radio" name="trueAns" id="ans3" value="ans3" @ViewBag.checkAnswer3>
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer3" id="answer3" placeholder="Answer 3">
+                                    <input type="text" name="answer3" id="answer3" placeholder="Answer 3" value="@ViewBag.answer3" required>
                                 </div>
                             </div>
                             <div class="flex-answer">
                                 <label class="flex-answer-radio" for="ans4">
-                                    <input type="radio" name="trueAns" id="ans4" value="ans4">
+                                    <input type="radio" name="trueAns" id="ans4" value="ans4" @ViewBag.checkAnswer4>
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer4" id="answer4" placeholder="Answer 4">
+                                    <input type="text" name="answer4" id="answer4" placeholder="Answer 4" value="@ViewBag.answer4" required>
                                 </div>
                             </div>
                         </div>

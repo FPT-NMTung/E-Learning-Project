@@ -12,6 +12,7 @@ namespace Project.Controllers
     {
         public Quiz quiz { get; set; }
         public QuizQuestion quizQuestion { get; set; }
+        public QuizQuestionAnswer quizQuestionAnswer { get; set; }
     }
     public class AdminQuizController : Controller
     {
@@ -138,16 +139,44 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckSessionAdmin]
-        public ActionResult QuizDetail(string courseID)
+        public ActionResult QuizDetail(string courseID, string questionID)
         {
             //get admin name
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
             var admin = from a in db.Admins where a.AdminID == adminID select a;
             ViewBag.adminName = admin.ToList()[0].Name;
-            ViewBag.courseID = courseID;
+            //ViewBag.courseID = courseID;
+
+
+            var selectedQuestion = from q in db.Quizs
+                                   join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
+                                   join qqa in db.QuizQuestionAnswers on qq.QuesID equals qqa.QuesID
+                                   where q.CourseID.ToString() == courseID && qq.QuesID.ToString() == questionID
+                                   select new ListQuiz
+                                   {
+                                       quiz = q,
+                                       quizQuestion = qq,
+                                       quizQuestionAnswer = qqa
+                                   };
+            //error page
+            if (selectedQuestion.Count() == 0)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+            ViewBag.question = selectedQuestion.ToList()[0].quizQuestion.Question;
+
+            ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+            ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
+            ViewBag.checkAnswer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.IsTrue ? "checked" : "";
+            ViewBag.checkAnswer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+            ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+            ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+            ViewBag.answer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.Answer;
+            ViewBag.answer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.Answer;
             //set message
-            ViewBag.message = TempData["message"];
-            TempData.Clear();
+            //ViewBag.message = TempData["message"];
+            //TempData.Clear();
             return View();
         }
     }
