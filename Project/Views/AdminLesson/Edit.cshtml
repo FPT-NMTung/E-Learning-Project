@@ -107,7 +107,7 @@
                                 @model Project.Models.Lession
                                 <div>
                                     <label for="id">ID: </label><br>
-                                    <input required type="text" id="id" name="id" value="@Model.Video">
+                                    <input required type="text" id="id" name="id" value="@Model.Video" onkeyup="clickCheck()">
                                 </div>
                                 <div>
                                     <label for="id">Name: </label><br>
@@ -123,8 +123,7 @@
                                 </div>
                             </div>
                             <br>
-                            <input type="button" value="Submit" onclick="clickSubmit()">
-                            <input type="button" value="Check" onclick="clickCheck()">
+                            <input type="button" value="Submit" id="submit-button" style="display: none" onclick="clickSubmit()">
                             <a class="button-e" id="button-delete" href="/admin/lesson/@ViewBag.courseID/@ViewBag.lessonID/delete">Delete</a>
                         </form>
                     </div>

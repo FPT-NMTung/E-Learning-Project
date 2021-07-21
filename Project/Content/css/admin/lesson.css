@@ -17,6 +17,10 @@ table {
     margin-bottom: 0px;
 }
 
+.table-main {
+    width: 1222px;
+}
+
 .thead-user {
     width: 100px;
 }
