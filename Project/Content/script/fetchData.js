@@ -1,12 +1,17 @@
-const clickCheck = () => {
-    const idVideo = $('#id').val()
+const clickCheck = async () => {
+    const idVideo = $('#id').val().trim()
+    let result = false;
 
-    fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=' + idVideo + '&key=AIzaSyBQ0NJnKeEJHXvSs3vvk5jAd_Qx675PCog')
+    console.log(idVideo)
+
+    await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=' +
+            idVideo +
+            '&key=AIzaSyBQ0NJnKeEJHXvSs3vvk5jAd_Qx675PCog')
         .then(response => response.json())
         .then(data => {
             try {
                 console.log(convert_time(data.items[0].contentDetails.duration))
-                $('#image-overlay').attr("src", data.items[0].snippet.thumbnails.maxres.url)
+                $('#image-overlay').attr("src", data.items[0].snippet.thumbnails.standard.url)
                 $('#name').val(data.items[0].snippet.localized.title)
                 $('#description').val(data.items[0].snippet.localized.description)
                 $('#time').val(convert_time(data.items[0].contentDetails.duration))
@@ -14,10 +19,18 @@ const clickCheck = () => {
                 $("#name").attr("readonly", "readonly");
                 $("#description").attr("readonly", "readonly");
                 $("#time").attr("readonly", "readonly");
+                result = true;
+                $("#submit-button").css("display", "inline-block");
             } catch (e) {
-                alert('ID not valid')
+                $('#image-overlay').attr("src", "")
+                $('#name').val("")
+                $('#description').val("")
+                $('#time').val("")
+                result = false;
+                $("#submit-button").css("display", "none");
             }
         });
+    return result;
 }
 
 function convert_time(duration) {
@@ -53,9 +66,5 @@ function convert_time(duration) {
 }
 
 const clickSubmit = () => {
-    clickCheck()
-    setTimeout(() => {
-        $('#myFrom').submit()
-    }, 1000)
-
+    $('#myFrom').submit();
 }

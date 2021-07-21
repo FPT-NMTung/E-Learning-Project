@@ -7,10 +7,15 @@ a {
     text-decoration: none;
 }
 
-#body {
-    display       : flex;
-    flex-direction: row;
+.alert {
+    position: fixed !important;
+    right: 10px !important;
+    bottom: 10px !important;
+}
 
+#body {
+    display: flex;
+    flex-direction: row;
     height: 100vh;
 }
 

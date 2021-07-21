@@ -18,6 +18,54 @@ namespace Project
 
             // route for admin
             routes.MapRoute(
+                name: "AdminAddCourse",
+                url: "admin/course/add",
+                defaults: new { controller = "AdminCourse", action = "CourseAdd" }
+            );
+
+            routes.MapRoute(
+                name: "AdminCourseDetail",
+                url: "admin/course/{courseID}",
+                defaults: new { controller = "AdminCourse", action = "CourseDetail" }
+            );
+
+            routes.MapRoute(
+                name: "AdminCourse",
+                url: "admin/course",
+                defaults: new { controller = "AdminCourse", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson update" ,
+                url: "admin/lesson/{courseid}/{lessonid}/delete" ,
+                defaults: new { controller = "AdminLesson" , action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson delete" ,
+                url: "admin/lesson/{courseid}/{lessonid}/update" ,
+                defaults: new { controller = "AdminLesson" , action = "Update" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson edit" ,
+                url: "admin/lesson/{courseid}/{lessonid}/edit" ,
+                defaults: new { controller = "AdminLesson" , action = "Edit" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson add" ,
+                url: "admin/lesson/{courseid}/add" ,
+                defaults: new { controller = "AdminLesson" , action = "Add" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson" ,
+                url: "admin/lesson/{courseid}" ,
+                defaults: new { controller = "AdminLesson" , action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Admin search update" ,
                 url: "admin/user/{userid}/delete" ,
                 defaults: new { controller = "AdminUser" , action = "Delete" }

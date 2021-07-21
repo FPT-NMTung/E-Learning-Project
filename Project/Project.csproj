@@ -261,6 +261,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\admin\AdminCourseController.cs" />
+    <Compile Include="Controllers\admin\AdminLessonController.cs" />
     <Compile Include="Controllers\admin\AdminLoginController.cs" />
     <Compile Include="Controllers\admin\AdminUserController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
@@ -282,6 +284,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lession.cs">
@@ -309,6 +314,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\QuizQuestionAnswer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -381,6 +392,12 @@
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminUser\Search.cshtml" />
     <Content Include="Views\AdminUser\Detail.cshtml" />
+    <Content Include="Views\AdminLesson\Index.cshtml" />
+    <Content Include="Views\AdminLesson\Add.cshtml" />
+    <Content Include="Views\AdminLesson\Edit.cshtml" />
+    <Content Include="Views\AdminCourse\CourseAdd.cshtml" />
+    <Content Include="Views\AdminCourse\CourseDetail.cshtml" />
+    <Content Include="Views\AdminCourse\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
