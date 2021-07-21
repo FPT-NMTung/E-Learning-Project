@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/admin/index.css">
+    <link rel="stylesheet" href="~/Content/css/admin/quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>List quiz | Admin | E-Learning</title>
+</head>
+
+<body>
+    <div id="body">
+        <div class="left-bar">
+            <div>
+                <div class="bar-logo">
+                    <img src="~/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
+                </div>
+                <div class="bar-info">
+                    <div class="bar-info-img">
+                        <img src="https://img.icons8.com/office/40/000000/user-male-circle.png" />
+                    </div>
+                    <div class="bar-info-name">
+                        @ViewBag.adminName
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/admin/user">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    User
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/course" class="active-link-nav">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Course
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/admin/login">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Logout
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-bar">
+            <div class="heder-body">
+                <div class="header-content">
+                    Quiz
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="user">
+                    <div class="add-course">
+                        <a href="/admin/quiz/@ViewBag.courseID/add">
+                            <img src="https://img.icons8.com/ios-filled/50/75c44c/add--v1.png" />
+                        </a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="thead thead-user">
+                                    <h3>
+                                        ID
+                                    </h3>
+                                </th>
+                                <th class="thead thead-course">
+                                    <h3>
+                                        Question
+                                    </h3>
+                                </th>
+                                <th class="thead thead-action">
+                                    <h3>
+                                        Actions
+                                    </h3>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @model List<Project.Controllers.ListQuiz>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="row-user">
+                                    <td>
+                                        <h3>@item.quizQuestion.QuesID</h3>
+                                    </td>
+                                    <td class="description-lesson">
+                                        <p>
+                                            @item.quizQuestion.Question
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <a class="button-select" href="#">Select</a>
+                                    </td>
+                                </tr>
+                            }
+
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
