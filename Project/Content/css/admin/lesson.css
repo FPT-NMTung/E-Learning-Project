@@ -83,3 +83,9 @@ table {
 .row-user>td>h3 {
     padding-left: 10px;
 }
+
+.add-quiz {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}

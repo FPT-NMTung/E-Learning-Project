@@ -9,8 +9,8 @@ namespace Project.Filters {
         public override void OnActionExecuting(ActionExecutingContext filterContext) {
             var currentSession = HttpContext.Current.Session;
 
-            if ( currentSession [ "admin_id" ] != null ) {
-                filterContext.Result = new RedirectResult( "/admin/users" );
+            if ( currentSession["admin_id"] != null ) {
+                filterContext.Result = new RedirectResult( "/admin/user" );
             }
         }
     }

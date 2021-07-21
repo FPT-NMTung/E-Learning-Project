@@ -110,8 +110,8 @@
                             <h3>@ViewBag.name</h3>
                             <ul>
                                 <li><strong>Giáo viên</strong>: Admin</li>
-                                <li><strong>Số lượng video</strong>: {null}</li>
-                                <li><strong>Số lượng bài kiểm tra</strong>: {null}</li>
+                                <li><strong>Số lượng video</strong>: @ViewBag.numberOfLesson</li>
+                                <li><strong>Số lượng bài kiểm tra</strong>: @ViewBag.numberOfQuiz</li>
                                 <li> <a href="/learning/@ViewBag.courseId/@ViewBag.lessonId"><button class="btn btn-success">Vào học ngay</button></a></li>
                             </ul>
                         </div>

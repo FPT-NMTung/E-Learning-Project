@@ -261,8 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminCourseController.cs" />
-    <Compile Include="Controllers\AdminLoginController.cs" />
+    <Compile Include="Controllers\admin\AdminLessonController.cs" />
+    <Compile Include="Controllers\admin\AdminLoginController.cs" />
+    <Compile Include="Controllers\admin\AdminUserController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -378,9 +379,12 @@
     <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Lesson\Index.cshtml" />
     <Content Include="Views\AdminLogin\Index.cshtml" />
-    <Content Include="Views\AdminCourse\Index.cshtml" />
-    <Content Include="Views\AdminCourse\CourseDetail.cshtml" />
-    <Content Include="Views\AdminCourse\CourseAdd.cshtml" />
+    <Content Include="Views\AdminUser\Index.cshtml" />
+    <Content Include="Views\AdminUser\Search.cshtml" />
+    <Content Include="Views\AdminUser\Detail.cshtml" />
+    <Content Include="Views\AdminLesson\Index.cshtml" />
+    <Content Include="Views\AdminLesson\Add.cshtml" />
+    <Content Include="Views\AdminLesson\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
