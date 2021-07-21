@@ -17,6 +17,10 @@ table {
     margin-bottom: 0px;
 }
 
+.table-main {
+    width: 1222px;
+}
+
 .thead-user {
     width: 100px;
 }
@@ -35,7 +39,6 @@ table {
 
 .description-lesson>p {
     width     : 500px;
-    text-align: justify;
     padding   : 0px 20px 0px 0px;
 
     overflow          : hidden;
@@ -82,4 +85,10 @@ table {
 
 .row-user>td>h3 {
     padding-left: 10px;
+}
+
+.add-quiz {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
 }
