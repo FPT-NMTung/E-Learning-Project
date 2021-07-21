@@ -87,7 +87,10 @@ namespace Project.Controllers.admin {
         [ HttpGet ]
         [ CheckSessionAdmin ]
         public ActionResult Edit(string courseid, string lessonid) {
-            var result = (from lesson in db.Lessions where lesson.LessionID.ToString() == lessonid.Trim() && lesson.CourseID.ToString() == courseid.Trim() select lesson)
+            var result = (from lesson in db.Lessions
+                    where lesson.LessionID.ToString() == lessonid.Trim() &&
+                          lesson.CourseID.ToString() == courseid.Trim()
+                    select lesson)
                 .ToList();
 
             if ( result.Count == 0 ) {
@@ -102,6 +105,15 @@ namespace Project.Controllers.admin {
             }
 
             return View( result[0] );
+        }
+
+        [ HttpGet ]
+        [ CheckSessionAdmin ]
+        public ActionResult Update(string courseid, string lessonid, string id, string name, string description,
+            string time) {
+
+
+            return null;
         }
     }
 }
