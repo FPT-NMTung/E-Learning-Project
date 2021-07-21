@@ -64,7 +64,6 @@ namespace Project.Controllers
         public ActionResult AddQuestion(string courseID, string question, string answer1, string answer2, string answer3, string answer4,
                                          string trueAns)
         {
-
             var listQuestion = from q in db.Quizs
                                join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
                                where q.CourseID.ToString() == courseID
@@ -174,10 +173,53 @@ namespace Project.Controllers
             ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
             ViewBag.answer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.Answer;
             ViewBag.answer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.Answer;
+            ViewBag.courseID = courseID;
+            ViewBag.questionID = questionID;
             //set message
-            //ViewBag.message = TempData["message"];
-            //TempData.Clear();
+            ViewBag.message = TempData["message"];
+            TempData.Clear();
             return View();
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        public ActionResult EditQuestion(string courseID, string questionID, string question, string answer1, string answer2, string answer3, string answer4,
+                                         string trueAns)
+        {
+            var selectedQuestion = from q in db.Quizs
+                                   join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
+                                   join qqa in db.QuizQuestionAnswers on qq.QuesID equals qqa.QuesID
+                                   where q.CourseID.ToString() == courseID && qq.QuesID.ToString() == questionID
+                                   select new ListQuiz
+                                   {
+                                       quiz = q,
+                                       quizQuestion = qq,
+                                       quizQuestionAnswer = qqa
+                                   };
+            if (answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
+                || answer1.Trim().Equals(answer2.Trim()) || answer1.Trim().Equals(answer3.Trim()) || answer1.Trim().Equals(answer4.Trim())
+                || answer2.Trim().Equals(answer3.Trim()) || answer2.Trim().Equals(answer4.Trim()) || answer3.Trim().Equals(answer4.Trim()))
+            {
+                TempData["message"] = false;
+                return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+
+            try
+            {
+                var updateQuestion = db.QuizQuestions.First(g => g.QuesID.ToString() == questionID);
+                updateQuestion.Question = question.Trim();
+                //chua update answer
+
+                db.SaveChanges();
+                TempData["message"] = true;
+                return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+            catch (Exception)
+            {
+                TempData["message"] = false;
+                return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+
         }
     }
 }

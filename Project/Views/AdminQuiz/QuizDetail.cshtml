@@ -83,8 +83,15 @@
                 </div>
             </div>
             <div class="main-body">
-                <form action="" method="GET">
+                @using (Html.BeginForm("EditQuestion", "AdminQuiz", FormMethod.Post))
+                {
                     <div class="quiz">
+                        <div hidden class="flex-answer-content">
+                            <input type="text" name="courseID" id="courseID" value="@ViewBag.courseID">
+                        </div>
+                        <div hidden class="flex-answer-content">
+                            <input type="text" name="questionID" id="questionID" value="@ViewBag.questionID">
+                        </div>
                         <div>
                             <h2>Quesion:</h2>
                             <textarea name="question" id="question" rows="4">@ViewBag.question</textarea>
@@ -125,7 +132,7 @@
                         </div>
                         <button id="button-save" type="submit">Save</button>
                     </div>
-                </form>
+                }
             </div>
         </div>
     </div>
