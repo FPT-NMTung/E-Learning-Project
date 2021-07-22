@@ -35,7 +35,6 @@ namespace Project.Controllers
                                    quiz = q,
                                    quizQuestion = qq
                                };
-
             //get courseID
             ViewBag.courseID = courseID;
             return View(listQuestion.ToList());
@@ -205,20 +204,25 @@ namespace Project.Controllers
                 var updateQuestion = db.QuizQuestions.First(g => g.QuesID.ToString() == questionID);
                 updateQuestion.Question = question.Trim();
 
+                //get answerID of for answer of the question
+                int answerID1 = selectedQuestion.ToList()[0].quizQuestionAnswer.AnsID;
+                int answerID2 = selectedQuestion.ToList()[1].quizQuestionAnswer.AnsID;
+                int answerID3 = selectedQuestion.ToList()[2].quizQuestionAnswer.AnsID;
+                int answerID4 = selectedQuestion.ToList()[3].quizQuestionAnswer.AnsID;
                 //update answer
-                var updateAnswer1 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[0].quizQuestionAnswer.AnsID);
+                var updateAnswer1 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID1);
                 updateAnswer1.Answer = answer1.Trim();
                 updateAnswer1.IsTrue = trueAns.Equals("ans1") ? true : false;
 
-                var updateAnswer2 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[1].quizQuestionAnswer.AnsID);
+                var updateAnswer2 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID2);
                 updateAnswer2.Answer = answer2.Trim();
                 updateAnswer2.IsTrue = trueAns.Equals("ans2") ? true : false;
 
-                var updateAnswer3 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[2].quizQuestionAnswer.AnsID);
+                var updateAnswer3 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID3);
                 updateAnswer3.Answer = answer3.Trim();
                 updateAnswer3.IsTrue = trueAns.Equals("ans3") ? true : false;
 
-                var updateAnswer4 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[3].quizQuestionAnswer.AnsID);
+                var updateAnswer4 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID4);
                 updateAnswer4.Answer = answer4.Trim();
                 updateAnswer4.IsTrue = trueAns.Equals("ans4") ? true : false;
 
@@ -232,6 +236,40 @@ namespace Project.Controllers
                 return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID = questionID });
             }
 
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        public ActionResult DeleteQuestion(int courseID,int questionID)
+        {
+            try
+            {
+                var removeQuestion = (from e in db.QuizQuestions
+                              where e.QuesID == questionID
+                              select e).FirstOrDefault();
+
+                var removeAnswer = from e in db.QuizQuestionAnswers
+                                   where e.QuesID == questionID
+                                   select e;
+                var anser1 = removeAnswer.ToList()[0];
+                var anser2 = removeAnswer.ToList()[1];
+                var anser3 = removeAnswer.ToList()[2];
+                var anser4 = removeAnswer.ToList()[3];
+                if (removeQuestion != null && anser1 != null && anser2 != null && anser3 != null && anser4 != null)
+                {
+                    db.QuizQuestions.Remove(removeQuestion);
+                    db.QuizQuestionAnswers.Remove(anser1);
+                    db.QuizQuestionAnswers.Remove(anser2);
+                    db.QuizQuestionAnswers.Remove(anser3);
+                    db.QuizQuestionAnswers.Remove(anser4);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index", "AdminQuiz");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
         }
     }
 }

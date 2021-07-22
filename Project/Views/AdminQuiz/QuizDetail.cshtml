@@ -144,12 +144,33 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="button-save" type="submit">Save</button>
+                        <button id="button-save" class="btn btn-success" type="submit">Save</button>
+                        <button id="deleteButton" class="btn btn-danger">Delete</button>
                     </div>
+
                 }
             </div>
+
         </div>
     </div>
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#deleteButton").click(function () {
+            $.post("/AdminQuiz/DeleteQuestion",
+                {
+                    courseID: "@ViewBag.courseID"
+                    questionID: "@ViewBag.questionID"
+                },
+                function (data, status) {
+                    if (status === "success") {
+                        alert("Delete question successful!")
+                    } else {
+                        alert("Delete question fail!")
+                    }
+                });
+        });
+    });
+</script>
 </html>
