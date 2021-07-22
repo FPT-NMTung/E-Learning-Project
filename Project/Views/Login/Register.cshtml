@@ -24,7 +24,7 @@
                         <h4 class="card-title">Đăng ký tài khoản</h4>
                         @if ( ViewBag.isCreated == false ) {
                             <div class="alert alert-danger" role="alert">
-                                Tên người dùng, Địa chỉ email hoặc số điện thoại đã tồn tại. Tạo tài khoản không thành công
+                                Tạo tài khoản không thành công!!!
                             </div>
                         }
                         @using ( Html.BeginForm( "RegisterAccount", "Login", FormMethod.Post ) ) {

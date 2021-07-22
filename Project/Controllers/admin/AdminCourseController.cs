@@ -37,23 +37,24 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckSessionAdmin]
-        public ActionResult CourseDetail(int courseID)
+        public ActionResult CourseDetail(string courseID)
         {
+            
 
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
 
             var admin = from a in db.Admins where a.AdminID == adminID select a;
             ViewBag.adminName = admin.ToList()[0].Name;
 
-            var selectedCourse = from c in db.Courses where c.CourseID == courseID select c;
-            if (selectedCourse.Count() == 0)
+            var selectedCourse = (from c in db.Courses where c.CourseID.ToString() == courseID.Trim() select c).ToList();
+            if (selectedCourse.Count == 0)
             {
-                return RedirectToAction("Index", "Error");
+                return RedirectToAction("Index", "AdminCourse");
             }
-            ViewBag.courseID = selectedCourse.ToList()[0].CourseID;
-            ViewBag.courseName = selectedCourse.ToList()[0].Name;
-            ViewBag.description = selectedCourse.ToList()[0].Description;
-            ViewBag.image = selectedCourse.ToList()[0].Image;
+            ViewBag.courseID = selectedCourse[0].CourseID;
+            ViewBag.courseName = selectedCourse[0].Name;
+            ViewBag.description = selectedCourse[0].Description;
+            ViewBag.image = selectedCourse[0].Image;
 
             ViewBag.message = TempData["message"];
             TempData.Clear();

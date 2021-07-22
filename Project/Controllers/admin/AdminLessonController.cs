@@ -85,7 +85,8 @@ namespace Project.Controllers.admin {
             } catch ( DbEntityValidationException dbEx ) {
                 foreach ( var validationErrors in dbEx.EntityValidationErrors ) {
                     foreach ( var validationError in validationErrors.ValidationErrors ) {
-                        System.Console.WriteLine( "Property: {0} Error: {1}" , validationError.PropertyName , validationError.ErrorMessage );
+                        System.Console.WriteLine( "Property: {0} Error: {1}", validationError.PropertyName,
+                            validationError.ErrorMessage );
                     }
                 }
             }
@@ -144,12 +145,24 @@ namespace Project.Controllers.admin {
                 }
             }
 
+            int hour = Convert.ToInt32( time ) / 3600;
+            int minute = (Convert.ToInt32( time ) % 3600) / 60;
+            int second = Convert.ToInt32( time ) % 60;
+
+            string resultTime = "";
+
+            if ( hour == 0) {
+                resultTime = $"{minute}:{second}";
+            } else {
+                resultTime = $"{hour}:{minute}:{second}";
+            }
+
             var result = db.Lessions.First( (e) => (e.LessionID.ToString() == lessonid.Trim()) );
 
             result.Video = id.Trim();
             result.Name = name.Trim();
             result.Description = description.Trim();
-            result.Time = time.Trim();
+            result.Time = resultTime;
 
             db.SaveChanges();
 

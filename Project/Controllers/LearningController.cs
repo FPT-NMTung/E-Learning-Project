@@ -19,6 +19,7 @@ namespace Project.Controllers
         public int courseID { get; set; }
         public int userID { get; set; }
         public bool watched { get; set; }
+        public string time { get; set; }
     }
     public class LearningController : Controller
     {
@@ -67,7 +68,8 @@ namespace Project.Controllers
                                     description = l.Description,
                                     courseID = l.CourseID,
                                     userID = ul.UserID,
-                                    watched = (bool)ul.Watched
+                                    watched = (bool)ul.Watched,
+                                    time = l.Time
                                 };
 
             //select unWatched lesson of user in course to another table
@@ -81,7 +83,8 @@ namespace Project.Controllers
                                       description = l.Description,
                                       courseID = l.CourseID,
                                       userID = -1,
-                                      watched = false
+                                      watched = false,
+                                      time = l.Time
                                   };
             //union 2 table above we have result is a type of WatchLessonTable
             var result = watchedLesson.Union(unWatchedLesson).ToList();
@@ -104,6 +107,7 @@ namespace Project.Controllers
             var courseName = from c in db.Courses where c.CourseID.ToString() == courseId select c;
             ViewBag.courseName = courseName.ToList()[0].Name;
             ViewBag.courseID = courseId;
+            ViewBag.Time = lessonInfor.ToList()[0].time;
             //if all lesson in 1 course of 1 user is true
             //chuyen den trang quiz
             if (unWatchedLesson.ToList().Count == 0)
@@ -129,6 +133,10 @@ namespace Project.Controllers
                 } catch ( Exception e ) {
                 }
             }
+
+            var checkQuiz = (from quiz in db.Quizs where quiz.CourseID.ToString() == courseId.Trim() select quiz).ToList();
+
+            ViewBag.hasQuiz = checkQuiz.Count != 0;
 
             return View(result);
         }

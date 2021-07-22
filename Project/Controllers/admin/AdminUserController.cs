@@ -22,7 +22,7 @@ namespace Project.Controllers {
         [ HttpPost ]
         [ CheckSessionAdmin ]
         public ActionResult Search(string s) {
-            var result = (from user in db.Users where user.Name.Contains( s ) select user).ToList();
+            var result = (from user in db.Users where user.Name.Contains( s.Trim() ) select user).ToList();
 
             return View( result );
         }
@@ -111,6 +111,8 @@ namespace Project.Controllers {
             return RedirectToAction( "Detail", id );
         }
 
+        [HttpGet]
+        [CheckSessionAdmin]
         public ActionResult Delete(string userid) {
             var result = (from user in db.Users where user.UserID.ToString() == userid select user).ToList();
             db.Users.RemoveRange( result );
