@@ -75,9 +75,18 @@
     </div>
     <div class="right-bar">
         <div class="heder-body">
+            <div class="fix-width">
+                <a href="/admin/lesson/@ViewBag.courseID">
+                    <div class="back-logo">
+                        <img src="https://img.icons8.com/material-sharp/35/000000/circled-chevron-left.png" />
+                        <span>Back</span>
+                    </div>
+                </a>
+            </div>
             <div class="header-content">
                 <div>Add lesson</div>
             </div>
+            <div class="header-search"></div>
         </div>
         <div class="main-body">
             @if ( ViewBag.isUpdate != null ) {
