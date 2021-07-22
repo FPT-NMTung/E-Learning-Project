@@ -28,7 +28,19 @@ namespace Project.Controllers {
         [ HttpPost ]
         [ CheckNotSessionAdmin ]
         public ActionResult Login(string email, string password) {
-            var temp = (from admin in db.Admins where admin.Email == email && admin.Password == password select admin)
+            if (email == null || password == null) {
+                TempData [ "isLogged" ] = false;
+
+                return RedirectToAction( "Index" );
+            }
+
+            if ( email.Trim() == "" || password.Trim() == "" ) {
+                TempData [ "isLogged" ] = false;
+
+                return RedirectToAction( "Index" );
+            }
+
+            var temp = (from admin in db.Admins where admin.Email == email.Trim() && admin.Password == password.Trim() select admin)
                 .ToList();
 
             if ( temp.Count != 0 ) {
