@@ -111,6 +111,8 @@ namespace Project.Controllers {
             return RedirectToAction( "Detail", id );
         }
 
+        [HttpGet]
+        [CheckSessionAdmin]
         public ActionResult Delete(string userid) {
             var result = (from user in db.Users where user.UserID.ToString() == userid select user).ToList();
             db.Users.RemoveRange( result );
