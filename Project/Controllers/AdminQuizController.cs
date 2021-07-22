@@ -35,10 +35,7 @@ namespace Project.Controllers
                                    quiz = q,
                                    quizQuestion = qq
                                };
-            if (listQuestion.Count() == 0)
-            {
-                return RedirectToAction("Index", "Error");
-            }
+
             //get courseID
             ViewBag.courseID = courseID;
             return View(listQuestion.ToList());
@@ -52,6 +49,7 @@ namespace Project.Controllers
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
             var admin = from a in db.Admins where a.AdminID == adminID select a;
             ViewBag.adminName = admin.ToList()[0].Name;
+
             ViewBag.courseID = courseID;
             //set message
             ViewBag.message = TempData["message"];
@@ -72,11 +70,6 @@ namespace Project.Controllers
                                    quiz = q,
                                    quizQuestion = qq
                                };
-            //error page
-            if (listQuestion.Count() == 0)
-            {
-                return RedirectToAction("Index", "Error");
-            }
 
             if (answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
                 || answer1.Trim().Equals(answer2.Trim()) || answer1.Trim().Equals(answer3.Trim()) || answer1.Trim().Equals(answer4.Trim())
@@ -85,14 +78,14 @@ namespace Project.Controllers
                 TempData["message"] = false;
                 return RedirectToAction("QuizAdd", "AdminQuiz");
             }
-
-            var quizID = listQuestion.ToList()[0].quiz.QuizID;
+            
+            var quizID = from e in db.Quizs where e.CourseID.ToString() == courseID select e;
             try
             {
                 QuizQuestion newQuestion = new QuizQuestion();
                 // fields to be insert
                 newQuestion.Question = question.Trim();
-                newQuestion.QuizID = quizID;
+                newQuestion.QuizID = quizID.ToList()[0].QuizID;
                 // executes the commands to implement the changes to the database
                 //add question
                 db.QuizQuestions.Add(newQuestion);
@@ -157,11 +150,7 @@ namespace Project.Controllers
                                        quizQuestion = qq,
                                        quizQuestionAnswer = qqa
                                    };
-            //error page
-            if (selectedQuestion.Count() == 0)
-            {
-                return RedirectToAction("Index", "Error");
-            }
+
             ViewBag.question = selectedQuestion.ToList()[0].quizQuestion.Question;
 
             ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
@@ -196,6 +185,12 @@ namespace Project.Controllers
                                        quizQuestion = qq,
                                        quizQuestionAnswer = qqa
                                    };
+            //error page
+            if (selectedQuestion.Count() == 0)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
             if (answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
                 || answer1.Trim().Equals(answer2.Trim()) || answer1.Trim().Equals(answer3.Trim()) || answer1.Trim().Equals(answer4.Trim())
                 || answer2.Trim().Equals(answer3.Trim()) || answer2.Trim().Equals(answer4.Trim()) || answer3.Trim().Equals(answer4.Trim()))
@@ -206,9 +201,26 @@ namespace Project.Controllers
 
             try
             {
+                //update question
                 var updateQuestion = db.QuizQuestions.First(g => g.QuesID.ToString() == questionID);
                 updateQuestion.Question = question.Trim();
-                //chua update answer
+
+                //update answer
+                var updateAnswer1 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[0].quizQuestionAnswer.AnsID);
+                updateAnswer1.Answer = answer1.Trim();
+                updateAnswer1.IsTrue = trueAns.Equals("ans1") ? true : false;
+
+                var updateAnswer2 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[1].quizQuestionAnswer.AnsID);
+                updateAnswer2.Answer = answer2.Trim();
+                updateAnswer2.IsTrue = trueAns.Equals("ans2") ? true : false;
+
+                var updateAnswer3 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[2].quizQuestionAnswer.AnsID);
+                updateAnswer3.Answer = answer3.Trim();
+                updateAnswer3.IsTrue = trueAns.Equals("ans3") ? true : false;
+
+                var updateAnswer4 = db.QuizQuestionAnswers.First(g => g.AnsID == selectedQuestion.ToList()[3].quizQuestionAnswer.AnsID);
+                updateAnswer4.Answer = answer4.Trim();
+                updateAnswer4.IsTrue = trueAns.Equals("ans4") ? true : false;
 
                 db.SaveChanges();
                 TempData["message"] = true;

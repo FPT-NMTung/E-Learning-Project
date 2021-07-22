@@ -86,14 +86,14 @@
                 @if (ViewBag.message == true)
                 {
                     <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-success alert-dismissible fade show" role="alert">
-                        Question has been add successful!!!
+                        Question has been added successful!!!
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
                 else if (ViewBag.message == false)
                 {
                     <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Add question fail because question only contains space or has duplicated answer!
+                        Add question fail because question, answers only contain space or have duplicated answer!
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 }
@@ -105,7 +105,7 @@
                         </div>
                         <div>
                             <h2>Quesion:</h2>
-                            <textarea name="question" id="question" rows="4" value="@ViewBag.question" required></textarea>
+                            <textarea name="question" id="question" rows="4" required></textarea>
                         </div>
                         <div class="main-answer">
                             <div class="flex-answer">
@@ -113,7 +113,7 @@
                                     <input type="radio" name="trueAns" id="ans1" value="ans1" checked>
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer1" id="answer1" placeholder="Answer 1" value="@ViewBag.answer1" required>
+                                    <input type="text" name="answer1" id="answer1" placeholder="Answer 1" required>
                                 </div>
                             </div>
                             <div class="flex-answer">
@@ -121,7 +121,7 @@
                                     <input type="radio" name="trueAns" id="ans2" value="ans2">
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer2" id="answer2" placeholder="Answer 2" value="@ViewBag.answer2" required>
+                                    <input type="text" name="answer2" id="answer2" placeholder="Answer 2" required>
                                 </div>
                             </div>
                             <div class="flex-answer">
@@ -129,7 +129,7 @@
                                     <input type="radio" name="trueAns" id="ans3" value="ans3">
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer3" id="answer3" placeholder="Answer 3" value="@ViewBag.answer3" required>
+                                    <input type="text" name="answer3" id="answer3" placeholder="Answer 3" required>
                                 </div>
                             </div>
                             <div class="flex-answer">
@@ -137,7 +137,7 @@
                                     <input type="radio" name="trueAns" id="ans4" value="ans4">
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer4" id="answer4" placeholder="Answer 4" value="@ViewBag.answer4" required>
+                                    <input type="text" name="answer4" id="answer4" placeholder="Answer 4" required>
                                 </div>
                             </div>
                         </div>
