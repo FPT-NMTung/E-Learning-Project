@@ -114,20 +114,18 @@
                         </div>
                     </section>
                 }
-
             }
         }
-
-
         <section class="inner-page">
             <div class="container">
-
+                @if ( tem1p.Count != 0 ) {
+                    <h4>Other course</h4>
+                }
                 <div class="main-grid">
                     @{
                         var temp = Model.course;
                     }
-                    @foreach (var el in temp)
-                    {
+                    @foreach ( var el in temp ) {
                         <div class="card-course">
                             <img class="card-course-img"
                                  src="@el.Image" alt="">
