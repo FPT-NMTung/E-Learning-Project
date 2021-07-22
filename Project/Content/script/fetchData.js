@@ -20,7 +20,7 @@ const clickCheck = async () => {
                 $("#description").attr("readonly", "readonly");
                 $("#time").attr("readonly", "readonly");
                 result = true;
-                $("#submit-button").css("display", "inline-block");
+                $("#submit-button").css("display", "inline-block"); 
             } catch (e) {
                 $('#image-overlay').attr("src", "")
                 $('#name').val("")
