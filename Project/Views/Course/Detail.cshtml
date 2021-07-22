@@ -114,7 +114,7 @@
                             <li><strong>Giáo viên</strong>: Admin</li>
                             <li><strong>Số lượng video</strong>: @ViewBag.numberOfLesson</li>
                             <li><strong>Số lượng bài kiểm tra</strong>: @ViewBag.numberOfQuiz</li>
-                            @if ( ViewBag.lessonId == false ) {
+                            @if ( ViewBag.lessonId == -1 ) {
                                 <li>
                                     <a href="#">
                                         <button class="btn btn-secondary">Hiện chưa có bài học nào!</button>

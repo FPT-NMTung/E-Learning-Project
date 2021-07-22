@@ -84,9 +84,8 @@ namespace Project.Controllers {
                 = (from lesson in db.Lessions where lesson.CourseID.ToString() == id select lesson).ToList();
 
             
-
             if ( temp.ToList().Count == 0 ) {
-                ViewBag.lessonId = false;
+                ViewBag.lessonId = -1;
             } else {
                 ViewBag.lessonId = temp[0].LessionID;
             }
