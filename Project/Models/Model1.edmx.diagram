@@ -23,6 +23,7 @@
         <AssociationConnector Association="ProjectModel.FK_QuizQuestionAnswer_QuizQuestion" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndCourse_User" ManuallyRouted="false" />
         <AssociationConnector Association="ProjectModel.FK_UserAndLession_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProjectModel.database_firewall_rules" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

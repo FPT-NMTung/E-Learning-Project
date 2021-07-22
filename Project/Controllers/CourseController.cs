@@ -83,11 +83,20 @@ namespace Project.Controllers {
             var temp
                 = (from lesson in db.Lessions where lesson.CourseID.ToString() == id select lesson).ToList();
 
+            
             if ( temp.ToList().Count == 0 ) {
-                return RedirectToAction( "Index", "Course" );
+                ViewBag.lessonId = -1;
+            } else {
+                ViewBag.lessonId = temp[0].LessionID;
             }
 
-            ViewBag.lessonId = temp[0].LessionID;
+            //get data for course detail page
+            var numberOfLesson = (from e in db.Lessions where e.CourseID.ToString() == id select e).Count();
+            ViewBag.numberOfLesson = numberOfLesson;
+
+            var numberOFQuiz = (from e in db.Quizs where e.CourseID.ToString() == id select e).Count();
+            ViewBag.numberOFQuiz = numberOFQuiz;
+
             return View();
         }
     }

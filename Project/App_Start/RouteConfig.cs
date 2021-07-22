@@ -52,7 +52,66 @@ namespace Project
                 url: "admin/course",
                 defaults: new { controller = "AdminCourse", action = "Index" }
             );
-            // route for admin
+
+            routes.MapRoute(
+                name: "Admin lesson update" ,
+                url: "admin/lesson/{courseid}/{lessonid}/delete" ,
+                defaults: new { controller = "AdminLesson" , action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson delete" ,
+                url: "admin/lesson/{courseid}/{lessonid}/update" ,
+                defaults: new { controller = "AdminLesson" , action = "Update" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson edit" ,
+                url: "admin/lesson/{courseid}/{lessonid}/edit" ,
+                defaults: new { controller = "AdminLesson" , action = "Edit" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson add" ,
+                url: "admin/lesson/{courseid}/add" ,
+                defaults: new { controller = "AdminLesson" , action = "Add" }
+            );
+
+            routes.MapRoute(
+                name: "Admin lesson" ,
+                url: "admin/lesson/{courseid}" ,
+                defaults: new { controller = "AdminLesson" , action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search update" ,
+                url: "admin/user/{userid}/delete" ,
+                defaults: new { controller = "AdminUser" , action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search delete" ,
+                url: "admin/user/{userid}/update" ,
+                defaults: new { controller = "AdminUser" , action = "Update" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search user" ,
+                url: "admin/user/search" ,
+                defaults: new { controller = "AdminUser" , action = "Search" } 
+            );
+
+            routes.MapRoute(
+                name: "Admin search detail" ,
+                url: "admin/user/{userid}" ,
+                defaults: new { controller = "AdminUser" , action = "Detail" }
+            );
+            
+            routes.MapRoute(
+                name: "Admin user" ,
+                url: "admin/user" ,
+                defaults: new { controller = "AdminUser" , action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Admin login" ,
@@ -60,8 +119,19 @@ namespace Project
                 defaults: new { controller = "AdminLogin" , action = "Index" }
             );
 
-            // route for user and non-user
+            routes.MapRoute(
+                name: "Admin logout" ,
+                url: "admin/logout" ,
+                defaults: new { controller = "AdminLogin" , action = "Logout" }
+            );
 
+            routes.MapRoute(
+                name: "Admin" ,
+                url: "admin" ,
+                defaults: new { controller = "AdminLogin" , action = "Home" }
+            );
+
+            // route for user and non-user
             routes.MapRoute(
                 name: "Result" ,
                 url: "exam/result" ,

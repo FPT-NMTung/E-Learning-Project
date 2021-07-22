@@ -14,14 +14,16 @@
 
 .learning-list {
     width: 25%;
-    height: 560px;
-    overflow-y: auto;
+    max-height: 560px;
 }
 
-.learning-list > ul {
-    list-style: none;
-    padding: 0px;
-}
+    .learning-list > ul {
+        box-shadow: 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+        list-style: none;
+        padding: 0px;
+        max-height: 460px;
+        overflow-y: auto;
+    }
 
 .card-lesson {
     background-color: white;
@@ -48,6 +50,17 @@
 
 .card-time {
     font-size: 12px;
+    margin: 0px;
+}
+
+.title-lesson-nmtung {
+    font-size: 14px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 .lesson-done {

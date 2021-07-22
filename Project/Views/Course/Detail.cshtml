@@ -37,147 +37,165 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center">
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
 
-            <div class="logo me-auto">
-                <h1><a href="/">E-Learning</a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
-                    <li>
-                        <a class="nav-link scrollto " href="/#hero">Trang chủ</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto active" href="/course">Các khóa học</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto " href="/#team">Về chúng tôi</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto" href="/#contact">Thông tin liên hệ</a>
-                    </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            <div class="button-login-register">
-                @if ( Session["email"] == null ) {
-                    <a class="nav-link scrollto" href="/login">Đăng nhập</a>
-                    <a class="nav-link scrollto" href="/register">Đăng ký</a>
-                } else {
-                    <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session[ "name" ]!</a>
-                    <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
-                }
-            </div>
-        </div>
-    </header><!-- End Header -->
-
-    <main id="main">
-
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="container">
-
-                <h2>Khóa học</h2>
-
-            </div>
-        </section><!-- End Breadcrumbs -->
-        <!-- ======= Portfolio Details Section ======= -->
-        <section id="portfolio-details" class="portfolio-details">
-            <div class="container">
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-8">
-                        <div class="portfolio-details-slider swiper-container">
-                            <div class="swiper-wrapper align-items-center">
-
-                                <div class="swiper-slide">
-                                    <img src="@ViewBag.image" alt="">
-                                </div>
-
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="portfolio-info">
-                            <h3>@ViewBag.name</h3>
-                            <ul>
-                                <li><strong>Giáo viên</strong>: Admin</li>
-                                <li><strong>Số lượng video</strong>: {null}</li>
-                                <li><strong>Số lượng bài kiểm tra</strong>: {null}</li>
-                                <li> <a href="/learning/@ViewBag.courseId/@ViewBag.lessonId"><button class="btn btn-success">Vào học ngay</button></a></li>
-                            </ul>
-                        </div>
-                        <div class="portfolio-description">
-                            <h2>Nội dung khóa học:</h2>
-                            <p>
-                                @ViewBag.description
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Portfolio Details Section -->
-
-    </main><!-- End #main -->
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-info">
-                            <h3>E-Learning</h3>
-                            <p>
-                                <strong>Đại học FPT</strong> <br>
-                                KM29 Đại lộ Thăng Long - Khu CNC Hòa Lạc - Thạch Hòa - Thạch Thất - Hà Nội<br><br>
-                                <strong>SĐT:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="logo me-auto">
+            <h1>
+                <a href="/">E-Learning</a>
+            </h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
 
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li>
+                    <a class="nav-link scrollto " href="/#hero">Trang chủ</a>
+                </li>
+                <li>
+                    <a class="nav-link scrollto active" href="/course">Các khóa học</a>
+                </li>
+                <li>
+                    <a class="nav-link scrollto " href="/#team">Về chúng tôi</a>
+                </li>
+                <li>
+                    <a class="nav-link scrollto" href="/#contact">Thông tin liên hệ</a>
+                </li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        <div class="button-login-register">
+            @if ( Session["email"] == null ) {
+                <a class="nav-link scrollto" href="/login">Đăng nhập</a>
+                <a class="nav-link scrollto" href="/register">Đăng ký</a>
+            } else {
+                <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</a>
+                <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
+            }
+        </div>
+    </div>
+</header><!-- End Header -->
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
         <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>E-Learning - Team 3</span></strong>
+
+            <h2>Khóa học</h2>
+
+        </div>
+    </section><!-- End Breadcrumbs -->
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-8">
+                    <div class="portfolio-details-slider swiper-container">
+                        <div class="swiper-wrapper align-items-center">
+
+                            <div class="swiper-slide">
+                                <img src="@ViewBag.image" alt="">
+                            </div>
+
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="portfolio-info">
+                        <h3>@ViewBag.name</h3>
+                        <ul>
+                            <li><strong>Giáo viên</strong>: Admin</li>
+                            <li><strong>Số lượng video</strong>: @ViewBag.numberOfLesson</li>
+                            <li><strong>Số lượng bài kiểm tra</strong>: @ViewBag.numberOfQuiz</li>
+                            @if ( ViewBag.lessonId == -1 ) {
+                                <li>
+                                    <a href="#">
+                                        <button class="btn btn-secondary">Hiện chưa có bài học nào!</button>
+                                    </a>
+                                </li>
+                            } else {
+                                <li>
+                                    <a href="/learning/@ViewBag.courseId/@ViewBag.lessonId">
+                                        <button class="btn btn-success">Vào học ngay!</button>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="portfolio-description">
+                        <h2>Nội dung khóa học:</h2>
+                        <p>
+                            @ViewBag.description
+                        </p>
+                    </div>
+                </div>
+
             </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/ -->
+
+        </div>
+    </section><!-- End Portfolio Details Section -->
+
+</main><!-- End #main -->
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-info">
+                        <h3>E-Learning</h3>
+                        <p>
+                            <strong>Đại học FPT</strong> <br>
+                            KM29 Đại lộ Thăng Long - Khu CNC Hòa Lạc - Thạch Hòa - Thạch Thất - Hà Nội<br><br>
+                            <strong>SĐT:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                    </div>
+                </div>
             </div>
         </div>
-    </footer><!-- End Footer -->
+    </div>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright
+            <strong>
+                <span>E-Learning - Team 3</span>
+            </strong>
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/ -->
+        </div>
+    </div>
+</footer><!-- End Footer -->
 
-    <!-- Vendor JS Files -->
-    <script src="/Content/vendor/aos/aos.js"></script>
-    <script src="/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/Content/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="/Content/vendor/php-email-form/validate.js"></script>
-    <script src="/Content/vendor/swiper/swiper-bundle.min.js"></script>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
 
-    <!-- Template Main JS File -->
-    <script src="/Content/script/main.js"></script>
+<!-- Vendor JS Files -->
+<script src="/Content/vendor/aos/aos.js"></script>
+<script src="/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/Content/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/Content/vendor/php-email-form/validate.js"></script>
+<script src="/Content/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/Content/script/main.js"></script>
 
 </body>
 

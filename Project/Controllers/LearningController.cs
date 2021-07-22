@@ -19,18 +19,19 @@ namespace Project.Controllers
         public int courseID { get; set; }
         public int userID { get; set; }
         public bool watched { get; set; }
+        public string time { get; set; }
     }
     public class LearningController : Controller
     {
         private ProjectEntities db = new ProjectEntities();
         // GET: Learning
         [CheckSession]
-        public ActionResult Index(int courseId, int lessonId)
+        public ActionResult Index(string courseId, string lessonId)
         {
             int userId = Convert.ToInt32(Session["user_id"].ToString());
 
             var checkUserLearnLesson = from e in db.UserAndLessions
-                                       where e.UserID == userId && e.LessionID == lessonId
+                                       where e.UserID == userId && e.LessionID.ToString() == lessonId
                                        select e;
 
             //case if user have not learn this lesson before
@@ -42,7 +43,7 @@ namespace Project.Controllers
                     UserAndLession newUserAndLesson = new UserAndLession()
                     {
                         UserID = userId,
-                        LessionID = lessonId,
+                        LessionID = int.Parse(lessonId),
                         Watched = true
                     };
                     db.UserAndLessions.Add(newUserAndLesson);
@@ -58,7 +59,7 @@ namespace Project.Controllers
             //select watched lesson of user in course to a table
             var watchedLesson = from l in db.Lessions
                                 join ul in db.UserAndLessions on l.LessionID equals ul.LessionID
-                                where l.CourseID == courseId && ul.UserID == userId
+                                where l.CourseID.ToString() == courseId && ul.UserID == userId
                                 select new WatchLessonTable
                                 {
                                     lessonID = l.LessionID,
@@ -67,12 +68,13 @@ namespace Project.Controllers
                                     description = l.Description,
                                     courseID = l.CourseID,
                                     userID = ul.UserID,
-                                    watched = (bool)ul.Watched
+                                    watched = (bool)ul.Watched,
+                                    time = l.Time
                                 };
 
             //select unWatched lesson of user in course to another table
             var unWatchedLesson = from l in db.Lessions
-                                  where l.CourseID == courseId && !(from t in watchedLesson select t.lessonID).Contains(l.LessionID)
+                                  where l.CourseID.ToString() == courseId && !(from t in watchedLesson select t.lessonID).Contains(l.LessionID)
                                   select new WatchLessonTable
                                   {
                                       lessonID = l.LessionID,
@@ -81,13 +83,14 @@ namespace Project.Controllers
                                       description = l.Description,
                                       courseID = l.CourseID,
                                       userID = -1,
-                                      watched = false
+                                      watched = false,
+                                      time = l.Time
                                   };
             //union 2 table above we have result is a type of WatchLessonTable
             var result = watchedLesson.Union(unWatchedLesson).ToList();
 
             //get data in WatchLessonTable
-            var lessonInfor = from l in result where l.lessonID == lessonId select l;
+            var lessonInfor = from l in result where l.lessonID.ToString() == lessonId select l;
 
             //case when lesson not existed
             if (lessonInfor.ToList().Count == 0)
@@ -101,9 +104,10 @@ namespace Project.Controllers
             ViewBag.title = lessonInfor.ToList()[0].name;
 
             //get course name
-            var courseName = from c in db.Courses where c.CourseID == courseId select c;
+            var courseName = from c in db.Courses where c.CourseID.ToString() == courseId select c;
             ViewBag.courseName = courseName.ToList()[0].Name;
             ViewBag.courseID = courseId;
+            ViewBag.Time = lessonInfor.ToList()[0].time;
             //if all lesson in 1 course of 1 user is true
             //chuyen den trang quiz
             if (unWatchedLesson.ToList().Count == 0)
@@ -115,11 +119,11 @@ namespace Project.Controllers
             }
 
             UserAndCourse temp = new UserAndCourse();
-            temp.CourseID = courseId;
+            temp.CourseID = int.Parse(courseId);
             temp.UserID = userId;
 
             var selectTest = from userCourse in db.UserAndCourses
-                where userCourse.CourseID == courseId && userCourse.UserID == userId
+                where userCourse.CourseID.ToString() == courseId && userCourse.UserID == userId
                 select userCourse;
 
             if ( selectTest.ToList().Count == 0) {
@@ -129,6 +133,10 @@ namespace Project.Controllers
                 } catch ( Exception e ) {
                 }
             }
+
+            var checkQuiz = (from quiz in db.Quizs where quiz.CourseID.ToString() == courseId.Trim() select quiz).ToList();
+
+            ViewBag.hasQuiz = checkQuiz.Count != 0;
 
             return View(result);
         }
