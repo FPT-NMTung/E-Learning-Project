@@ -17,15 +17,15 @@ namespace Project
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "AdminAddQuiz",
-                url: "admin/quiz/{courseID}/add",
-                defaults: new { controller = "AdminQuiz", action = "QuizAdd" }
-            );
-
-            routes.MapRoute(
                 name: "QuizDetail",
                 url: "admin/quiz/{courseID}/{questionID}/detail",
                 defaults: new { controller = "AdminQuiz", action = "QuizDetail" }
+            );
+
+            routes.MapRoute(
+                name: "AdminAddQuiz",
+                url: "admin/quiz/{courseID}/add",
+                defaults: new { controller = "AdminQuiz", action = "QuizAdd" }
             );
 
 

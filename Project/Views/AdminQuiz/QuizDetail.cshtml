@@ -5,12 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/Content/vendor/aos/aos.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/Content/css/admin/index.css">
     <link rel="stylesheet" href="~/Content/css/admin/quiz.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,7 +59,7 @@
                 <div class="nav-bar">
                     <ul>
                         <li>
-                            <a href="/admin/login">
+                            <a href="/admin/logout">
                                 <div class="nav-bar-img">
                                     <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
                                 </div>
@@ -78,9 +74,18 @@
         </div>
         <div class="right-bar">
             <div class="heder-body">
-                <div class="header-content">
-                    Edit quiz
+                <div class="fix-width">
+                    <a href="/admin/quiz/@ViewBag.courseID">
+                        <div class="back-logo">
+                            <img src="https://img.icons8.com/material-sharp/35/000000/circled-chevron-left.png" />
+                            <span>Back</span>
+                        </div>
+                    </a>
                 </div>
+                <div class="header-content">
+                    <div>Quiz detail</div>
+                </div>
+                <div class="header-search"></div>
             </div>
             <div class="main-body">
                 @if (ViewBag.message == true)
