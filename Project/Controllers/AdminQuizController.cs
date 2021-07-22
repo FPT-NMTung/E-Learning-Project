@@ -35,6 +35,14 @@ namespace Project.Controllers
                                    quiz = q,
                                    quizQuestion = qq
                                };
+            if (listQuestion.Count() != 0)
+            {
+                var questionID = from e in listQuestion
+                                 where e.quiz.CourseID.ToString() == courseID
+                                 select e;
+
+                ViewBag.questionID = questionID.ToList()[0].quizQuestion.QuesID;
+            }
             //get courseID
             ViewBag.courseID = courseID;
             return View(listQuestion.ToList());
@@ -75,9 +83,9 @@ namespace Project.Controllers
                 || answer2.Trim().Equals(answer3.Trim()) || answer2.Trim().Equals(answer4.Trim()) || answer3.Trim().Equals(answer4.Trim()))
             {
                 TempData["message"] = false;
-                return RedirectToAction("QuizAdd", "AdminQuiz");
+                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
             }
-            
+
             var quizID = from e in db.Quizs where e.CourseID.ToString() == courseID select e;
             try
             {
@@ -119,12 +127,12 @@ namespace Project.Controllers
                 db.SaveChanges();
 
                 TempData["message"] = true;
-                return RedirectToAction("QuizAdd", "AdminQuiz");
+                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
             }
             catch (Exception)
             {
                 TempData["message"] = false;
-                return RedirectToAction("QuizAdd", "AdminQuiz");
+                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
             }
         }
 
@@ -137,7 +145,6 @@ namespace Project.Controllers
             var admin = from a in db.Admins where a.AdminID == adminID select a;
             ViewBag.adminName = admin.ToList()[0].Name;
             //ViewBag.courseID = courseID;
-
 
             var selectedQuestion = from q in db.Quizs
                                    join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
@@ -240,13 +247,13 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckSessionAdmin]
-        public ActionResult DeleteQuestion(int courseID,int questionID)
+        public ActionResult DeleteQuestion(int courseID, int questionID)
         {
             try
             {
                 var removeQuestion = (from e in db.QuizQuestions
-                              where e.QuesID == questionID
-                              select e).FirstOrDefault();
+                                      where e.QuesID == questionID
+                                      select e).FirstOrDefault();
 
                 var removeAnswer = from e in db.QuizQuestionAnswers
                                    where e.QuesID == questionID
@@ -264,7 +271,7 @@ namespace Project.Controllers
                     db.QuizQuestionAnswers.Remove(anser4);
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index", "AdminQuiz");
+                return RedirectToAction("Index", "AdminQuiz", new { courseID = courseID });
             }
             catch (Exception)
             {

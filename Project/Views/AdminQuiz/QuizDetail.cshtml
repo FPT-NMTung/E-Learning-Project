@@ -160,12 +160,13 @@
         $("#deleteButton").click(function () {
             $.post("/AdminQuiz/DeleteQuestion",
                 {
-                    courseID: "@ViewBag.courseID"
+                    courseID: "@ViewBag.courseID",
                     questionID: "@ViewBag.questionID"
                 },
                 function (data, status) {
                     if (status === "success") {
                         alert("Delete question successful!")
+                        location.replace("/admin/quiz/@ViewBag.courseID")
                     } else {
                         alert("Delete question fail!")
                     }

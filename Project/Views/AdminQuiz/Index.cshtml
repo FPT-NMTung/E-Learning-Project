@@ -113,19 +113,23 @@
                             @model List<Project.Controllers.ListQuiz>
                             @foreach (var item in Model)
                             {
-                                <tr class="row-user">
-                                    <td>
-                                        <h3>@item.quizQuestion.QuesID</h3>
-                                    </td>
-                                    <td class="description-lesson">
-                                        <p>
-                                            @item.quizQuestion.Question
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success" href="/admin/quiz/@item.quiz.CourseID/@item.quizQuestion.QuesID">Select</a>
-                                    </td>
-                                </tr>
+                            <tr class="row-user">
+                                <td>
+                                    <h3>@item.quizQuestion.QuesID</h3>
+                                </td>
+                                <td class="description-lesson">
+                                    <p>
+                                        @item.quizQuestion.Question
+                                    </p>
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" href="/admin/quiz/@item.quiz.CourseID/@item.quizQuestion.QuesID">Select</a>
+                                </td>
+                                @*<td>
+                                    <button id="deleteButton" class="btn btn-danger">Delete</button>
+                                </td>*@
+                                
+                            </tr>
                             }
 
                         </tbody>
@@ -135,5 +139,24 @@
         </div>
     </div>
 </body>
-
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#deleteButton").click(function () {
+            $.post("/AdminQuiz/DeleteQuestion",
+                {
+                    courseID: "@ViewBag.courseID",
+                    questionID: "@ViewBag.questionID"
+                },
+                function (data, status) {
+                    if (status === "success") {
+                        alert("Delete question successful!")
+                        //location.replace("admin/quiz/")
+                    } else {
+                        alert("Delete question fail!")
+                    }
+                });
+        });
+    });*@
+</script>
 </html>
