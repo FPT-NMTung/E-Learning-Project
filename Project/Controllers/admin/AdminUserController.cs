@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Project.Filters;
@@ -63,7 +64,7 @@ namespace Project.Controllers {
             }
 
             if ( name.Trim() == "" || email.Trim() == "" || phone.Trim() == "" ||
-                 address.Trim() == "" || gender.Trim() == "" ) {
+                 address.Trim() == "" || gender.Trim() == "" || !IsPhoneNumber(phone)) {
                 return RedirectToAction( "Index" );
             }
 
@@ -110,7 +111,11 @@ namespace Project.Controllers {
             TempData["isUpdate"] = true;
             return RedirectToAction( "Detail", id );
         }
-
+        //phone start with 0, after is 3/5/7/8/9 -> 8 number more
+        public static bool IsPhoneNumber(string number)
+        {
+            return Regex.IsMatch(number, @"(0[3|5|7|8|9])+([0-9]{8})\b");
+        }
         [HttpGet]
         [CheckSessionAdmin]
         public ActionResult Delete(string userid) {

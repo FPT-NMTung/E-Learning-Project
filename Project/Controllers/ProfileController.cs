@@ -135,6 +135,7 @@ namespace Project.Controllers
                 return RedirectToAction("EditProfile", "Profile");
             }
         }
+        //phone start with 0, after is 3/5/7/8/9 -> 8 number more
         public static bool IsPhoneNumber(string number)
         {
             return Regex.IsMatch(number, @"(0[3|5|7|8|9])+([0-9]{8})\b");
