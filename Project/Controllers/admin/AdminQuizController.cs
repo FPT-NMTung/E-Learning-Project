@@ -78,7 +78,7 @@ namespace Project.Controllers
                                    quizQuestion = qq
                                };*/
 
-            if (answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
+            if (question.Trim().Equals("") || answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
                 || answer1.Trim().Equals(answer2.Trim()) || answer1.Trim().Equals(answer3.Trim()) || answer1.Trim().Equals(answer4.Trim())
                 || answer2.Trim().Equals(answer3.Trim()) || answer2.Trim().Equals(answer4.Trim()) || answer3.Trim().Equals(answer4.Trim()))
             {
@@ -91,147 +91,112 @@ namespace Project.Controllers
 
             var listQuiz = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList();
 
-            if ( listQuiz.Count== 0) {
-                Quiz newQuiz = new Quiz() {
+            if (listQuiz.Count == 0)
+            {
+                Quiz newQuiz = new Quiz()
+                {
                     Name = "nmtung",
                     Description = "nmtung",
-                    CourseID = Convert.ToInt32( courseID.Trim() )
+                    CourseID = Convert.ToInt32(courseID.Trim())
                 };
 
-                db.Quizs.Add( newQuiz );
+                db.Quizs.Add(newQuiz);
                 db.SaveChanges();
 
-                var quizID = ( from e in db.Quizs where e.CourseID.ToString() == courseID select e ).ToList()[0].QuizID;
-
-                var checkQues = ( from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q ).ToList();
-
-                if ( checkQues.Count != 0 ) {
-                    TempData [ "message" ] = false;
-                    return RedirectToAction( "QuizAdd" , "AdminQuiz" , new { courseID = courseID } );
-                }
-
-                QuizQuestion newQuestion = new QuizQuestion() {
-                    Question = question.Trim() ,
-                    QuizID = quizID
-                };
-                db.QuizQuestions.Add( newQuestion );
-                db.SaveChanges();
-
-                var questionID = ( from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q ).ToList() [ 0 ].QuesID;
-
-                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
-                List<string> ans = new List<string>();
-                ans.Add( answer1 );
-                ans.Add( answer2 );
-                ans.Add( answer3 );
-                ans.Add( answer4 );
-
-
-                for ( int i = 0 ; i < 4 ; i++ ) {
-                    string temp1 = "ans" + ( i + 1 );
-
-                    list.Add( new QuizQuestionAnswer() {
-                        QuesID = questionID ,
-                        Answer = ans [ i ] ,
-                        IsTrue = temp1 == trueAns
-                    } );
-                }
-
-                db.QuizQuestionAnswers.AddRange( list );
-                db.SaveChanges();
-            } else {
-                int quizID = listQuiz[0].QuizID;
+                var quizID = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList()[0].QuizID;
 
                 var checkQues = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList();
-                
-                if ( checkQues.Count != 0) {
-                    TempData [ "message" ] = false;
-                    return RedirectToAction( "QuizAdd" , "AdminQuiz" , new { courseID = courseID } );
+
+                if (checkQues.Count != 0)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
                 }
 
-                QuizQuestion newQuestion = new QuizQuestion() {
+                QuizQuestion newQuestion = new QuizQuestion()
+                {
                     Question = question.Trim(),
                     QuizID = quizID
                 };
-                db.QuizQuestions.Add( newQuestion );
-                db.SaveChanges();
-
-                var questionID = ( from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q ).ToList()[0].QuesID;
-
-                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
-                List<string> ans = new List<string>();
-                ans.Add( answer1 );
-                ans.Add( answer2 );
-                ans.Add( answer3 );
-                ans.Add( answer4 );
-
-
-                for ( int i = 0; i < 4; i++) {
-                    string temp1 = "ans" + (i + 1);
-
-                    list.Add( new QuizQuestionAnswer() {
-                        QuesID = questionID,
-                        Answer = ans[i],
-                        IsTrue = temp1 == trueAns
-                    } );
-                }
-
-                db.QuizQuestionAnswers.AddRange( list );
-                db.SaveChanges();
-            }
-
-            TempData [ "message" ] = true;
-            return RedirectToAction( "QuizAdd" , "AdminQuiz" , new { courseID = courseID } );
-
-
-
-            /*
-            try
-            {
-                QuizQuestion newQuestion = new QuizQuestion();
-                // fields to be insert
-                newQuestion.Question = question.Trim();
-                newQuestion.QuizID = quizID[0].QuizID;
-                // executes the commands to implement the changes to the database
-                //add question
                 db.QuizQuestions.Add(newQuestion);
                 db.SaveChanges();
 
-                //add answer
-                var getQuestionID = (from e in db.QuizQuestions
-                                     orderby e.QuesID descending
-                                     select e).First();
+                var questionID = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList()[0].QuesID;
 
-                QuizQuestionAnswer newAnswer = new QuizQuestionAnswer();
+                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
+                List<string> ans = new List<string>();
+                ans.Add(answer1);
+                ans.Add(answer2);
+                ans.Add(answer3);
+                ans.Add(answer4);
 
-                newAnswer.QuesID = getQuestionID.QuesID;
-                newAnswer.IsTrue = trueAns.Equals("ans1") ? true : false;
-                newAnswer.Answer = answer1.Trim();
-                db.QuizQuestionAnswers.Add(newAnswer);
 
-                newAnswer.IsTrue = trueAns.Equals("ans2") ? true : false;
-                newAnswer.Answer = answer2.Trim();
-                db.QuizQuestionAnswers.Add(newAnswer);
+                for (int i = 0; i < 4; i++)
+                {
+                    string temp1 = "ans" + (i + 1);
+
+                    list.Add(new QuizQuestionAnswer()
+                    {
+                        QuesID = questionID,
+                        Answer = ans[i],
+                        IsTrue = temp1 == trueAns
+                    });
+                }
+
+                db.QuizQuestionAnswers.AddRange(list);
                 db.SaveChanges();
-
-                newAnswer.IsTrue = trueAns.Equals("ans3") ? true : false;
-                newAnswer.Answer = answer3.Trim();
-                db.QuizQuestionAnswers.Add(newAnswer);
-                db.SaveChanges();
-
-                newAnswer.IsTrue = trueAns.Equals("ans4") ? true : false;
-                newAnswer.Answer = answer4.Trim();
-                db.QuizQuestionAnswers.Add(newAnswer);
-                db.SaveChanges();
-
-                TempData["message"] = true;
-                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
             }
-            catch (Exception)
+            else
             {
-                TempData["message"] = false;
-                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
-            }*/
+                int quizID = listQuiz[0].QuizID;
+
+                var checkQues = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList();
+
+                if (checkQues.Count != 0)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
+                }
+
+                QuizQuestion newQuestion = new QuizQuestion()
+                {
+                    Question = question.Trim(),
+                    QuizID = quizID
+                };
+                db.QuizQuestions.Add(newQuestion);
+                db.SaveChanges();
+
+                var questionID = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList()[0].QuesID;
+
+                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
+                List<string> ans = new List<string>();
+                ans.Add(answer1);
+                ans.Add(answer2);
+                ans.Add(answer3);
+                ans.Add(answer4);
+
+
+                for (int i = 0; i < 4; i++)
+                {
+                    string temp1 = "ans" + (i + 1);
+
+                    list.Add(new QuizQuestionAnswer()
+                    {
+                        QuesID = questionID,
+                        Answer = ans[i],
+                        IsTrue = temp1 == trueAns
+                    });
+                }
+
+                db.QuizQuestionAnswers.AddRange(list);
+                db.SaveChanges();
+            }
+
+            TempData["message"] = true;
+            return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
+
+
+
         }
 
         [HttpGet]
@@ -294,8 +259,26 @@ namespace Project.Controllers
             {
                 return RedirectToAction("Index", "Error");
             }
+            //check question exist in db
+            var checkQues = (from qq in db.QuizQuestions
+                             join q in db.Quizs on qq.QuizID equals q.QuizID
+                             where qq.Question == question.Trim() && q.CourseID.ToString() == courseID
+                             select qq).ToList();
 
-            if (answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
+
+            if (checkQues.Count != 0)
+            {
+                //get questionId
+                if (checkQues[0].QuesID.ToString() != questionID)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+                }
+            }
+
+
+            //check duplicated answer
+            if (question.Trim().Equals("") || answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
                 || answer1.Trim().Equals(answer2.Trim()) || answer1.Trim().Equals(answer3.Trim()) || answer1.Trim().Equals(answer4.Trim())
                 || answer2.Trim().Equals(answer3.Trim()) || answer2.Trim().Equals(answer4.Trim()) || answer3.Trim().Equals(answer4.Trim()))
             {
@@ -360,6 +343,7 @@ namespace Project.Controllers
                 var anser2 = removeAnswer.ToList()[1];
                 var anser3 = removeAnswer.ToList()[2];
                 var anser4 = removeAnswer.ToList()[3];
+
                 if (removeQuestion != null && anser1 != null && anser2 != null && anser3 != null && anser4 != null)
                 {
                     db.QuizQuestions.Remove(removeQuestion);
@@ -368,6 +352,14 @@ namespace Project.Controllers
                     db.QuizQuestionAnswers.Remove(anser3);
                     db.QuizQuestionAnswers.Remove(anser4);
                     db.SaveChanges();
+                    int quizID = (from e in db.Quizs where e.CourseID == courseID select e).ToList()[0].QuizID;
+                    var checkRemainQuiz = from e in db.QuizQuestions where e.QuizID == quizID select e;
+                    if(checkRemainQuiz.ToList().Count == 0)
+                    {
+                        var removeQuiz = (from e in db.Quizs where e.QuizID == quizID select e).ToList()[0];
+                        db.Quizs.Remove(removeQuiz);
+                        db.SaveChanges();
+                    }
                 }
                 return RedirectToAction("Index", "AdminQuiz", new { courseID = courseID });
             }

@@ -28,11 +28,16 @@ namespace Project
                 defaults: new { controller = "AdminQuiz", action = "QuizAdd" }
             );
 
-
             routes.MapRoute(
                 name: "AdminQuiz",
                 url: "admin/quiz/{courseID}",
                 defaults: new { controller = "AdminQuiz", action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Admin search course",
+                url: "admin/course/search",
+                defaults: new { controller = "AdminCourse", action = "Search" }
             );
 
             routes.MapRoute(

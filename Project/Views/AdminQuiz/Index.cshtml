@@ -87,7 +87,7 @@
                     </a>
                 </div>
                 <div class="header-content">
-                    <div>List quiz</div>
+                    <div>List Quiz</div>
                 </div>
                 <div class="header-search"></div>
             </div>
@@ -98,49 +98,56 @@
                             <img src="https://img.icons8.com/ios-filled/50/75c44c/add--v1.png" />
                         </a>
                     </div>
+                    @model List<Project.Controllers.ListQuiz>
                     <table>
-                        <thead>
-                            <tr>
-                                <th class="thead thead-user">
-                                    <h3>
-                                        ID
-                                    </h3>
-                                </th>
-                                <th class="thead thead-course">
-                                    <h3>
-                                        Question
-                                    </h3>
-                                </th>
-                                <th class="thead thead-action">
-                                    <h3>
-                                        Actions
-                                    </h3>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @model List<Project.Controllers.ListQuiz>
-                            @foreach ( var item in Model ) {
-                                <tr class="row-user">
-                                    <td>
-                                        <h3>@item.quizQuestion.QuesID</h3>
-                                    </td>
-                                    <td class="description-lesson">
-                                        <p>
-                                            @item.quizQuestion.Question
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success" href="/admin/quiz/@item.quiz.CourseID/@item.quizQuestion.QuesID/detail">Select</a>
-                                    </td>
-                                    @*<td>
-                                            <button id="deleteButton" class="btn btn-danger">Delete</button>
-                                        </td>*@
-
+                        @if (Model.Count == 0)
+                        {
+                            <h5>There are no question in this Quiz!!!</h5>
+                        }
+                        else
+                        {
+                            <thead>
+                                <tr>
+                                    <th class="thead thead-user">
+                                        <h3>
+                                            ID
+                                        </h3>
+                                    </th>
+                                    <th class="thead thead-course">
+                                        <h3>
+                                            Question
+                                        </h3>
+                                    </th>
+                                    <th class="thead thead-action">
+                                        <h3>
+                                            Actions
+                                        </h3>
+                                    </th>
                                 </tr>
-                            }
+                            </thead>
+                            <tbody>
 
-                        </tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="row-user">
+                                        <td>
+                                            <h3>@item.quizQuestion.QuesID</h3>
+                                        </td>
+                                        <td class="description-lesson">
+                                            <p>
+                                                @item.quizQuestion.Question
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="/admin/quiz/@item.quiz.CourseID/@item.quizQuestion.QuesID/detail">Select</a>
+                                        </td>
+                                        @*<td>
+                                                <button id="deleteButton" class="btn btn-danger">Delete</button>
+                                            </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        }
                     </table>
                 </div>
             </div>

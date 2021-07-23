@@ -216,8 +216,6 @@ D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\roslyn\vbc.rsp
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe.config
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\Antlr3.Runtime.dll
-D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\EntityFramework.dll
-D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\EntityFramework.SqlServer.dll
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\Microsoft.Web.Infrastructure.dll
 D:\FPT\5-SUM2021\PRN292\Project\Dev_Project\Project\bin\Newtonsoft.Json.dll

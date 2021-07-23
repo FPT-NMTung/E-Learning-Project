@@ -403,6 +403,7 @@
     <Content Include="Views\AdminQuiz\Index.cshtml" />
     <Content Include="Views\AdminQuiz\QuizAdd.cshtml" />
     <Content Include="Views\AdminQuiz\QuizDetail.cshtml" />
+    <Content Include="Views\AdminCourse\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
