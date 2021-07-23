@@ -16,9 +16,9 @@
 
 ### II.Hướng dẫn chạy chương trình :
 #### Yêu cầu hệ thống :
- [- Visual Studio ](http://https://visualstudio.microsoft.com/downloads/ "- Visual Studio ")
+ [- Visual Studio ](https://visualstudio.microsoft.com/downloads/ "- Visual Studio ")
  
- [ - .NET Framework 4.7.2](http://https://dotnet.microsoft.com/download/dotnet-framework/net472 " - .NET Framework 4.7.2")
+ [ - .NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472 " - .NET Framework 4.7.2")
 
 #### Hướng dẫn chạy :
 ##### - B1 : Truy cập  https://github.com/FPT-NMTung/Dev_Project  -> Tải chương trình
