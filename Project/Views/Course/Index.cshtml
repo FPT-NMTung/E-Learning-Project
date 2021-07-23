@@ -34,166 +34,163 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex align-items-center">
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
 
-            <div class="logo me-auto">
-                <h1>
-                    <a href="#">E-Learning</a>
-                </h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav id="navbar" class="navbar order-last order-lg-0">
-                <ul>
-                    <li>
-                        <a class="nav-link scrollto " href="/#hero">Trang chủ</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto active" href="/course">Các khóa học</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto " href="/#team">Về chúng tôi</a>
-                    </li>
-                    <li>
-                        <a class="nav-link scrollto" href="/#contact">Thông tin liên hệ</a>
-                    </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-            <div class="button-login-register">
-                @if (Session["email"] == null)
-                {
-                    <a class="nav-link scrollto" href="/login">Đăng nhập</a>
-                    <a class="nav-link scrollto" href="/register">Đăng ký</a>
-                }
-                else
-                {
-                    <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</a>
-                    <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
-                }
-            </div>
+        <div class="logo me-auto">
+            <h1>
+                <a href="#">E-Learning</a>
+            </h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
-    </header><!-- End Header -->
 
-    <main id="main">
-
-        <!-- ======= Breadcrumbs ======= -->
-        <section id="breadcrumbs" class="breadcrumbs">
-            <div class="container">
-                <h2>Courses</h2>
-            </div>
-        </section><!-- End Breadcrumbs -->
-        @model Project.Controllers.CourseList
-        @{
-            //thêm 1 vòng if account log in ở ngoài
-            var tem1p = Model.courseJoin;
-            var video = Model.IdVideoList;
-            if (tem1p != null)
-            {
-                if (tem1p.ToList().Count() != 0)
-                {
-                    <section class="inner-page">
-                        <div class="container">
-                            <h4>Course Enrolled</h4>
-                            <div class="main-grid">
-                                @for (int i = 0; i < tem1p.Count; i++)
-                                {
-                                    <div class="card-course">
-                                        <img class="card-course-img"
-                                             src="@tem1p[i].Image" alt="">
-                                        <h3 class="title-course">@tem1p[i].Name</h3>
-                                        <p class="text-des">@tem1p[i].Description</p>
-                                        <a href="/learning/@tem1p[i].CourseID/@video[i]" class="btn btn-success btn-register-course">Vào học ngay</a>
-                                    </div>
-                                }
-                            </div>
-                            <hr>
-                        </div>
-                    </section>
-                }
+        <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+                <li>
+                    <a class="nav-link scrollto " href="/#hero">Trang chủ</a>
+                </li>
+                <li>
+                    <a class="nav-link scrollto active" href="/course">Các khóa học</a>
+                </li>
+                <li>
+                    <a class="nav-link scrollto " href="/#team">Về chúng tôi</a>
+                </li>
+                <li>
+                    <a class="nav-link scrollto" href="/#contact">Thông tin liên hệ</a>
+                </li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+        <div class="button-login-register">
+            @if ( Session["email"] == null ) {
+                <a class="nav-link scrollto" href="/login">Đăng nhập</a>
+                <a class="nav-link scrollto" href="/register">Đăng ký</a>
+            } else {
+                <a href="/profile" class="nav-link scrollto" style="margin: 0px">Hello @Session["name"]!</a>
+                <a class="nav-link scrollto" href="/logout">Đăng xuất</a>
             }
-        }
-        <section class="inner-page">
-            <div class="container">
-                @if ( tem1p != null && tem1p.Count != 0 ) {
-                    <h4>Other course</h4>
-                }
-                <div class="main-grid">
-                    @{
-                        var temp = Model.course;
-                    }
-                    @foreach ( var el in temp ) {
-                        <div class="card-course">
-                            <img class="card-course-img"
-                                 src="@el.Image" alt="">
-                            <h3 class="title-course">@el.Name</h3>
-                            <p class="text-des">@el.Description</p>
+        </div>
+    </div>
+</header><!-- End Header -->
 
-                            <a href="/course/@el.CourseID" class="btn btn-primary btn-register-course">Xem chi tiết</a>
-                        </div>
-                    }
-                </div>
-            </div>
-        </section>
+<main id="main">
 
-    </main><!-- End #main -->
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-info">
-                            <h3>E-Learning</h3>
-                            <p>
-                                <strong>Đại học FPT</strong> <br>
-                                KM29 Đại lộ Thăng Long - Khu CNC Hòa Lạc - Thạch Hòa - Thạch Thất - Hà Nội<br><br>
-                                <strong>SĐT:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@example.com<br>
-                            </p>
-
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+            <h2>Courses</h2>
+        </div>
+    </section><!-- End Breadcrumbs -->
+    @model Project.Controllers.CourseList
+    @{
+        //thêm 1 vòng if account log in ở ngoài
+        var tem1p = Model.courseJoin;
+        var video = Model.IdVideoList;
+        if ( tem1p != null ) {
+            if ( tem1p.ToList().Count() != 0 ) {
+                <section class="inner-page">
+                    <div class="container">
+                        <h4>Các khoá học đã đăng ký</h4>
+                        <div class="main-grid">
+                            @for ( int i = 0; i < tem1p.Count; i++ ) {
+                                <div class="card-course">
+                                    <img class="card-course-img"
+                                         src="@tem1p[i].Image" alt="">
+                                    <h3 class="title-course">@tem1p[i].Name</h3>
+                                    <p class="text-des">@tem1p[i].Description</p>
+                                    <a href="/register/@tem1p[i].CourseID" class="btn btn-success btn-register-course">Vào học ngay</a>
+                                </div>
+                            }
                         </div>
                     </div>
-
-                </div>
-            </div>
-        </div>
-
+                </section>
+            }
+        }
+    }
+    <section class="inner-page">
         <div class="container">
-            <div class="copyright">
-                &copy; Copyright
-                <strong>
-                    <span>E-Learning - Team 3</span>
-                </strong>. All Rights Reserved
+            @{
+                var temp = Model.course;
+            }
+            @if ( tem1p != null && tem1p.Count != 0 ) {
+                if ( temp.Count != 0 ) {
+                    <hr>
+                    <h4>Các khoá học khác</h4>
+                }
+            }
+            <div class="main-grid">
+
+                @foreach ( var el in temp ) {
+                    <div class="card-course">
+                        <img class="card-course-img"
+                             src="@el.Image" alt="">
+                        <h3 class="title-course">@el.Name</h3>
+                        <p class="text-des">@el.Description</p>
+
+                        <a href="/course/@el.CourseID" class="btn btn-primary btn-register-course">Xem chi tiết</a>
+                    </div>
+                }
             </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/ -->
+        </div>
+    </section>
+
+</main><!-- End #main -->
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-info">
+                        <h3>E-Learning</h3>
+                        <p>
+                            <strong>Đại học FPT</strong> <br>
+                            KM29 Đại lộ Thăng Long - Khu CNC Hòa Lạc - Thạch Hòa - Thạch Thất - Hà Nội<br><br>
+                            <strong>SĐT:</strong> +1 5589 55488 55<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+
+                    </div>
+                </div>
 
             </div>
         </div>
-    </footer><!-- End Footer -->
+    </div>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright
+            <strong>
+                <span>E-Learning - Team 3</span>
+            </strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/ -->
 
-    <!-- Vendor JS Files -->
-    <script src="/Content/vendor/aos/aos.js"></script>
-    <script src="/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/Content/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="/Content/vendor/php-email-form/validate.js"></script>
-    <script src="/Content/vendor/swiper/swiper-bundle.min.js"></script>
+        </div>
+    </div>
+</footer><!-- End Footer -->
 
-    <!-- Template Main JS File -->
-    <script src="/Content/script/main.js"></script>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Vendor JS Files -->
+<script src="/Content/vendor/aos/aos.js"></script>
+<script src="/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/Content/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/Content/vendor/php-email-form/validate.js"></script>
+<script src="/Content/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/Content/script/main.js"></script>
 
 </body>
 

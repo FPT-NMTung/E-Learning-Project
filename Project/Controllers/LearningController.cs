@@ -25,10 +25,27 @@ namespace Project.Controllers
     {
         private ProjectEntities db = new ProjectEntities();
         // GET: Learning
+        [HttpGet]
         [CheckSession]
         public ActionResult Index(string courseId, string lessonId)
         {
+            if ( courseId == null || lessonId == null) {
+                return RedirectToAction( "Index", "Error" );
+            }
+
+            if ( courseId.Trim() == "" || lessonId.Trim() == "") {
+                return RedirectToAction( "Index" , "Error" );
+            }
+
             int userId = Convert.ToInt32(Session["user_id"].ToString());
+
+            var temp = (from unc in db.UserAndCourses
+                where unc.CourseID.ToString() == courseId.Trim() && unc.UserID == userId
+                select unc).ToList();
+
+            if (temp.Count == 0) {
+                return Redirect($"/course/{courseId.Trim()}");
+            }
 
             var checkUserLearnLesson = from e in db.UserAndLessions
                                        where e.UserID == userId && e.LessionID.ToString() == lessonId
@@ -118,7 +135,7 @@ namespace Project.Controllers
                 ViewBag.doneCourse = false; 
             }
 
-            UserAndCourse temp = new UserAndCourse();
+            /*UserAndCourse temp = new UserAndCourse();
             temp.CourseID = int.Parse(courseId);
             temp.UserID = userId;
 
@@ -132,7 +149,7 @@ namespace Project.Controllers
                     db.SaveChanges();
                 } catch ( Exception e ) {
                 }
-            }
+            }*/
 
             var checkQuiz = (from quiz in db.Quizs where quiz.CourseID.ToString() == courseId.Trim() select quiz).ToList();
 

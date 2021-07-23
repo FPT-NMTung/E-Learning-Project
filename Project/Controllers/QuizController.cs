@@ -15,6 +15,8 @@ namespace Project.Controllers {
         [ HttpGet ]
         [ CheckSession ]
         public ActionResult Index(string courseId) {
+            
+
             int userID = Convert.ToInt32( Session["user_id"].ToString() );
 
             var numberLessonLearned = (from lesson in db.Lessions
@@ -55,6 +57,9 @@ namespace Project.Controllers {
 
             ViewBag.listQuestion = String.Join( "-", t.ToArray() );
             ViewBag.quizId = QuizID;
+            ViewBag.NameCourse = (from course in db.Courses
+                where course.CourseID.ToString() == courseId.Trim()
+                select course).ToList()[0].Name;
 
             return View( tempData.ToList() );
         }

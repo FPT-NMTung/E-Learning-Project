@@ -151,6 +151,12 @@ namespace Project
             );
 
             routes.MapRoute(
+                name: "Learning register" ,
+                url: "register/{courseid}" ,
+                defaults: new { controller = "Course" , action = "Register" }
+            );
+
+            routes.MapRoute(
                 name: "EditProfile",
                 url: "profile/edit",
                 defaults: new { controller = "Profile", action = "EditProfile" }         
