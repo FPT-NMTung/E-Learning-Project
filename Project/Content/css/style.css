@@ -13,6 +13,20 @@
     row-gap: 30px;
 }
 
+.contain-image {
+    width: 100%; /*Use this to control width of the parent container, hence the image*/
+    overflow: hidden;
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contain-image > img {
+    width: 150%; /*Scales image to 150% width of parent container*/
+}
+
 .card-course {
     padding: 10px;
     border-radius: 10px;
@@ -36,6 +50,12 @@
     font-size: 20px;
     font-weight: bold;
     margin: 10px 0px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 
 .btn-register-course {

@@ -75,6 +75,7 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckSessionAdmin]
+        [ValidateInput( false )]
         public ActionResult AddQuestion(string courseID, string question, string answer1, string answer2, string answer3, string answer4,
                                          string trueAns)
         {
@@ -262,6 +263,7 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckSessionAdmin]
+        [ValidateInput( false )]
         public ActionResult EditQuestion(string courseID, string questionID, string question, string answer1, string answer2, string answer3, string answer4,
                                          string trueAns)
         {

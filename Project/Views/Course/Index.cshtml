@@ -96,8 +96,10 @@
                         <div class="main-grid">
                             @for ( int i = 0; i < tem1p.Count; i++ ) {
                                 <div class="card-course">
-                                    <img class="card-course-img"
-                                         src="@tem1p[i].Image" alt="">
+                                    <div class="contain-image">
+                                        <img class="card-course-img"
+                                             src="@tem1p[i].Image" alt="">
+                                    </div>
                                     <h3 class="title-course">@tem1p[i].Name</h3>
                                     <p class="text-des">@tem1p[i].Description</p>
                                     <a href="/register/@tem1p[i].CourseID" class="btn btn-success btn-register-course">Vào học ngay</a>
@@ -123,16 +125,18 @@
             <div class="main-grid">
 
                 @foreach ( var el in temp ) {
-                    <div class="card-course">
+                <div class="card-course">
+                    <div class="contain-image">
                         <img class="card-course-img"
                              src="@el.Image" alt="">
+                    </div>
                         <h3 class="title-course">@el.Name</h3>
                         <p class="text-des">@el.Description</p>
 
                         <a href="/course/@el.CourseID" class="btn btn-primary btn-register-course">Xem chi tiết</a>
                     </div>
-                }
-            </div>
+                    }
+                </div>
         </div>
     </section>
 

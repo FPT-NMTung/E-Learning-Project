@@ -15,8 +15,6 @@ namespace Project.Controllers {
         [ HttpGet ]
         [ CheckSession ]
         public ActionResult Index(string courseId) {
-            
-
             int userID = Convert.ToInt32( Session["user_id"].ToString() );
 
             var numberLessonLearned = (from lesson in db.Lessions
