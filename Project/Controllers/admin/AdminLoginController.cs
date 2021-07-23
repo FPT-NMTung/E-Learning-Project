@@ -12,6 +12,7 @@ namespace Project.Controllers {
 
         [ HttpGet ]
         [ CheckSessionAdmin ]
+        [ CheckNotSession ]
         public ActionResult Home() {
             return RedirectToAction( "Index", "AdminUser" );
         }
@@ -19,6 +20,7 @@ namespace Project.Controllers {
         // GET: AdminLogin
         [ HttpGet ]
         [ CheckNotSessionAdmin ]
+        [ CheckNotSession ]
         public ActionResult Index() {
             ViewBag.isLogged = TempData["isLogged"];
             TempData.Clear();
@@ -27,8 +29,23 @@ namespace Project.Controllers {
 
         [ HttpPost ]
         [ CheckNotSessionAdmin ]
+        [ CheckNotSession ]
         public ActionResult Login(string email, string password) {
-            var temp = (from admin in db.Admins where admin.Email == email && admin.Password == password select admin)
+            if ( email == null || password == null ) {
+                TempData["isLogged"] = false;
+
+                return RedirectToAction( "Index" );
+            }
+
+            if ( email.Trim() == "" || password.Trim() == "" ) {
+                TempData["isLogged"] = false;
+
+                return RedirectToAction( "Index" );
+            }
+
+            var temp = (from admin in db.Admins
+                    where admin.Email == email.Trim() && admin.Password == password.Trim()
+                    select admin)
                 .ToList();
 
             if ( temp.Count != 0 ) {
@@ -45,6 +62,7 @@ namespace Project.Controllers {
 
         [ HttpGet ]
         [ CheckSessionAdmin ]
+        [ CheckNotSession ]
         public ActionResult Logout() {
             Session.Clear();
 

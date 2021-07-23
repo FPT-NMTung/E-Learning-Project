@@ -84,15 +84,15 @@ namespace Project.Controllers
         public ActionResult UpdateCourse(int id, string name, string description, string image)
         {
             //course name cannot duplicate
-            var checkExisted = from e in db.Courses
-                               where e.Name == name
+            /*var checkExisted = from e in db.Courses
+                               where e.Name == name.Trim()
                                select e;
 
             if (checkExisted.ToList().Count != 0)
             {
                 TempData["message"] = false;
                 return RedirectToAction("CourseDetail", "AdminCourse", new { courseID = id });
-            }
+            }*/
             //case when user input only space
             if (name.Trim().Equals("") || description.Trim().Equals("") || image.Trim().Equals(""))
             {

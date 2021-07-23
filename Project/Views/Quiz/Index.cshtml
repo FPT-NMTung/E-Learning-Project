@@ -50,7 +50,7 @@
             var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
         }
         <div class="header-quiz">
-            <p class="quiz-title">Course: Fundamentals of Network Communication</p>
+            <p class="quiz-title">Khoá học: @ViewBag.NameCourse</p>
             <div class="row">
                 <div class="col-md-12">
                     <div class="time-countdown"> 
@@ -75,11 +75,9 @@
                     {
                         count = count + 1;
                     }
-
-
                     <div class="quiz">
                         <div class="quiz-question">
-                            <p class="quiz-ques-number">Question @count</p>
+                            <p class="quiz-ques-number">Câu hỏi @count</p>
                             <p class="quiz-ques-context">
                                 @element.Question
                             </p>
@@ -90,10 +88,10 @@
                                 string name = "ques" + element.QuesID;
 
                                 <label for="@element.QuesID-@ansElement.AnsID">
-                                    <liv class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
+                                    <div class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
                                         <input type="radio" value="@ansElement.AnsID" name="@name" id="@element.QuesID-@ansElement.AnsID">
                                         @ansElement.Answer
-                                    </liv>
+                                    </div>
                                 </label>
                             }
 
