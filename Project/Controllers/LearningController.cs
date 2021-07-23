@@ -25,6 +25,7 @@ namespace Project.Controllers
     {
         private ProjectEntities db = new ProjectEntities();
         // GET: Learning
+        [HttpGet]
         [CheckSession]
         public ActionResult Index(string courseId, string lessonId)
         {

@@ -28,7 +28,6 @@ namespace Project
                 defaults: new { controller = "AdminQuiz", action = "QuizAdd" }
             );
 
-
             routes.MapRoute(
                 name: "AdminQuiz",
                 url: "admin/quiz/{courseID}",
@@ -36,9 +35,9 @@ namespace Project
             );
 
             routes.MapRoute(
-            name: "Admin search course",
-            url: "admin/course/search",
-            defaults: new { controller = "AdminCourse", action = "Search" }
+                name: "Admin search course",
+                url: "admin/course/search",
+                defaults: new { controller = "AdminCourse", action = "Search" }
             );
 
             routes.MapRoute(
