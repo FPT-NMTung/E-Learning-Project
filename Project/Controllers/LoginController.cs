@@ -37,7 +37,7 @@ namespace Project.Controllers {
                 return RedirectToAction( "Index", "Login" );
             }
 
-            var result = from e in db.Users where e.Email == email.Trim() && e.Password == password.Trim() select e;
+            var result = from e in db.Users where (e.Email == email.Trim() || e.Username == email.Trim()) && e.Password == password.Trim() select e;
 
             if ( result.ToList().Count != 0 ) {
                 Session["email"] = result.ToList()[0].Email;
@@ -90,11 +90,6 @@ namespace Project.Controllers {
             var match = Regex.Match( name,
                 "[`~!@#$%^&*()_+\\-=\\[\\]\\{\\}\\|;:\'\",./<>?0-9]" );
             if (match.Success) {
-                TempData [ "isCreated" ] = false;
-                return RedirectToAction( "Register" , "Login" ); }
-            match = Regex.Match( address ,
-                "[`~!@#$%^&*()_+\\-=\\[\\]\\{\\}\\|;:\'\",./<>?0-9]" );
-            if ( match.Success ) {
                 TempData [ "isCreated" ] = false;
                 return RedirectToAction( "Register" , "Login" ); }
             match = Regex.Match( username ,

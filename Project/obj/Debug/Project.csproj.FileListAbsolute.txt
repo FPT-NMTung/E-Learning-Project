@@ -466,8 +466,6 @@ D:\Sum2021\Dev_Project\Project\bin\roslyn\vbc.rsp
 D:\Sum2021\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe
 D:\Sum2021\Dev_Project\Project\bin\roslyn\VBCSCompiler.exe.config
 D:\Sum2021\Dev_Project\Project\bin\Antlr3.Runtime.dll
-D:\Sum2021\Dev_Project\Project\bin\EntityFramework.dll
-D:\Sum2021\Dev_Project\Project\bin\EntityFramework.SqlServer.dll
 D:\Sum2021\Dev_Project\Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Sum2021\Dev_Project\Project\bin\Microsoft.Web.Infrastructure.dll
 D:\Sum2021\Dev_Project\Project\bin\Newtonsoft.Json.dll

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Project.Filters;
@@ -22,6 +23,10 @@ namespace Project.Controllers {
         [ HttpPost ]
         [ CheckSessionAdmin ]
         public ActionResult Search(string s) {
+            if ( s == null || s.Trim() == "") {
+                return RedirectToAction( "Index" );
+            }
+
             var result = (from user in db.Users where user.Name.Contains( s.Trim() ) select user).ToList();
 
             return View( result );
@@ -69,6 +74,13 @@ namespace Project.Controllers {
 
             int id = Convert.ToInt32( userid );
             var result = db.Users.First( user => (user.UserID == id) );
+
+            var match = Regex.Match( name ,
+                "[`~!@#$%^&*()_+\\-=\\[\\]\\{\\}\\|;:\'\",./<>?0-9]" );
+            if ( match.Success ) {
+                TempData [ "isUpdate" ] = false;
+                return RedirectToAction( "Detail" , id );
+            }
 
             if ( result == null ) {
                 return RedirectToAction( "Index" );

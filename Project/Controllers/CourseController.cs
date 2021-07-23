@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Web;
 using System.Web.Mvc;
+using Project.Filters;
 using Project.Models;
 
 namespace Project.Controllers {
@@ -52,16 +53,16 @@ namespace Project.Controllers {
                     }
                 }
 
-                foreach ( var el in courseIdList ) {
+                /*foreach ( var el in courseIdList ) {
                     var temp
                         = (from lesson in db.Lessions where lesson.CourseID == el select lesson).ToList()[0].LessionID;
                     tempList.Add( temp );
-                }
+                }*/
 
                 CourseList list = new CourseList();
                 list.course = tempCourses;
                 list.courseJoin = courseJoin;
-                list.IdVideoList = tempList;
+                /*list.IdVideoList = tempList;*/
 
                 return View( list );
             }
@@ -83,7 +84,7 @@ namespace Project.Controllers {
             var temp
                 = (from lesson in db.Lessions where lesson.CourseID.ToString() == id select lesson).ToList();
 
-            
+
             if ( temp.ToList().Count == 0 ) {
                 ViewBag.lessonId = -1;
             } else {
@@ -98,6 +99,47 @@ namespace Project.Controllers {
             ViewBag.numberOFQuiz = numberOFQuiz;
 
             return View();
+        }
+
+        [ HttpGet ]
+        [ CheckSession ]
+        public ActionResult Register(string courseid) {
+            if ( courseid == null ) {
+                return RedirectToAction( "Index" );
+            }
+
+            if ( courseid.Trim() == "" ) {
+                return RedirectToAction( "Index" );
+            }
+
+            int userId = Convert.ToInt32( Session["user_id"] );
+            int courseID = Convert.ToInt32( courseid.Trim() );
+
+            var check
+                = (from unc in db.UserAndCourses where unc.CourseID == courseID && userId == unc.UserID select unc)
+                .ToList();
+
+            if ( check.Count == 0 ) {
+                UserAndCourse temp = new UserAndCourse() {
+                    CourseID = courseID,
+                    UserID = userId
+                };
+
+                db.UserAndCourses.Add( temp );
+                db.SaveChanges();
+            }
+            // get first lesson id
+            // go to learning page
+
+            var listLesson = (from lesson in db.Lessions where lesson.CourseID == courseID select lesson).ToList();
+
+            if (listLesson.Count == 0) {
+                return RedirectToAction( "Index" );
+            }
+
+            int lessonId = listLesson[0].LessionID;
+
+            return Redirect( $"/learning/{courseID}/{lessonId}" );
         }
     }
 }

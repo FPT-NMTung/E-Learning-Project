@@ -16,7 +16,25 @@ namespace Project
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // route for admin
+            routes.MapRoute(
+                name: "QuizDetail",
+                url: "admin/quiz/{courseID}/{questionID}/detail",
+                defaults: new { controller = "AdminQuiz", action = "QuizDetail" }
+            );
+
+            routes.MapRoute(
+                name: "AdminAddQuiz",
+                url: "admin/quiz/{courseID}/add",
+                defaults: new { controller = "AdminQuiz", action = "QuizAdd" }
+            );
+
+
+            routes.MapRoute(
+                name: "AdminQuiz",
+                url: "admin/quiz/{courseID}",
+                defaults: new { controller = "AdminQuiz", action = "Index" }
+            );
+
             routes.MapRoute(
                 name: "AdminAddCourse",
                 url: "admin/course/add",
@@ -130,6 +148,12 @@ namespace Project
                 name: "Learning" ,
                 url: "learning/{courseId}/{lessonId}",
                 defaults: new { controller = "Learning" , action = "Index" }
+            );
+
+            routes.MapRoute(
+                name: "Learning register" ,
+                url: "register/{courseid}" ,
+                defaults: new { controller = "Course" , action = "Register" }
             );
 
             routes.MapRoute(

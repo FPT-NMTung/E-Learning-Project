@@ -77,13 +77,17 @@
     <div class="right-bar">
         <div class="heder-body">
             <div class="fix-width">
+                <a href="/admin/user">
+                    <div class="back-logo">
+                        <img src="https://img.icons8.com/material-sharp/35/000000/circled-chevron-left.png" />
+                        <span>Back</span>
+                    </div>
+                </a>
             </div>
             <div class="header-content">
-                Edit user
+                <div>Edit user</div>
             </div>
-            <div class="header-search">
-                
-            </div>
+            <div class="header-search"></div>
         </div>
         <div class="main-body">
             <div class="user-detail">
@@ -95,7 +99,7 @@
                         </div>
                     } else {
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            Changes have not been saved!!! because email or phone already exists
+                            Changes have not been saved!!! because email, phone already exists or input wrong format
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     }
@@ -106,7 +110,7 @@
                             <div class="form-main">
                                 <div>
                                     <label class="margin-right-lable" for="id">ID user: </label>
-                                    <input class="input-margin" type="text" value="@Model.UserID" id="id" disabled>
+                                    <input class="input-margin" type="text" value="@Model.UserID" id="id" readonly>
                                 </div>
                                 <div>
                                     <label class="margin-right-lable" for="name">Name: </label>
@@ -114,11 +118,11 @@
                                 </div>
                                 <div>
                                     <label class="margin-right-lable" for="email">Email: </label>
-                                    <input class="input-margin" type="text" name="email" id="email" value="@Model.Email" required>
+                                    <input class="input-margin" type="email" name="email" id="email" value="@Model.Email" required>
                                 </div>
                                 <div>
                                     <label class="margin-right-lable" for="phone">Phone: </label>
-                                    <input class="input-margin" type="text" name="phone" id="phone" value="@Model.PhoneNumber" required>
+                                    <input class="input-margin" type="number" name="phone" id="phone" value="@Model.PhoneNumber" required>
                                 </div>
                                 <div>
                                     <label class="margin-right-lable" for="address">Address: </label>

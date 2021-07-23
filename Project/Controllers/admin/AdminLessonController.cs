@@ -71,12 +71,24 @@ namespace Project.Controllers.admin {
                 return Redirect( $"/admin/lesson/{courseid}/add" );
             }
 
+            int hour = Convert.ToInt32( time ) / 3600;
+            int minute = ( Convert.ToInt32( time ) % 3600 ) / 60;
+            int second = Convert.ToInt32( time ) % 60;
+
+            string resultTime = "";
+
+            if ( hour == 0 ) {
+                resultTime = $"{minute}:{second}";
+            } else {
+                resultTime = $"{hour}:{minute}:{second}";
+            }
+
             Lession newLession = new Lession() {
                 CourseID = Convert.ToInt32( courseid ),
                 Name = name.Trim(),
                 Video = id.Trim(),
                 Description = description.Trim(),
-                Time = time.Trim()
+                Time = resultTime
             };
 
             try {

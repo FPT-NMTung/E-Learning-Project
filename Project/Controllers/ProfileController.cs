@@ -91,10 +91,17 @@ namespace Project.Controllers
         [CheckSession]
         public ActionResult EditUserProfile(string name, string gender, string phone, string address)
         {
+            var match = Regex.Match( name ,
+                "[`~!@#$%^&*()_+\\-=\\[\\]\\{\\}\\|;:\'\",./<>?0-9]" );
+            if ( match.Success ) {
+                TempData [ "infor" ] = false;
+                return RedirectToAction( "EditProfile" , "Profile" );
+            }
+
             int id = Convert.ToInt32(Session["user_id"].ToString());
             var checkPhone = from e in db.Users
                              where e.UserID == id && e.PhoneNumber == phone
-                             select e;           
+                             select e;
 
             if (checkPhone.ToList().Count == 0)
             {
