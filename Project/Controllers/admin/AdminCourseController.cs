@@ -31,8 +31,27 @@ namespace Project.Controllers
                              {
                                  course = c
                              };
-            return View(listCourse);
+            return View(listCourse.ToList());
 
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        public ActionResult Search(string s)
+        {
+            //get admin name
+            int adminID = Convert.ToInt32(Session["admin_id"].ToString());
+
+            var admin = from a in db.Admins where a.AdminID == adminID select a;
+            ViewBag.adminName = admin.ToList()[0].Name;
+
+            var listCourse = from c in db.Courses
+                             where c.Name.Contains(s.Trim())
+                             select new ListCourse
+                             {
+                                 course = c
+                             };
+            return View(listCourse.ToList());
         }
 
         [HttpGet]

@@ -36,6 +36,12 @@ namespace Project
             );
 
             routes.MapRoute(
+            name: "Admin search course",
+            url: "admin/course/search",
+            defaults: new { controller = "AdminCourse", action = "Search" }
+            );
+
+            routes.MapRoute(
                 name: "AdminAddCourse",
                 url: "admin/course/add",
                 defaults: new { controller = "AdminCourse", action = "CourseAdd" }
