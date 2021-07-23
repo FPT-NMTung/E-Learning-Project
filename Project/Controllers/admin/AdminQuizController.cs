@@ -343,6 +343,7 @@ namespace Project.Controllers
                 var anser2 = removeAnswer.ToList()[1];
                 var anser3 = removeAnswer.ToList()[2];
                 var anser4 = removeAnswer.ToList()[3];
+
                 if (removeQuestion != null && anser1 != null && anser2 != null && anser3 != null && anser4 != null)
                 {
                     db.QuizQuestions.Remove(removeQuestion);
@@ -351,6 +352,14 @@ namespace Project.Controllers
                     db.QuizQuestionAnswers.Remove(anser3);
                     db.QuizQuestionAnswers.Remove(anser4);
                     db.SaveChanges();
+                    int quizID = (from e in db.Quizs where e.CourseID == courseID select e).ToList()[0].QuizID;
+                    var checkRemainQuiz = from e in db.QuizQuestions where e.QuizID == quizID select e;
+                    if(checkRemainQuiz.ToList().Count == 0)
+                    {
+                        var removeQuiz = (from e in db.Quizs where e.QuizID == quizID select e).ToList()[0];
+                        db.Quizs.Remove(removeQuiz);
+                        db.SaveChanges();
+                    }
                 }
                 return RedirectToAction("Index", "AdminQuiz", new { courseID = courseID });
             }
