@@ -111,9 +111,7 @@
                     <div class="portfolio-info">
                         <h3>@ViewBag.name</h3>
                         <ul>
-                            <li><strong>Giáo viên</strong>: Admin</li>
-                            <li><strong>Số lượng video</strong>: @ViewBag.numberOfLesson</li>
-                            <li><strong>Số lượng bài kiểm tra</strong>: @ViewBag.numberOfQuiz</li>
+                            <li><strong>Số lượng bài học</strong>: @ViewBag.numberOfLesson</li>
                             @if ( ViewBag.lessonId == -1 ) {
                                 <li>
                                     <a href="#">
@@ -123,7 +121,7 @@
                             } else {
                                 <li>
                                     <a href="/register/@ViewBag.courseId">
-                                        <button class="btn btn-success">Vào học ngay!</button>
+                                        <button class="btn btn-success">Vào học ngay</button>
                                     </a>
                                 </li>
                             }
@@ -131,7 +129,7 @@
                     </div>
                     <div class="portfolio-description">
                         <h2>Nội dung khóa học:</h2>
-                        <p>
+                        <p style="white-space: pre-line">
                             @ViewBag.description
                         </p>
                     </div>

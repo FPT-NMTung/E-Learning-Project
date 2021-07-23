@@ -39,6 +39,10 @@ namespace Project.Controllers
         [CheckSessionAdmin]
         public ActionResult Search(string s)
         {
+            if ( s  == null || s.Trim() == "") {
+                return RedirectToAction( "Index" );
+            }
+
             //get admin name
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
 

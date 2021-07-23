@@ -22,6 +22,15 @@ namespace Project.Controllers
         [CheckSessionAdmin]
         public ActionResult Index(string courseID)
         {
+            if ( courseID  == null || courseID.Trim() == "") {
+                return RedirectToAction( "Index" , "AdminCourse" );
+            }
+
+            var checkttt = (from course in db.Courses where course.CourseID.ToString() == courseID.Trim() select course).ToList();
+            if ( checkttt.Count  == 0) {
+                return RedirectToAction( "Index" , "AdminCourse" );
+            }
+
             //get admin name
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
             var admin = from a in db.Admins where a.AdminID == adminID select a;
@@ -85,9 +94,6 @@ namespace Project.Controllers
                 TempData["message"] = false;
                 return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
             }
-
-
-
 
             var listQuiz = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList();
 
@@ -170,10 +176,10 @@ namespace Project.Controllers
 
                 List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
                 List<string> ans = new List<string>();
-                ans.Add(answer1);
-                ans.Add(answer2);
-                ans.Add(answer3);
-                ans.Add(answer4);
+                ans.Add(answer1.Trim());
+                ans.Add(answer2.Trim());
+                ans.Add(answer3.Trim());
+                ans.Add(answer4.Trim());
 
 
                 for (int i = 0; i < 4; i++)
@@ -203,6 +209,21 @@ namespace Project.Controllers
         [CheckSessionAdmin]
         public ActionResult QuizDetail(string courseID, string questionID)
         {
+            if (courseID == null || questionID == null) {
+                return RedirectToAction( "Index", "Error" );
+            }
+
+            if ( courseID.Trim() == ""|| questionID.Trim() == "") {
+                return RedirectToAction( "Index" , "Error" );
+            }
+
+            try {
+                Convert.ToInt32( courseID );
+                Convert.ToInt32( questionID );
+            } catch ( Exception e ) {
+                return RedirectToAction( "Index" , "Error" );
+            }
+
             //get admin name
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
             var admin = from a in db.Admins where a.AdminID == adminID select a;

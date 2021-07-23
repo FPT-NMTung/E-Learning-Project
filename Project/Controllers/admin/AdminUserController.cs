@@ -23,7 +23,7 @@ namespace Project.Controllers {
         [ HttpPost ]
         [ CheckSessionAdmin ]
         public ActionResult Search(string s) {
-            if ( s == null || s.Trim() == "") {
+            if ( s == null || s.Trim() == "" ) {
                 return RedirectToAction( "Index" );
             }
 
@@ -66,20 +66,22 @@ namespace Project.Controllers {
             } catch ( Exception e ) {
                 return RedirectToAction( "Index" );
             }
+            int id = Convert.ToInt32( userid );
 
             if ( name.Trim() == "" || email.Trim() == "" || phone.Trim() == "" ||
-                 address.Trim() == "" || gender.Trim() == "" || !IsPhoneNumber(phone)) {
-                return RedirectToAction( "Index" );
-            }
+                 address.Trim() == "" || gender.Trim() == "" || !IsPhoneNumber( phone ) ) {
 
-            int id = Convert.ToInt32( userid );
-            var result = db.Users.First( user => (user.UserID == id) );
-
-            var match = Regex.Match( name ,
-                "[`~!@#$%^&*()_+\\-=\\[\\]\\{\\}\\|;:\'\",./<>?0-9]" );
-            if ( match.Success ) {
                 TempData [ "isUpdate" ] = false;
                 return RedirectToAction( "Detail" , id );
+            }
+
+            var result = db.Users.First( user => (user.UserID == id) );
+
+            var match = Regex.Match( name,
+                "[`~!@#$%^&*()_+\\-=\\[\\]\\{\\}\\|;:\'\",./<>?0-9]" );
+            if ( match.Success ) {
+                TempData["isUpdate"] = false;
+                return RedirectToAction( "Detail", id );
             }
 
             if ( result == null ) {
@@ -95,9 +97,8 @@ namespace Project.Controllers {
                     .ToList();
 
                 if ( checkMail.Count != 0 ) {
-
-                    TempData [ "isUpdate" ] = false;
-                    return RedirectToAction( "Detail" , id );
+                    TempData["isUpdate"] = false;
+                    return RedirectToAction( "Detail", id );
                 }
             }
 
@@ -108,9 +109,8 @@ namespace Project.Controllers {
                     .ToList();
 
                 if ( checkPhone.Count != 0 ) {
-
-                    TempData [ "isUpdate" ] = false;
-                    return RedirectToAction( "Detail" , id );
+                    TempData["isUpdate"] = false;
+                    return RedirectToAction( "Detail", id );
                 }
             }
 
@@ -122,13 +122,14 @@ namespace Project.Controllers {
             TempData["isUpdate"] = true;
             return RedirectToAction( "Detail", id );
         }
-        //phone start with 0, after is 3/5/7/8/9 -> 8 number more
-        public static bool IsPhoneNumber(string number)
-        {
-            return Regex.IsMatch(number, @"(0[3|5|7|8|9])+([0-9]{8})\b");
+        //phone start w ith 0, after is 3/5/7/8/9 -> 8 number more
+
+        public static bool IsPhoneNumber(string number) {
+            return Regex.IsMatch( number, @"(0[3|5|7|8|9])+([0-9]{8})\b" );
         }
-        [HttpGet]
-        [CheckSessionAdmin]
+
+        [ HttpGet ]
+        [ CheckSessionAdmin ]
         public ActionResult Delete(string userid) {
             var result = (from user in db.Users where user.UserID.ToString() == userid select user).ToList();
             db.Users.RemoveRange( result );

@@ -104,13 +104,6 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             }
-                            else if (ViewBag.message == false)
-                            {
-                                <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    Update course fail because the course's name has been existed or input information invalid!
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            }
                             @using (Html.BeginForm("UpdateCourse", "AdminCourse", FormMethod.Post))
                             {
                                 <div class="top">

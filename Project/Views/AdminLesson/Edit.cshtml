@@ -91,7 +91,7 @@
         <div class="main-body">
             @if ( ViewBag.isExist != null ) {
                 if ( ViewBag.isExist == true ) {
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <div  style="position: fixed; right: 10px; bottom: 10px;"  class="alert alert-warning alert-dismissible fade show" role="alert">
                         Save lesson failed !!!
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -99,7 +99,7 @@
             }
             @if ( ViewBag.isSave != null ) {
                 if ( ViewBag.isSave == true ) {
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div  style="position: fixed; right: 10px; bottom: 10px;"  class="alert alert-success alert-dismissible fade show" role="alert">
                         Save lesson success !!!
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
