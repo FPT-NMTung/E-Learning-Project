@@ -59,7 +59,6 @@ namespace Project.Controllers
         public ActionResult CourseDetail(string courseID)
         {
             
-
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
 
             var admin = from a in db.Admins where a.AdminID == adminID select a;
