@@ -1,7 +1,7 @@
 # E-Learning project
 ![GitHub repo size](https://img.shields.io/github/repo-size/FPT-NMTung/Dev_Project) ![GitHub issues](https://img.shields.io/github/issues/FPT-NMTung/Dev_Project) ![GitHub closed issues](https://img.shields.io/github/issues-closed/FPT-NMTung/Dev_Project)
 
-#### Thành viên :
+### Thành viên :
 ##### Nguyễn Mạnh Tùng : https://www.facebook.com/NMTung.Socialnetwork (Leader)
 
 ##### Nguyễn Thùy Dương : https://www.facebook.com/ngthuyduong.mon2000/
