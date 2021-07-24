@@ -22,13 +22,15 @@ namespace Project.Controllers
         [CheckSessionAdmin]
         public ActionResult Index(string courseID)
         {
-            if ( courseID  == null || courseID.Trim() == "") {
-                return RedirectToAction( "Index" , "AdminCourse" );
+            if (courseID == null || courseID.Trim() == "")
+            {
+                return RedirectToAction("Index", "AdminCourse");
             }
 
             var checkttt = (from course in db.Courses where course.CourseID.ToString() == courseID.Trim() select course).ToList();
-            if ( checkttt.Count  == 0) {
-                return RedirectToAction( "Index" , "AdminCourse" );
+            if (checkttt.Count == 0)
+            {
+                return RedirectToAction("Index", "AdminCourse");
             }
 
             //get admin name
@@ -59,14 +61,16 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckSessionAdmin]
-        [ValidateInput( false )]
+        [ValidateInput(false)]
         public ActionResult QuizAdd(string courseID)
         {
             //get admin name
             int adminID = Convert.ToInt32(Session["admin_id"].ToString());
             var admin = from a in db.Admins where a.AdminID == adminID select a;
             ViewBag.adminName = admin.ToList()[0].Name;
-
+            ViewBag.selected1 = TempData["selected1"];
+            ViewBag.selected2 = TempData["selected2"];
+            ViewBag.selected3 = TempData["selected3"];
             ViewBag.courseID = courseID;
             //set message
             ViewBag.message = TempData["message"];
@@ -74,20 +78,81 @@ namespace Project.Controllers
             return View();
         }
 
+        [HttpGet]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult QuizAdd1(string courseID)
+        {
+            //get admin name
+            int adminID = Convert.ToInt32(Session["admin_id"].ToString());
+            var admin = from a in db.Admins where a.AdminID == adminID select a;
+            ViewBag.adminName = admin.ToList()[0].Name;
+            ViewBag.selected1 = TempData["selected1"];
+            ViewBag.selected2 = TempData["selected2"];
+            ViewBag.selected3 = TempData["selected3"];
+            ViewBag.courseID = courseID;
+            //set message
+            ViewBag.message = TempData["message"];
+            TempData.Clear();
+            return View();
+        }
+
+        [HttpGet]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult QuizAdd2(string courseID)
+        {
+            //get admin name
+            int adminID = Convert.ToInt32(Session["admin_id"].ToString());
+            var admin = from a in db.Admins where a.AdminID == adminID select a;
+            ViewBag.adminName = admin.ToList()[0].Name;
+            ViewBag.selected1 = TempData["selected1"];
+            ViewBag.selected2 = TempData["selected2"];
+            ViewBag.selected3 = TempData["selected3"];
+            ViewBag.courseID = courseID;
+            //set message
+            ViewBag.message = TempData["message"];
+            TempData.Clear();
+            return View();
+        }
         [HttpPost]
         [CheckSessionAdmin]
-        [ValidateInput( false )]
+        public ActionResult ChooseType(string type, string courseID)
+        {
+            if (type.Equals("value1"))
+            {
+                TempData["selected1"] = "selected";
+                TempData["selected2"] = "";
+                TempData["selected3"] = "";
+                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
+            }
+            else if (type.Equals("value2"))
+            {
+                TempData["selected1"] = "";
+                TempData["selected3"] = "";
+                TempData["selected2"] = "selected";
+                return RedirectToAction("QuizAdd1", "AdminQuiz", new { courseID = courseID });
+            }
+            else if (type.Equals("value3"))
+            {
+                TempData["selected1"] = "";
+                TempData["selected2"] = "";
+                TempData["selected3"] = "selected";
+                return RedirectToAction("QuizAdd2", "AdminQuiz", new { courseID = courseID });
+            }
+            else
+            {
+                return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
+            }
+
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
         public ActionResult AddQuestion(string courseID, string question, string answer1, string answer2, string answer3, string answer4,
                                          string trueAns)
         {
-            /*var listQuestion = from q in db.Quizs
-                               join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
-                               where q.CourseID.ToString() == courseID
-                               select new ListQuiz
-                               {
-                                   quiz = q,
-                                   quizQuestion = qq
-                               };*/
 
             if (question.Trim().Equals("") || answer1.Trim().Equals("") || answer2.Trim().Equals("") || answer3.Trim().Equals("") || answer4.Trim().Equals("")
                 || answer1.Trim().Equals(answer2.Trim()) || answer1.Trim().Equals(answer3.Trim()) || answer1.Trim().Equals(answer4.Trim())
@@ -203,28 +268,250 @@ namespace Project.Controllers
             TempData["message"] = true;
             return RedirectToAction("QuizAdd", "AdminQuiz", new { courseID = courseID });
 
+        }
+        [HttpPost]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult AddQuestion1(string courseID, string question, string answer1, string answer2,
+                                         string trueAns)
+        {
 
+            var listQuiz = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList();
+
+            if (listQuiz.Count == 0)
+            {
+                Quiz newQuiz = new Quiz()
+                {
+                    Name = "nmtung",
+                    Description = "nmtung",
+                    CourseID = Convert.ToInt32(courseID.Trim())
+                };
+
+                db.Quizs.Add(newQuiz);
+                db.SaveChanges();
+
+                var quizID = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList()[0].QuizID;
+
+                var checkQues = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList();
+
+                if (checkQues.Count != 0)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizAdd1", "AdminQuiz", new { courseID = courseID });
+                }
+
+                QuizQuestion newQuestion = new QuizQuestion()
+                {
+                    Question = question.Trim(),
+                    QuizID = quizID
+                };
+                db.QuizQuestions.Add(newQuestion);
+                db.SaveChanges();
+
+                var questionID = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList()[0].QuesID;
+
+                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
+                List<string> ans = new List<string>();
+                ans.Add(answer1);
+                ans.Add(answer2);
+
+
+                for (int i = 0; i < 4; i++)
+                {
+                    string temp1 = "ans" + (i + 1);
+
+                    list.Add(new QuizQuestionAnswer()
+                    {
+                        QuesID = questionID,
+                        Answer = ans[i],
+                        IsTrue = temp1 == trueAns
+                    });
+                }
+
+                db.QuizQuestionAnswers.AddRange(list);
+                db.SaveChanges();
+            }
+            else
+            {
+                int quizID = listQuiz[0].QuizID;
+
+                var checkQues = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList();
+
+                if (checkQues.Count != 0)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizAdd1", "AdminQuiz", new { courseID = courseID });
+                }
+
+                QuizQuestion newQuestion = new QuizQuestion()
+                {
+                    Question = question.Trim(),
+                    QuizID = quizID
+                };
+                db.QuizQuestions.Add(newQuestion);
+                db.SaveChanges();
+
+                var questionID = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList()[0].QuesID;
+
+                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
+                List<string> ans = new List<string>();
+                ans.Add(answer1.Trim());
+                ans.Add(answer2.Trim());
+
+
+                for (int i = 0; i < 2; i++)
+                {
+                    string temp1 = "ans" + (i + 1);
+
+                    list.Add(new QuizQuestionAnswer()
+                    {
+                        QuesID = questionID,
+                        Answer = ans[i],
+                        IsTrue = temp1 == trueAns
+                    });
+                }
+
+                db.QuizQuestionAnswers.AddRange(list);
+                db.SaveChanges();
+            }
+
+            TempData["message"] = true;
+            return RedirectToAction("QuizAdd1", "AdminQuiz", new { courseID = courseID });
+
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult AddQuestion2(string courseID, string question, string answer1,
+                                         string trueAns)
+        {
+
+            var listQuiz = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList();
+
+            if (listQuiz.Count == 0)
+            {
+                Quiz newQuiz = new Quiz()
+                {
+                    Name = "nmtung",
+                    Description = "nmtung",
+                    CourseID = Convert.ToInt32(courseID.Trim())
+                };
+
+                db.Quizs.Add(newQuiz);
+                db.SaveChanges();
+
+                var quizID = (from e in db.Quizs where e.CourseID.ToString() == courseID select e).ToList()[0].QuizID;
+
+                var checkQues = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList();
+
+                if (checkQues.Count != 0)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizAdd2", "AdminQuiz", new { courseID = courseID });
+                }
+
+                QuizQuestion newQuestion = new QuizQuestion()
+                {
+                    Question = question.Trim(),
+                    QuizID = quizID
+                };
+                db.QuizQuestions.Add(newQuestion);
+                db.SaveChanges();
+
+                var questionID = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList()[0].QuesID;
+
+                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
+                List<string> ans = new List<string>();
+                ans.Add(answer1);
+
+
+                for (int i = 0; i < 1; i++)
+                {
+                    string temp1 = "ans" + (i + 1);
+
+                    list.Add(new QuizQuestionAnswer()
+                    {
+                        QuesID = questionID,
+                        Answer = ans[i],
+                        IsTrue = temp1 == trueAns
+                    });
+                }
+
+                db.QuizQuestionAnswers.AddRange(list);
+                db.SaveChanges();
+            }
+            else
+            {
+                int quizID = listQuiz[0].QuizID;
+
+                var checkQues = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList();
+
+                if (checkQues.Count != 0)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizAdd2", "AdminQuiz", new { courseID = courseID });
+                }
+
+                QuizQuestion newQuestion = new QuizQuestion()
+                {
+                    Question = question.Trim(),
+                    QuizID = quizID
+                };
+                db.QuizQuestions.Add(newQuestion);
+                db.SaveChanges();
+
+                var questionID = (from q in db.QuizQuestions where q.Question == question.Trim() && q.QuizID == quizID select q).ToList()[0].QuesID;
+
+                List<QuizQuestionAnswer> list = new List<QuizQuestionAnswer>();
+                List<string> ans = new List<string>();
+                ans.Add(answer1.Trim());
+
+
+                for (int i = 0; i < 1; i++)
+                {
+                    string temp1 = "ans" + (i + 1);
+
+                    list.Add(new QuizQuestionAnswer()
+                    {
+                        QuesID = questionID,
+                        Answer = ans[i],
+                        IsTrue = temp1 == trueAns
+                    });
+                }
+
+                db.QuizQuestionAnswers.AddRange(list);
+                db.SaveChanges();
+            }
+
+            TempData["message"] = true;
+            return RedirectToAction("QuizAdd2", "AdminQuiz", new { courseID = courseID });
 
         }
 
         [HttpGet]
         [CheckSessionAdmin]
-        [ValidateInput( false )]
+        [ValidateInput(false)]
         public ActionResult QuizDetail(string courseID, string questionID)
         {
-            if (courseID == null || questionID == null) {
-                return RedirectToAction( "Index", "Error" );
+            if (courseID == null || questionID == null)
+            {
+                return RedirectToAction("Index", "Error");
             }
 
-            if ( courseID.Trim() == ""|| questionID.Trim() == "") {
-                return RedirectToAction( "Index" , "Error" );
+            if (courseID.Trim() == "" || questionID.Trim() == "")
+            {
+                return RedirectToAction("Index", "Error");
             }
 
-            try {
-                Convert.ToInt32( courseID );
-                Convert.ToInt32( questionID );
-            } catch ( Exception e ) {
-                return RedirectToAction( "Index" , "Error" );
+            try
+            {
+                Convert.ToInt32(courseID);
+                Convert.ToInt32(questionID);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
             }
 
             //get admin name
@@ -245,19 +532,243 @@ namespace Project.Controllers
                                    };
 
             ViewBag.question = selectedQuestion.ToList()[0].quizQuestion.Question;
+            int numberOfQuestion = selectedQuestion.ToList().Count();
+            if (numberOfQuestion == 4)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.IsTrue ? "checked" : "";
 
-            ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
-            ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
-            ViewBag.checkAnswer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.IsTrue ? "checked" : "";
-            ViewBag.checkAnswer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+                ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+                ViewBag.answer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.Answer;
+                ViewBag.answer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.Answer;
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return View();
+            }
+            else if (numberOfQuestion == 2)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
 
-            ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
-            ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
-            ViewBag.answer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.Answer;
-            ViewBag.answer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.Answer;
-            ViewBag.courseID = courseID;
-            ViewBag.questionID = questionID;
-            //set message
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+                ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return RedirectToAction("QuizDetail1", "AdminQuiz", new { courseID = courseID, questionID });
+            }
+            else if (numberOfQuestion == 1)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return RedirectToAction("QuizDetail2", "AdminQuiz", new { courseID = courseID, questionID });
+            }
+            ViewBag.message = TempData["message"];
+            TempData.Clear();
+            return View();
+        }
+
+        [HttpGet]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult QuizDetail1(string courseID, string questionID)
+        {
+            if (courseID == null || questionID == null)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            if (courseID.Trim() == "" || questionID.Trim() == "")
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            try
+            {
+                Convert.ToInt32(courseID);
+                Convert.ToInt32(questionID);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            //get admin name
+            int adminID = Convert.ToInt32(Session["admin_id"].ToString());
+            var admin = from a in db.Admins where a.AdminID == adminID select a;
+            ViewBag.adminName = admin.ToList()[0].Name;
+            //ViewBag.courseID = courseID;
+
+            var selectedQuestion = from q in db.Quizs
+                                   join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
+                                   join qqa in db.QuizQuestionAnswers on qq.QuesID equals qqa.QuesID
+                                   where q.CourseID.ToString() == courseID && qq.QuesID.ToString() == questionID
+                                   select new ListQuiz
+                                   {
+                                       quiz = q,
+                                       quizQuestion = qq,
+                                       quizQuestionAnswer = qqa
+                                   };
+
+            ViewBag.question = selectedQuestion.ToList()[0].quizQuestion.Question;
+            int numberOfQuestion = selectedQuestion.ToList().Count();
+            if (numberOfQuestion == 4)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+                ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+                ViewBag.answer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.Answer;
+                ViewBag.answer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.Answer;
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID });
+            }
+            else if (numberOfQuestion == 2)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+                ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return View();
+            }
+            else if (numberOfQuestion == 1)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return RedirectToAction("QuizDetail2", "AdminQuiz", new { courseID = courseID, questionID });
+            }
+            ViewBag.message = TempData["message"];
+            TempData.Clear();
+            return View();
+        }
+
+        [HttpGet]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult QuizDetail2(string courseID, string questionID)
+        {
+            if (courseID == null || questionID == null)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            if (courseID.Trim() == "" || questionID.Trim() == "")
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            try
+            {
+                Convert.ToInt32(courseID);
+                Convert.ToInt32(questionID);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+            //get admin name
+            int adminID = Convert.ToInt32(Session["admin_id"].ToString());
+            var admin = from a in db.Admins where a.AdminID == adminID select a;
+            ViewBag.adminName = admin.ToList()[0].Name;
+            //ViewBag.courseID = courseID;
+
+            var selectedQuestion = from q in db.Quizs
+                                   join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
+                                   join qqa in db.QuizQuestionAnswers on qq.QuesID equals qqa.QuesID
+                                   where q.CourseID.ToString() == courseID && qq.QuesID.ToString() == questionID
+                                   select new ListQuiz
+                                   {
+                                       quiz = q,
+                                       quizQuestion = qq,
+                                       quizQuestionAnswer = qqa
+                                   };
+
+            ViewBag.question = selectedQuestion.ToList()[0].quizQuestion.Question;
+            int numberOfQuestion = selectedQuestion.ToList().Count();
+            if (numberOfQuestion == 4)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+                ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+                ViewBag.answer3 = selectedQuestion.ToList()[2].quizQuestionAnswer.Answer;
+                ViewBag.answer4 = selectedQuestion.ToList()[3].quizQuestionAnswer.Answer;
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return RedirectToAction("QuizDetail", "AdminQuiz", new { courseID = courseID, questionID });
+            }
+            else if (numberOfQuestion == 2)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+                ViewBag.checkAnswer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+                ViewBag.answer2 = selectedQuestion.ToList()[1].quizQuestionAnswer.Answer;
+
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return RedirectToAction("QuizDetail1", "AdminQuiz", new { courseID = courseID, questionID });
+            }
+            else if (numberOfQuestion == 1)
+            {
+                ViewBag.checkAnswer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.IsTrue ? "checked" : "";
+
+                ViewBag.answer1 = selectedQuestion.ToList()[0].quizQuestionAnswer.Answer;
+
+                ViewBag.courseID = courseID;
+                ViewBag.questionID = questionID;
+                //set message
+                ViewBag.message = TempData["message"];
+                TempData.Clear();
+                return View();
+            }
             ViewBag.message = TempData["message"];
             TempData.Clear();
             return View();
@@ -265,7 +776,7 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckSessionAdmin]
-        [ValidateInput( false )]
+        [ValidateInput(false)]
         public ActionResult EditQuestion(string courseID, string questionID, string question, string answer1, string answer2, string answer3, string answer4,
                                          string trueAns)
         {
@@ -353,6 +864,157 @@ namespace Project.Controllers
 
         [HttpPost]
         [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult EditQuestion2(string courseID, string questionID, string question, string answer1,
+                                         string trueAns)
+        {
+            var selectedQuestion = from q in db.Quizs
+                                   join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
+                                   join qqa in db.QuizQuestionAnswers on qq.QuesID equals qqa.QuesID
+                                   where q.CourseID.ToString() == courseID && qq.QuesID.ToString() == questionID
+                                   select new ListQuiz
+                                   {
+                                       quiz = q,
+                                       quizQuestion = qq,
+                                       quizQuestionAnswer = qqa
+                                   };
+            //error page
+            if (selectedQuestion.Count() == 0)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+            //check question exist in db
+            var checkQues = (from qq in db.QuizQuestions
+                             join q in db.Quizs on qq.QuizID equals q.QuizID
+                             where qq.Question == question.Trim() && q.CourseID.ToString() == courseID
+                             select qq).ToList();
+
+
+            if (checkQues.Count != 0)
+            {
+                //get questionId
+                if (checkQues[0].QuesID.ToString() != questionID)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizDetail2", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+                }
+            }
+
+
+            //check duplicated answer
+            if (question.Trim().Equals("") || answer1.Trim().Equals(""))
+            {
+                TempData["message"] = false;
+                return RedirectToAction("QuizDetail2", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+
+            try
+            {
+                //update question
+                var updateQuestion = db.QuizQuestions.First(g => g.QuesID.ToString() == questionID);
+                updateQuestion.Question = question.Trim();
+
+                //get answerID of for answer of the question
+                int answerID1 = selectedQuestion.ToList()[0].quizQuestionAnswer.AnsID;
+
+                //update answer
+                var updateAnswer1 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID1);
+                updateAnswer1.Answer = answer1.Trim();
+                updateAnswer1.IsTrue = trueAns.Equals("ans1") ? true : false;
+
+                db.SaveChanges();
+                TempData["message"] = true;
+                return RedirectToAction("QuizDetail2", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+            catch (Exception)
+            {
+                TempData["message"] = false;
+                return RedirectToAction("QuizDetail2", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
+        [ValidateInput(false)]
+        public ActionResult EditQuestion1(string courseID, string questionID, string question, string answer1, string answer2,
+                                         string trueAns)
+        {
+            var selectedQuestion = from q in db.Quizs
+                                   join qq in db.QuizQuestions on q.QuizID equals qq.QuizID
+                                   join qqa in db.QuizQuestionAnswers on qq.QuesID equals qqa.QuesID
+                                   where q.CourseID.ToString() == courseID && qq.QuesID.ToString() == questionID
+                                   select new ListQuiz
+                                   {
+                                       quiz = q,
+                                       quizQuestion = qq,
+                                       quizQuestionAnswer = qqa
+                                   };
+            //error page
+            if (selectedQuestion.Count() == 0)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+            //check question exist in db
+            var checkQues = (from qq in db.QuizQuestions
+                             join q in db.Quizs on qq.QuizID equals q.QuizID
+                             where qq.Question == question.Trim() && q.CourseID.ToString() == courseID
+                             select qq).ToList();
+
+
+            if (checkQues.Count != 0)
+            {
+                //get questionId
+                if (checkQues[0].QuesID.ToString() != questionID)
+                {
+                    TempData["message"] = false;
+                    return RedirectToAction("QuizDetail1", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+                }
+            }
+
+
+            //check duplicated answer
+            if (question.Trim().Equals("") || answer1.Trim().Equals("") || answer2.Trim().Equals("")
+                || answer1.Trim().Equals(answer2.Trim()))
+            {
+                TempData["message"] = false;
+                return RedirectToAction("QuizDetail1", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+
+            try
+            {
+                //update question
+                var updateQuestion = db.QuizQuestions.First(g => g.QuesID.ToString() == questionID);
+                updateQuestion.Question = question.Trim();
+
+                //get answerID of for answer of the question
+                int answerID1 = selectedQuestion.ToList()[0].quizQuestionAnswer.AnsID;
+                int answerID2 = selectedQuestion.ToList()[1].quizQuestionAnswer.AnsID;
+  
+                //update answer
+                var updateAnswer1 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID1);
+                updateAnswer1.Answer = answer1.Trim();
+                updateAnswer1.IsTrue = trueAns.Equals("ans1") ? true : false;
+
+                var updateAnswer2 = db.QuizQuestionAnswers.First(g => g.AnsID == answerID2);
+                updateAnswer2.Answer = answer2.Trim();
+                updateAnswer2.IsTrue = trueAns.Equals("ans2") ? true : false;
+
+
+                db.SaveChanges();
+                TempData["message"] = true;
+                return RedirectToAction("QuizDetail1", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+            catch (Exception)
+            {
+                TempData["message"] = false;
+                return RedirectToAction("QuizDetail1", "AdminQuiz", new { courseID = courseID, questionID = questionID });
+            }
+
+        }
+
+        [HttpPost]
+        [CheckSessionAdmin]
         public ActionResult DeleteQuestion(int courseID, int questionID)
         {
             try
@@ -379,7 +1041,7 @@ namespace Project.Controllers
                     db.SaveChanges();
                     int quizID = (from e in db.Quizs where e.CourseID == courseID select e).ToList()[0].QuizID;
                     var checkRemainQuiz = from e in db.QuizQuestions where e.QuizID == quizID select e;
-                    if(checkRemainQuiz.ToList().Count == 0)
+                    if (checkRemainQuiz.ToList().Count == 0)
                     {
                         var removeQuiz = (from e in db.Quizs where e.QuizID == quizID select e).ToList()[0];
                         db.Quizs.Remove(removeQuiz);

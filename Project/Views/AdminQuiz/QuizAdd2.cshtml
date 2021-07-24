@@ -110,14 +110,14 @@
                     </div>
                     <label for="typeOfQues">Choose type of question:</label>
                     <select name="type" id="type">
-                        <option value="value1" selected>Multiple Choice</option>
+                        <option value="value1" >1 Choice</option>
                         <option value="value2" >True Or False</option>
-                        <option value="value3" >Type</option>
+                        <option value="value3" selected>Type</option>
                     </select>
                     <br><br>
                     <input type="submit" value="OK">
                 }
-                @using (Html.BeginForm("AddQuestion", "AdminQuiz", FormMethod.Post))
+                @using (Html.BeginForm("AddQuestion2", "AdminQuiz", FormMethod.Post))
                 {
                     <div class="quiz">
                         <div hidden class="flex-answer-content">
@@ -133,33 +133,10 @@
                                     <input type="radio" name="trueAns" id="ans1" value="ans1" checked>
                                 </label>
                                 <div class="flex-answer-content">
-                                    <input type="text" name="answer1" id="answer1" placeholder="Answer 1" required>
+                                    <input type="text" name="answer1" id="answer1" placeholder="Input Answer" required>
                                 </div>
                             </div>
-                            <div class="flex-answer">
-                                <label class="flex-answer-radio" for="ans2">
-                                    <input type="radio" name="trueAns" id="ans2" value="ans2">
-                                </label>
-                                <div class="flex-answer-content">
-                                    <input type="text" name="answer2" id="answer2" placeholder="Answer 2" required>
-                                </div>
-                            </div>
-                            <div class="flex-answer">
-                                <label class="flex-answer-radio" for="ans3">
-                                    <input type="radio" name="trueAns" id="ans3" value="ans3">
-                                </label>
-                                <div class="flex-answer-content">
-                                    <input type="text" name="answer3" id="answer3" placeholder="Answer 3" required>
-                                </div>
-                            </div>
-                            <div class="flex-answer">
-                                <label class="flex-answer-radio" for="ans4">
-                                    <input type="radio" name="trueAns" id="ans4" value="ans4">
-                                </label>
-                                <div class="flex-answer-content">
-                                    <input type="text" name="answer4" id="answer4" placeholder="Answer 4" required>
-                                </div>
-                            </div>
+                            
                         </div>
                         <button id="button-save" type="submit">Add</button>
                     </div>

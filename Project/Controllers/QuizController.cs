@@ -79,10 +79,27 @@ namespace Project.Controllers {
                     continue;
                 }
 
+                int countAnswer = 0;
                 var temp = from a in db.QuizQuestionAnswers where a.AnsID.ToString() == tempS select a;
-                if ( temp.ToList()[0].IsTrue ) {
-                    correctQues++;
+                for (int i = 0; i < temp.ToList().Count; i++)
+                {
+                    if (temp.ToList()[i].IsTrue == true)
+                    {                      
+                        countAnswer++;
+                    }
                 }
+                for (int i = 0; i < temp.ToList().Count; i++)
+                {
+                    if (temp.ToList()[i].IsTrue && countAnswer == 1)
+                    {
+                        correctQues++;
+                    } else if(temp.ToList()[i].IsTrue && countAnswer > 1)
+                    {
+                        correctQues += 1 / countAnswer;
+                        countAnswer = 0;
+                    }
+                }
+
             }
 
             float score = correctQues * 100 / totalQues;

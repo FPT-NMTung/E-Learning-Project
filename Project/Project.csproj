@@ -405,6 +405,10 @@
     <Content Include="Views\AdminQuiz\QuizDetail.cshtml" />
     <Content Include="Views\AdminCourse\Search.cshtml" />
     <None Include="Properties\PublishProfiles\hocsinhthaytien - Web Deploy.pubxml" />
+    <Content Include="Views\AdminQuiz\QuizAdd1.cshtml" />
+    <Content Include="Views\AdminQuiz\QuizAdd2.cshtml" />
+    <Content Include="Views\AdminQuiz\QuizDetail1.cshtml" />
+    <Content Include="Views\AdminQuiz\QuizDetail2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

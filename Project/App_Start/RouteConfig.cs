@@ -23,9 +23,34 @@ namespace Project
             );
 
             routes.MapRoute(
+                name: "QuizDetail1",
+                url: "admin/quiz/{courseID}/{questionID}/detail1",
+                defaults: new { controller = "AdminQuiz", action = "QuizDetail1" }
+            );
+
+            routes.MapRoute(
+                name: "QuizDetail2",
+                url: "admin/quiz/{courseID}/{questionID}/detail2",
+                defaults: new { controller = "AdminQuiz", action = "QuizDetail2" }
+            );
+
+            routes.MapRoute(
                 name: "AdminAddQuiz",
                 url: "admin/quiz/{courseID}/add",
                 defaults: new { controller = "AdminQuiz", action = "QuizAdd" }
+            );
+
+
+            routes.MapRoute(
+                name: "AdminAddQuiz1",
+                url: "admin/quiz/{courseID}/add1",
+                defaults: new { controller = "AdminQuiz", action = "QuizAdd1" }
+            );
+
+            routes.MapRoute(
+                name: "AdminAddQuiz2",
+                url: "admin/quiz/{courseID}/add2",
+                defaults: new { controller = "AdminQuiz", action = "QuizAdd2" }
             );
 
             routes.MapRoute(
