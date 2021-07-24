@@ -59,6 +59,7 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckSessionAdmin]
+        [ValidateInput( false )]
         public ActionResult QuizAdd(string courseID)
         {
             //get admin name
@@ -208,6 +209,7 @@ namespace Project.Controllers
 
         [HttpGet]
         [CheckSessionAdmin]
+        [ValidateInput( false )]
         public ActionResult QuizDetail(string courseID, string questionID)
         {
             if (courseID == null || questionID == null) {

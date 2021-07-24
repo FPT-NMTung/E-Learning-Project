@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Quiz | E-Learning</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/Content/img/favicon.png" rel="icon">
+    <link href="/Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/Content/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/Content/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/Content/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/Content/css/style.css" rel="stylesheet">
+    <link href="/Content/css/quiz.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- =======================================================
+    * Template Name: Scaffold - v4.3.0
+    * Template URL: https://bootstrapmade.com/scaffold-bootstrap-metro-style-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <main class="container" id="font-poppins">
+        @{
+            var endTime = DateTime.UtcNow.AddSeconds(600);
+            var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+        }
+        <div class="header-quiz">
+            <p class="quiz-title">Khoá học: @ViewBag.NameCourse</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="time-countdown"> 
+                        Thời gian còn lại : <span id="minRemaining"></span>:<span id="secRemaining"></span><span> phút</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        @using (Html.BeginForm("SubmitAction", "Quiz", FormMethod.Post, new { id = "submitform" }))
+        { 
+            
+            <div >
+                <input type="hidden" name="listQuestion" value="@ViewBag.listQuestion" />
+                <input type="hidden" name="quizId" value="@ViewBag.quizId" />
+                @model List<Project.Models.QuizQuestion>
+                @{
+                    int count = 0;
+                }
+                @foreach (var element in Model)
+                {
+                    {
+                        count = count + 1;
+                    }
+                    <div class="quiz">
+                        <div class="quiz-question">
+                            <p class="quiz-ques-number">Câu hỏi @count</p>
+                            <p class="quiz-ques-context">
+                                @element.Question
+                            </p>
+                        </div>
+                        <div class="quiz-answer">
+                            @foreach (var ansElement in element.QuizQuestionAnswers)
+                            {
+                                string name = "ques" + element.QuesID;
+
+                                <label for="@element.QuesID-@ansElement.AnsID">
+                                    <div class="quiz-answer-el div-@element.QuesID" onclick="activeAns('div-@element.QuesID', this)">
+                                        <input type="radio" value="@ansElement.AnsID" name="@name" id="@element.QuesID-@ansElement.AnsID">
+                                        @ansElement.Answer
+                                    </div>
+                                </label>
+                            }
+
+                        </div>
+                    </div>
+                }
+                <div>
+                    <button class="btn btn-primary quiz-button" type="submit" style="margin: 10px auto 30px; display: block;">Nộp bài</button>
+                </div>
+            </div>
+        }
+    </main>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="container">
+    <div class="copyright">
+        &copy; Copyright
+        <strong>
+            <span>E-Learning - Team 3</span>
+        </strong>. All Rights Reserved
+    </div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Vendor JS Files -->
+<script src="/Content/vendor/aos/aos.js"></script>
+<script src="/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/Content/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/Content/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/Content/vendor/php-email-form/validate.js"></script>
+<script src="/Content/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="/Content/script/main.js"></script>
+<script src="/Content/script/quiz.js"></script>
+<script>
+    var remSeconds = @timeRemaining;
+
+    var secondsCounter = remSeconds % 60;
+    
+    function formatNumber(number) {
+
+        if (number < 10) return '0' + number;
+        else return '' + number;
+        
+
+    }
+        function startTick() {
+            document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+            document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+
+            var _tick = setInterval(function ()
+            {
+                if (secondsCounter == 0) {
+                    secondsCounter = 59;
+                    remSeconds = remSeconds - 1;
+                    document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                    document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+                } else if (remSeconds > 0) {
+
+
+                        remSeconds = remSeconds - 1;
+                        secondsCounter = secondsCounter - 1;
+
+                        document.getElementById('secRemaining').innerText = formatNumber(secondsCounter);
+                        document.getElementById('minRemaining').innerText = formatNumber(parseInt(remSeconds / 60));
+                        if (secondsCounter == 0)
+                            secondsCounter = 60;
+                    }
+                    else {
+                        /*alert('Your Exam time has expired');*/
+
+                        clearInterval(_tick);
+                        document.getElementById("submitform").submit();
+                        /*window.location = '/home';*/
+
+
+                    }
+                
+                
+            }, 1000);
+
+        }
+        startTick();
+</script>
+
+</body>
+
+</html>

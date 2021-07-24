@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Lession">
+    <Key>
+      <PropertyRef Name="LessionID" />
+    </Key>
+    <Property Name="LessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Video" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+    <Property Name="Time" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Quiz">
+    <Key>
+      <PropertyRef Name="QuizID" />
+    </Key>
+    <Property Name="QuizID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizQuestion">
+    <Key>
+      <PropertyRef Name="QuesID" />
+    </Key>
+    <Property Name="QuesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuizID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuizQuestionAnswer">
+    <Key>
+      <PropertyRef Name="AnsID" />
+    </Key>
+    <Property Name="AnsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Answer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuesID" Type="int" Nullable="false" />
+    <Property Name="IsTrue" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Gender" Type="bit" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserAndCourse">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="CourseID" Type="int" Nullable="false" />
+    <Property Name="Score" Type="float" />
+  </EntityType>
+  <EntityType Name="UserAndLession">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="LessionID" Type="int" Nullable="false" />
+    <Property Name="Watched" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dev_data_project.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Lession_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Lession" Type="Self.Lession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Lession">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Quiz_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestion_Quiz">
+    <End Role="Quiz" Type="Self.Quiz" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Quiz">
+        <PropertyRef Name="QuizID" />
+      </Principal>
+      <Dependent Role="QuizQuestion">
+        <PropertyRef Name="QuizID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuizQuestionAnswer_QuizQuestion">
+    <End Role="QuizQuestion" Type="Self.QuizQuestion" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuizQuestionAnswer" Type="Self.QuizQuestionAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuizQuestion">
+        <PropertyRef Name="QuesID" />
+      </Principal>
+      <Dependent Role="QuizQuestionAnswer">
+        <PropertyRef Name="QuesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndCourse_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndCourse" Type="Self.UserAndCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="UserAndCourse">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndCourse_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndCourse" Type="Self.UserAndCourse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAndCourse">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndLession_Lession">
+    <End Role="Lession" Type="Self.Lession" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lession">
+        <PropertyRef Name="LessionID" />
+      </Principal>
+      <Dependent Role="UserAndLession">
+        <PropertyRef Name="LessionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserAndLession_User">
+    <End Role="User" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAndLession" Type="Self.UserAndLession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAndLession">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ProjectModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lession" EntityType="Self.Lession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizQuestion" EntityType="Self.QuizQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuizQuestionAnswer" EntityType="Self.QuizQuestionAnswer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAndCourse" EntityType="Self.UserAndCourse" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAndLession" EntityType="Self.UserAndLession" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Lession_Course" Association="Self.FK_Lession_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Lession" EntitySet="Lession" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Quiz_Course" Association="Self.FK_Quiz_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Quiz" EntitySet="Quiz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestion_Quiz" Association="Self.FK_QuizQuestion_Quiz">
+      <End Role="Quiz" EntitySet="Quiz" />
+      <End Role="QuizQuestion" EntitySet="QuizQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuizQuestionAnswer_QuizQuestion" Association="Self.FK_QuizQuestionAnswer_QuizQuestion">
+      <End Role="QuizQuestion" EntitySet="QuizQuestion" />
+      <End Role="QuizQuestionAnswer" EntitySet="QuizQuestionAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndCourse_Course" Association="Self.FK_UserAndCourse_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="UserAndCourse" EntitySet="UserAndCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndCourse_User" Association="Self.FK_UserAndCourse_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserAndCourse" EntitySet="UserAndCourse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndLession_Lession" Association="Self.FK_UserAndLession_Lession">
+      <End Role="Lession" EntitySet="Lession" />
+      <End Role="UserAndLession" EntitySet="UserAndLession" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserAndLession_User" Association="Self.FK_UserAndLession_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserAndLession" EntitySet="UserAndLession" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

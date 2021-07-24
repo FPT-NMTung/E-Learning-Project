@@ -1,0 +1,179 @@
+﻿<!doctype html>
+<html>
+
+<head>
+
+    <title>Result | E-Learning</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <style>
+        .b-skills {
+            border-top: 1px solid #f9f9f9;
+            padding-top: 46px;
+            text-align: center;
+        }
+
+            .b-skills:last-child {
+                margin-bottom: -30px;
+            }
+
+            .b-skills h2 {
+                margin-bottom: 50px;
+                font-weight: 900;
+                text-transform: uppercase;
+            }
+
+        .skill-item {
+            position: relative;
+            max-width: 250px;
+            width: 100%;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 100%;
+            margin-bottom: 27px;
+        }
+
+        .skill-item .chart,
+        .skill-item .chart canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+            .skill-item .chart:before {
+                content: "";
+                width: 0;
+                height: 100%;
+            }
+
+            .skill-item .chart:before,
+            .skill-item .percent {
+                display: inline-block;
+                vertical-align: middle;
+            }
+
+        .skill-item .percent {
+            position: relative;
+            line-height: 1;
+            font-size: 40px;
+            font-weight: 900;
+            z-index: 2;
+        }
+
+            .skill-item .percent:after {
+                content: attr(data-after);
+                font-size: 20px;
+            }
+
+        p {
+            font-weight: 900;
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+
+
+    <br><br><br><br>
+
+    <section id="s-team" class="section">
+
+        <div class="b-skills">
+            <div>
+                <h2>Kết quả</h2>
+
+                <div>
+
+                    <div>
+                        <div style="display: block; margin: 0 auto" class="skill-item center-block">
+                            <div class="chart-container">
+                                <div class="chart " data-percent="@ViewBag.score" data-bar-color="@ViewBag.color">
+                                    <span class="percent" data-after="%">@ViewBag.score</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br><br>
+
+
+
+    <br><br><br><br>
+
+    <a style="display: block; margin: 0 auto; width: max-content;" class="btn btn-primary" href="/course">Quay trở lại khóa học</a>
+
+    <script src="/Content/plugins/jquery-2.2.4.min.js"></script>
+    <script src="/Content/plugins/jquery.appear.min.js"></script>
+    <script src="/Content/plugins/jquery.easypiechart.min.js"></script>
+    <script>
+		'use strict';
+
+		var $window = $(window);
+
+		function run() {
+			var fName = arguments[0],
+				aArgs = Array.prototype.slice.call(arguments, 1);
+			try {
+				fName.apply(window, aArgs);
+			} catch (err) {
+
+			}
+		};
+
+		/* chart
+		================================================== */
+		function _chart() {
+			$('.b-skills').appear(function () {
+				setTimeout(function () {
+					$('.chart').easyPieChart({
+						easing: 'easeOutElastic',
+						delay: 3000,
+						barColor: '#369670',
+						trackColor: '#fff',
+						scaleColor: false,
+						lineWidth: 21,
+						trackWidth: 21,
+						size: 250,
+						lineCap: 'round',
+						onStep: function (from, to, percent) {
+							this.el.children[0].innerHTML = Math.round(percent);
+						}
+					});
+				}, 150);
+			});
+		};
+
+
+		$(document).ready(function () {
+
+			run(_chart);
+
+
+		});
+
+
+
+    </script>
+
+
+</body>
+
+</html>

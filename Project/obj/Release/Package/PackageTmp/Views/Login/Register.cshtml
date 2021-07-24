@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Kodinger">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Register | E-Learning</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/Content/css/my-login.css">
+</head>
+
+<body class="my-login-page">
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand">
+                    <a href="/">
+                        <img src="/Content/img/logo.jpg" alt="bootstrap 4 login page">
+                    </a>
+                </div>
+                <div class="card fat">
+                    <div class="card-body">
+                        <h4 class="card-title">Đăng ký tài khoản</h4>
+                        @if ( ViewBag.isCreated == false ) {
+                            <div class="alert alert-danger" role="alert">
+                                Tạo tài khoản không thành công!!!
+                            </div>
+                        }
+                        @using ( Html.BeginForm( "RegisterAccount", "Login", FormMethod.Post ) ) {
+                            <div class="form-group">
+                                <label for="name">Họ và Tên</label>
+                                <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                <div class="invalid-feedback">
+                                    What's your name?
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Tên người dùng</label>
+                                <input id="username" type="text" class="form-control" name="username" required>
+                                <div class="invalid-feedback">
+                                    Your username is invalid
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Địa chỉ email</label>
+                                <input id="email" type="email" class="form-control" name="email" required>
+                                <div class="invalid-feedback">
+                                    Your email is invalid
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Mật khẩu</label>
+                                <input id="password" type="password" class="form-control" name="password" required
+                                       data-eye>
+                                <div class="invalid-feedback">
+                                    Password is required
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Địa chỉ</label>
+                                <input id="address" type="text" class="form-control" name="address" required>
+                                <div class="invalid-feedback">
+                                    Your email is invalid
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại</label>
+                                <input id="phone" type="number" class="form-control" name="phone" inputmode="numeric" required>
+                                <div class="invalid-feedback">
+                                    Your email is invalid
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Giới tính</label>
+
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <input type="radio" id="male" name="gender" value="male" checked>
+                                    <label style="margin: 0px 20px;" for="male">Nam</label>
+                                </div>
+                                <div style="display: flex; flex-direction: row; align-items: center;">
+                                    <input type="radio" id="female" name="gender" value="female">
+                                    <label style="margin: 0px 20px;" for="female">Nữ</label>
+                                </div>
+
+
+                                <div class="invalid-feedback">
+                                    Your email is invalid
+                                </div>
+                            </div>
+
+                            <div class="form-group m-0">
+                                <button type="submit" class="btn btn-primary btn-block">
+                                    Đăng ký
+                                </button>
+                            </div>
+                            <div class="mt-4 text-center">
+                                Bạn đã có tài khoản? <a href="/login">Đăng nhập</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="footer">
+                    Copyright &copy; 2021 &mdash; My team ❤
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="/Content/script/my-login.js"></script>
+</body>
+
+</html>

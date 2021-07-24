@@ -1,0 +1,78 @@
+#font-poppins {
+    font-family: 'Quicksand', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+.header-quiz {
+    margin: 40px 0px;
+}
+
+.quiz-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: rgb(35, 56, 150);
+}
+
+.quiz-ques-number {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.quiz-ques-context {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.quiz-answer {
+    font-size: 16px;
+    margin: 0 auto;
+    width: 800px;
+}
+
+.quiz {
+    padding: 20px;
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 20px;
+    border-color: rgb(224, 224, 224);
+    margin: 20px 0px;
+}
+
+.quiz-answer-el {
+    background-color: rgb(248, 248, 248);
+    border-style: dotted;
+    border-width: 2px;
+    border-radius: 20px;
+    padding: 10px 15px;
+    border-color: rgb(238, 238, 238);
+}
+
+.active-ans {
+    background-color: #d7e3fc;
+    font-weight: 600;
+}
+
+label {
+    width: 100%;
+    cursor: pointer;
+    margin: 10px 0px;
+}
+
+.quiz-button {
+    font-weight: bolder;
+    width: max-content;
+    padding: 10px 20px;
+    border-radius: 99999px;
+}
+
+.time-countdown {
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+    color: firebrick;
+}

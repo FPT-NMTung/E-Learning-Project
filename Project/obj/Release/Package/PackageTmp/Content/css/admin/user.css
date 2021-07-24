@@ -1,0 +1,73 @@
+table {
+    border-spacing: 0px 14px;
+}
+
+.user {
+    display        : flex;
+    justify-content: center;
+}
+
+.thead {
+    font-size  : 18px;
+    font-weight: bold;
+}
+
+.thead>h3 {
+    float        : left;
+    margin-bottom: 0px;
+}
+
+.thead-user {
+    width: 300px;
+}
+
+.thead-email {
+    width: 250px;
+}
+
+.thead-phone {
+    width: 120px;
+}
+
+.thead-location {
+    width: 200px;
+}
+
+.thead-course {
+    width: 100px;
+}
+
+.thead-action {
+    width: 100px;
+}
+
+.user-name {
+    display    : flex;
+    align-items: center;
+}
+
+.user-name-name>h4 {
+    margin: 14px 0px 10px 0px;
+}
+
+.user-name-name>p {
+    margin: 10px 0px 14px 0px;
+    color : rgb(167, 167, 167);
+}
+
+.row-user {
+    background-color: white;
+    box-shadow      : 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+}
+
+.user-name>div>img {
+    margin: 0px 20px;
+}
+
+.button-select {
+    border-radius   : 6px;
+    padding         : 5px 18px;
+    background-color: #00ab55;
+
+    color: white;
+}

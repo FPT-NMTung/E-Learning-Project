@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/Content/css/admin/index.css">
+    <link rel="stylesheet" href="~/Content/css/admin/quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Edit quiz | Admin | E-Learning</title>
+</head>
+
+<body>
+    <div id="body">
+        <div class="left-bar">
+            <div>
+                <div class="bar-logo">
+                    <img src="~/Content/img/android-chrome-192x192.png" alt="logo" height="40px">
+                </div>
+                <div class="bar-info">
+                    <div class="bar-info-img">
+                        <img src="https://img.icons8.com/office/40/000000/user-male-circle.png" />
+                    </div>
+                    <div class="bar-info-name">
+                        @ViewBag.adminName
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/admin/user">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-glyphs/26/686868/user.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    User
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/course" class="active-link-nav">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/ios-filled/26/686868/courses.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Course
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-bar">
+                    <ul>
+                        <li>
+                            <a href="/admin/logout">
+                                <div class="nav-bar-img">
+                                    <img src="https://img.icons8.com/material-sharp/26/686868/shutdown.png" />
+                                </div>
+                                <div class="nav-bar-name">
+                                    Logout
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-bar">
+            <div class="heder-body">
+                <div class="fix-width">
+                    <a href="/admin/quiz/@ViewBag.courseID">
+                        <div class="back-logo">
+                            <img src="https://img.icons8.com/material-sharp/35/000000/circled-chevron-left.png" />
+                            <span>Back</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="header-content">
+                    <div>Quiz detail</div>
+                </div>
+                <div class="header-search"></div>
+            </div>
+            <div class="main-body">
+                @if (ViewBag.message == true)
+                {
+                    <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-success alert-dismissible fade show" role="alert">
+                        Question has been edited successful!!!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                else if (ViewBag.message == false)
+                {
+                    <div style="position: fixed; bottom: 10px; right: 10px" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Edit question fail because question, answers only contain space or have duplicated!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+                @using (Html.BeginForm("EditQuestion", "AdminQuiz", FormMethod.Post))
+                {
+                    <div class="quiz">
+                        <div hidden class="flex-answer-content">
+                            <input type="text" name="courseID" id="courseID" value="@ViewBag.courseID">
+                        </div>
+                        <div hidden class="flex-answer-content">
+                            <input type="text" name="questionID" id="questionID" value="@ViewBag.questionID">
+                        </div>
+                        <div>
+                            <h2>Quesion:</h2>
+                            <textarea name="question" id="question" rows="4">@ViewBag.question</textarea>
+                        </div>
+                        <div class="main-answer">
+                            <div class="flex-answer">
+                                <label class="flex-answer-radio" for="ans1">
+                                    <input type="radio" name="trueAns" id="ans1" value="ans1" @ViewBag.checkAnswer1>
+                                </label>
+                                <div class="flex-answer-content">
+                                    <input type="text" name="answer1" id="answer1" placeholder="Answer 1" value="@ViewBag.answer1" required>
+                                </div>
+                            </div>
+                            <div class="flex-answer">
+                                <label class="flex-answer-radio" for="ans2">
+                                    <input type="radio" name="trueAns" id="ans2" value="ans2" @ViewBag.checkAnswer2>
+                                </label>
+                                <div class="flex-answer-content">
+                                    <input type="text" name="answer2" id="answer2" placeholder="Answer 2" value="@ViewBag.answer2" required>
+                                </div>
+                            </div>
+                            <div class="flex-answer">
+                                <label class="flex-answer-radio" for="ans3">
+                                    <input type="radio" name="trueAns" id="ans3" value="ans3" @ViewBag.checkAnswer3>
+                                </label>
+                                <div class="flex-answer-content">
+                                    <input type="text" name="answer3" id="answer3" placeholder="Answer 3" value="@ViewBag.answer3" required>
+                                </div>
+                            </div>
+                            <div class="flex-answer">
+                                <label class="flex-answer-radio" for="ans4">
+                                    <input type="radio" name="trueAns" id="ans4" value="ans4" @ViewBag.checkAnswer4>
+                                </label>
+                                <div class="flex-answer-content">
+                                    <input type="text" name="answer4" id="answer4" placeholder="Answer 4" value="@ViewBag.answer4" required>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="button-save" class="btn btn-success" type="submit">Save</button>
+                        <button id="deleteButton" class="btn btn-danger">Delete</button>
+                    </div>
+
+                }
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#deleteButton").click(function () {
+            $.post("/AdminQuiz/DeleteQuestion",
+                {
+                    courseID: "@ViewBag.courseID",
+                    questionID: "@ViewBag.questionID"
+                },
+                function (data, status) {
+                    if (status === "success") {
+                        alert("Delete question successful!")
+                        location.replace("/admin/quiz/@ViewBag.courseID")
+                    } else {
+                        alert("Delete question fail!")
+                    }
+                });
+        });
+    });
+</script>
+</html>

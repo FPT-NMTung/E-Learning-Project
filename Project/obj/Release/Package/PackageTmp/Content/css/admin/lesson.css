@@ -1,0 +1,94 @@
+table {
+    border-spacing: 0px 14px;
+}
+
+.user {
+    display        : flex;
+    justify-content: center;
+}
+
+.thead {
+    font-size  : 18px;
+    font-weight: bold;
+}
+
+.thead>h3 {
+    float        : left;
+    margin-bottom: 0px;
+}
+
+.table-main {
+    width: 1222px;
+}
+
+.thead-user {
+    width: 100px;
+}
+
+.thead-email {
+    width: 250px;
+}
+
+.thead-location {
+    width: 140px;
+}
+
+.thead-course {
+    width: 500px;
+}
+
+.description-lesson>p {
+    width     : 500px;
+    padding   : 0px 20px 0px 0px;
+
+    overflow          : hidden;
+    text-overflow     : ellipsis;
+    display           : -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.thead-action {
+    width: 100px;
+}
+
+.user-name {
+    display    : flex;
+    align-items: center;
+}
+
+.user-name-name>h4 {
+    margin: 14px 0px 10px 0px;
+}
+
+.user-name-name>p {
+    margin: 10px 0px 14px 0px;
+    color : rgb(167, 167, 167);
+}
+
+.row-user {
+    background-color: white;
+    box-shadow      : 0px 0px 4px 0px rgba(50, 50, 50, 0.123);
+}
+
+.user-name>div>img {
+    margin: 0px 20px;
+}
+
+.button-select {
+    border-radius   : 6px;
+    padding         : 5px 18px;
+    background-color: #00ab55;
+
+    color: white;
+}
+
+.row-user>td>h3 {
+    padding-left: 10px;
+}
+
+.add-quiz {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
